@@ -4,7 +4,6 @@
 #include <iostream>
 #include <cmath>
 #include <map>
-#include <stdio.h>
 #include <limits>
 #include <bitset>
 
