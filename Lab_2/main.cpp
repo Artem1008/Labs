@@ -1,12 +1,12 @@
 #include "main.h"
-//укажите номер задания
-#define TASK 3
+//TASK опредёлен в pro иначе жалуется "macro name missing"
+
 using namespace std;
 
 int main()
 {
     //Задание 1
-#if  (TASK==1)
+#if (TASK==1)
     map<std::string, int> UserData;
     string rezult;
     RequestData(UserData);
@@ -46,14 +46,103 @@ int main()
     const int count=10;
     float Numbers;
     double Sum;
-   cout<<"Введите 10 чисел с плавающей точкой: "<<"\n";
-   for  (int i=0;i<count;i++)
-   {
+    cout<<"Введите 10 чисел с плавающей точкой: "<<"\n";
+    for  (int i=0;i<count;i++)
+    {
         if(ChekValue(Numbers)==-1) return -1;
         Sum=Sum+Numbers;
-   }
+    }
     cout<<"Среднее арифметическое: "<<Sum/count;
 #endif
+#if (TASK==4)
+    vector<string> Numbers {"34.50","0.004000","123.005","146000"};
+    for (auto i :Numbers)
+    {
+        cout<<scientific<<stof(i)<<"; Значащих цифр: "<<SeekSignificantNumbers(i)<<"\n";
+    }
+#endif
+#if (TASK==5)
+    cout<<"1)\n";
+    cout<<"(true && true) || false Ответ: "<<boolalpha<<((true && true) || false)<<"\n";
+    cout<<"(false && true) || true Ответ: "<<boolalpha<<((false && true) || true)<<"\n";
+    cout<<"(false && true) || false || true Ответ: "<<boolalpha<<((false && true) || false || true)<<"\n";
+    cout<<"(5 > 6 || 4 > 3) && (7 > 8) Ответ: "<<boolalpha<<((5 > 6 || 4 > 3) && (7 > 8))<<"\n";
+    cout<<"!(7 > 6 || 3 > 4) Ответ:"<<boolalpha<<!(7 > 6 || 3 > 4)<<"\n";
+    cout<<"2)\n";
+    const bool b1=true,b2=false, b3=false,b4=true;
+    constexpr bool b5(b1&b3), b6(b3|b4);
+    enum iEnum
+    {
+        ONE,
+        TWO,
+        THREE,
+        FOUR,
+        FIVE,
+        SIX
+    };
+    cout<<"( b1 && b2 ) || ( !b5) && ( b3 || b4 ) Ответ: "<<boolalpha<<(( b1 && b2 ) || ( !b5) && (b3||b4))<<"\n";
+    cout<<"( b3 && b5 ) || ( b6 && b2 ) || ( !b1) Ответ: "<<boolalpha<<((b3 &&b5 ) || (b6&&b2) || (!b1))<<"\n";
+    cout<<"(b6 || b5) && (b4 || b3) && (b2 || b1) Ответ:"<<boolalpha<<((b6 || b5) && (b4 || b3) && (b2 || b1))<<"\n";
+    cout<<"((SIX >FOUR) && (TWO<ONE) && (FIVE!=THREE)) Ответ: "<<boolalpha<<((SIX >FOUR) && (TWO<ONE) && (FIVE!=THREE))<<"\n";
+    cout<<"3)\n";
+    bool a=true,b=false;
+    cout<<"не (true и false) = (не true) или (не false) Ответ: "<<!(a && b)<<"="<<((!a)||(!b))<<"\n";
+    cout<<"не (true или false) = (не true) и (не false) Ответ: "<<!(a || b)<<"="<<((!a)&&(!b))<<"\n";
+    cout<<"4)\n";
+    vector<int> xyzv;
+    bool LogicValue;
+    RequestData(xyzv);
+    cout<<"x = 3 + 4 + 5 Ответ: "<<(xyzv[1]= (3 + 4 + 5))<<"\n";
+    cout<<"x = y = z Ответ: "<<(xyzv[1]= xyzv[2]=xyzv[3])<<"\n";
+    cout<<"z *= ++y + 5 Ответ: "<<(xyzv[3] *= ++xyzv[2] + 5)<<"\n";
+    cout<<"x = "<<xyzv[1]<<"; y = "<<xyzv[2]<<"; z = "<<xyzv[3]<<"; v = "<<xyzv[4]<<"\n";
+    cout<<"logicValue = x || y && z || v Ответ: "<<(LogicValue = (xyzv[1] || xyzv[2] && xyzv[3] || xyzv[4]))<<"\n";
+    cout<<"5)\n";
+    unsigned short Number;
+    unsigned short Shift;
+    cout<<"Если вы ещё не заколебались вводить данные, то введите число от 0 до 2^4"<<"\n";
+    ChekValue(Number);
+    cout<<"На сколько бит сдвинуть данное чило в лево?: "<<"\n";
+     ChekValue(Shift);
+     if (Number>16)
+     {
+        cout<<"Ну больше и болше, в ТЗ не сказано что делать если больше"<<"\n";
+     }
+     else if (Shift>8)
+     {
+         cout<<"Слишкои далеко двигаем: "<<"\n";
+     }
+     else
+     {
+         Number=Number*pow(2,Shift);
+          cout<<"Результат:"<<" "<<dec<<Number<<" "<<bitset<sizeof(Number) * 8>(Number)<<" "<< hex <<Number <<" "<< oct <<Number <<"\n";
+     }
+     cout<<"6)\n";
+     int res;
+     int a1=10, a2=20;
+     cout<<"res = a + b * 1 – 128/5 Ответ:"<<(res=a1+a2*1-128/5)<<"\n";
+     cout<<"res = a | b >> 1 Ответ:"<<(res=a1|a2>>1)<<"\n";
+     cout<<"res=a/b*k Ответ:"<<(res=a1|a2>>1)<<"\n";
+
+#endif
+}
+
+int SeekSignificantNumbers(string Value)
+{
+    int countNumbers=0;
+    bool FirstZero=true;
+    for(auto var:Value)
+    {
+        if(var!='0' || FirstZero==false)
+        {
+            if (var!='.')
+            {
+                FirstZero=false;
+                countNumbers++;
+            }
+        }
+    }
+    return countNumbers;
 }
 int RequestData(map<std::string, int> &data)
 {
@@ -70,9 +159,26 @@ int RequestData(map<std::string, int> &data)
     data["height"]=iValue;
     cout<<"Если мужчина введите 1, женщина 0:";
     if(ChekValue(bValue)==-1) return -1;
-    data["sex"]=bValue;;
+    data["sex"]=bValue;
+    return 1;
 }
-
+int RequestData(vector<int> &data)
+{
+    int iValue;
+    cout<<"Введите число x:";
+    if(ChekValue(iValue)==-1) return -1;
+    data.push_back(iValue);
+    cout<<"Введите число y:";
+    if(ChekValue(iValue)==-1) return -1;
+    data.push_back(iValue);
+    cout<<"Введите число z:";
+    if(ChekValue(iValue)==-1) return -1;
+    data.push_back(iValue);
+    cout<<"Введите число v:";
+    if(ChekValue(iValue)==-1) return -1;
+    data.push_back(iValue);
+    return 1;
+}
 template<typename T>
 int ChekValue(T &Value)
 {
@@ -134,4 +240,3 @@ void CalcWeightForIndexAndAge(int heigh,int age,int sex,string &rezult)
     }
     rezult=ss.str();
 }
-
