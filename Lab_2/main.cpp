@@ -73,7 +73,7 @@ int main()
     constexpr bool b5(b1&b3), b6(b3|b4);
     enum iEnum
     {
-        ONE,
+        ONE=1,
         TWO,
         THREE,
         FOUR,
