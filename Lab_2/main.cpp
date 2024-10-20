@@ -114,7 +114,7 @@ int main()
      }
      else
      {
-         Number=Number*pow(2,Shift);
+         Number=Number<<Shift;
           cout<<"Результат:"<<" "<<dec<<Number<<" "<<bitset<sizeof(Number) * 8>(Number)<<" "<< hex <<Number <<" "<< oct <<Number <<"\n";
      }
      cout<<"6)\n";
