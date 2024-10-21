@@ -58,7 +58,7 @@ int main()
     vector<string> Numbers {"34.50","0.004000","123.005","146000"};
     for (auto i :Numbers)
     {
-        cout<<scientific<<stof(i)<<"; Значащих цифр: "<<SeekSignificantNumbers(i)<<"\n";
+        cout<<stof(i)<<"; Значащих цифр: "<<SeekSignificantNumbers(i)<<"\n";
     }
 #endif
 #if (TASK==5)
