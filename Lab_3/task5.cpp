@@ -8,7 +8,7 @@ unsigned short SeekMax(unsigned short var1,unsigned short var2)
 {
     return (var1>var2)?var1:var2;
 }
-//через массив или вектор конечно было бы проще
+//╤З╨╡╤А╨╡╨╖ ╨╝╨░╤Б╤Б╨╕╨▓ ╨╕╨╗╨╕ ╨▓╨╡╨║╤В╨╛╤А ╨║╨╛╨╜╨╡╤З╨╜╨╛ ╨▒╤Л╨╗╨╛ ╨▒╤Л ╨┐╤А╨╛╤Й╨╡
 int SeekMax(int var1,int var2,int var3)
 {
     int temp;
@@ -25,7 +25,7 @@ unsigned short SeekMin(unsigned short var1,unsigned short var2)
 {
     return (var1>var2)?var2:var1;
 }
-//через массив или вектор конечно было бы проще
+//╤З╨╡╤А╨╡╨╖ ╨╝╨░╤Б╤Б╨╕╨▓ ╨╕╨╗╨╕ ╨▓╨╡╨║╤В╨╛╤А ╨║╨╛╨╜╨╡╤З╨╜╨╛ ╨▒╤Л╨╗╨╛ ╨▒╤Л ╨┐╤А╨╛╤Й╨╡
 int SeekMin(int var1,int var2,int var3)
 {
     int temp;
@@ -44,7 +44,7 @@ int ChekValue(T &Value,int L)
         {
             std::cin.clear();
             std::cin.ignore(32767,'\n');
-            std::cout<<" Некорректное значение\n";
+            std::cout<<" ╨Э╨╡╨║╨╛╤А╤А╨╡╨║╤В╨╜╨╛╨╡ ╨╖╨╜╨░╤З╨╡╨╜╨╕╨╡\n";
             i=-1;
         }
     }
