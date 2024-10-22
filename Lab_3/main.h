@@ -21,47 +21,47 @@ enum Levels
     cafe
 };
 /**
-* @brief Функция для первого задания
+* @brief ╨д╤Г╨╜╨║╤Ж╨╕╤П ╨┤╨╗╤П ╨┐╨╡╤А╨▓╨╛╨│╨╛ ╨╖╨░╨┤╨░╨╜╨╕╤П
 */
 void task1();
 /**
-* @brief Функция для шестого задания
+* @brief ╨д╤Г╨╜╨║╤Ж╨╕╤П ╨┤╨╗╤П ╤И╨╡╤Б╤В╨╛╨│╨╛ ╨╖╨░╨┤╨░╨╜╨╕╤П
 */
 void task6();
 /**
-* @brief Функция для седьмого задания
+* @brief ╨д╤Г╨╜╨║╤Ж╨╕╤П ╨┤╨╗╤П ╤Б╨╡╨┤╤М╨╝╨╛╨│╨╛ ╨╖╨░╨┤╨░╨╜╨╕╤П
 */
 void task7();
 /**
-* @brief Функция для второго задания
+* @brief ╨д╤Г╨╜╨║╤Ж╨╕╤П ╨┤╨╗╤П ╨▓╤В╨╛╤А╨╛╨│╨╛ ╨╖╨░╨┤╨░╨╜╨╕╤П
 */
 void printChar(int a='a', char b='b',char c='c', char d='d');
 /**
-* @brief Функция инициализации
+* @brief ╨д╤Г╨╜╨║╤Ж╨╕╤П ╨╕╨╜╨╕╤Ж╨╕╨░╨╗╨╕╨╖╨░╤Ж╨╕╨╕
 */
 auto Initialization()->int;
 /**
-* @brief Функция вывода названия животного
+* @brief ╨д╤Г╨╜╨║╤Ж╨╕╤П ╨▓╤Л╨▓╨╛╨┤╨░ ╨╜╨░╨╖╨▓╨░╨╜╨╕╤П ╨╢╨╕╨▓╨╛╤В╨╜╨╛╨│╨╛
 */
 void getAnimalName(Animal &data);
 /**
-* @brief Функция вывода количества лап
+* @brief ╨д╤Г╨╜╨║╤Ж╨╕╤П ╨▓╤Л╨▓╨╛╨┤╨░ ╨║╨╛╨╗╨╕╤З╨╡╤Б╤В╨▓╨░ ╨╗╨░╨┐
 */
 void printNumberOfLegs(Animal &data);
 /**
-* @brief Функция проверки ввода
+* @brief ╨д╤Г╨╜╨║╤Ж╨╕╤П ╨┐╤А╨╛╨▓╨╡╤А╨║╨╕ ╨▓╨▓╨╛╨┤╨░
 */
 template<typename T>
 int ChekValue(T &Value,int L);
 int ChekValue();
 /**
-* @brief Функция нахождения максимума
+* @brief ╨д╤Г╨╜╨║╤Ж╨╕╤П ╨╜╨░╤Е╨╛╨╢╨┤╨╡╨╜╨╕╤П ╨╝╨░╨║╤Б╨╕╨╝╤Г╨╝╨░
 */
 int SeekMin(int var1,int var2);
 int SeekMin(unsigned short var1,unsigned short var2);
 int SeekMin(int var1,int var2,int var3);
 /**
-* @brief Функция нахождения минимума
+* @brief ╨д╤Г╨╜╨║╤Ж╨╕╤П ╨╜╨░╤Е╨╛╨╢╨┤╨╡╨╜╨╕╤П ╨╝╨╕╨╜╨╕╨╝╤Г╨╝╨░
 */
 int SeekMax(int var1,int var2);
 int SeekMax(unsigned short var1,unsigned short var2);
