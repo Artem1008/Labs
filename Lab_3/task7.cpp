@@ -6,33 +6,33 @@ void task7()
 
  while(true)
  {
-   cout<<"‚¢¥¤¨â¥ íâ ¦ :";
+   cout<<"Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÑ‚Ð°Ð¶ :";
    Level=(Levels)ChekValue();
     switch (Level)
     {
     case garage:
-        std::cout<<"‚ë á¯ãáâ¨«¨áì ¢ £ à ¦\n";
+        std::cout<<"Ð’Ñ‹ ÑÐ¿ÑƒÑÑ‚Ð¸Ð»Ð¸ÑÑŒ Ð² Ð³Ð°Ñ€Ð°Ð¶\n";
         break;
     case hol:
-        std::cout<<"‚ë ¢ å®««¥\n";
+        std::cout<<"Ð’Ñ‹ Ð² Ñ…Ð¾Ð»Ð»Ðµ\n";
         break;
     case casino:
-        std::cout<<"“¤ ç¨ ¢ ¬ ¢ ª §¨­®\n";
+        std::cout<<"Ð£Ð´Ð°Ñ‡Ð¸ Ð²Ð°Ð¼ Ð² ÐºÐ°Ð·Ð¸Ð½Ð¾\n";
         break;
     case restaurant:
-        std::cout<<"à¨ïâ­®£®  ¯¥â¨â  ¢ à¥áâ®à ­¥\n";
+        std::cout<<"ÐŸÑ€Ð¸ÑÑ‚Ð½Ð¾Ð³Ð¾ Ð°Ð¿ÐµÑ‚Ð¸Ñ‚Ð° Ð² Ñ€ÐµÑÑ‚Ð¾Ñ€Ð°Ð½Ðµ\n";
         break;
     case pool:
-        std::cout<<"‚ë ¡ áá¥¨­¥\n";
+        std::cout<<"Ð’Ñ‹ Ð±Ð°ÑÑÐµÐ¸Ð½Ðµ\n";
         break;
     case bar:
-        std::cout<<"‚ë ¢ ¡ à¥\n";
+        std::cout<<"Ð’Ñ‹ Ð² Ð±Ð°Ñ€Ðµ\n";
         break;
     case cafe:
-        std::cout<<"‚ë ¢ ª ä¥\n";
+        std::cout<<"Ð’Ñ‹ Ð² ÐºÐ°Ñ„Ðµ\n";
         break;
     default:
-        std::cout<<"’ ª®£® íâ ¦  ­¥ áãé¥áâ¢ã¥â\n";
+        std::cout<<"Ð¢Ð°ÐºÐ¾Ð³Ð¾ ÑÑ‚Ð°Ð¶Ð° Ð½Ðµ ÑÑƒÑ‰ÐµÑÑ‚Ð²ÑƒÐµÑ‚\n";
     }
  }
 }
@@ -46,7 +46,7 @@ int ChekValue()
         {
             cin.clear();
             cin.ignore(32767,'\n');
-            cout<<"‚ë ¢¢¥«¨ ­¥ª®à¥ªâ­®¥ §­ ç¥­¨¥\n";
+            cout<<"Ð’Ñ‹ Ð²Ð²ÐµÐ»Ð¸ Ð½ÐµÐºÐ¾Ñ€ÐµÐºÑ‚Ð½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ\n";
             return -1;
         }
     return temp;
