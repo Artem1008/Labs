@@ -20,7 +20,7 @@ void getAnimalName(Animal &data)
         std::cout<<"dog\n";
         break;
     default:
-        std::cout<<"¥â â ª®£® ¦¨¢®â­®£®\n";
+        std::cout<<"ÐÐµÑ‚ Ñ‚Ð°ÐºÐ¾Ð³Ð¾ Ð¶Ð¸Ð²Ð¾Ñ‚Ð½Ð¾Ð³Ð¾\n";
     }
 }
 void printNumberOfLegs(Animal &data)
@@ -28,21 +28,21 @@ void printNumberOfLegs(Animal &data)
     switch (data)
     {
     case pig:
-        std::cout<<"4 ª®¯ëâ \n";
+        std::cout<<"4 ÐºÐ¾Ð¿Ñ‹Ñ‚Ð°\n";
         break;
     case chicken:
-        std::cout<<"2 « ¯ë\n";
+        std::cout<<"2 Ð»Ð°Ð¿Ñ‹\n";
         break;
     case goat:
-        std::cout<<"4  ª®¯ëâ \n";
+        std::cout<<"4  ÐºÐ¾Ð¿Ñ‹Ñ‚Ð°\n";
         break;
     case cat:
-        std::cout<<"4 « ¯ë\n";
+        std::cout<<"4 Ð»Ð°Ð¿Ñ‹\n";
         break;
     case dog:
-        std::cout<<"4 « ¯ë\n";
+        std::cout<<"4 Ð»Ð°Ð¿Ñ‹\n";
         break;
     default:
-        std::cout<<"¥â â ª®£® ¦¨¢®â­®£®\n";
+        std::cout<<"ÐÐµÑ‚ Ñ‚Ð°ÐºÐ¾Ð³Ð¾ Ð¶Ð¸Ð²Ð¾Ñ‚Ð½Ð¾Ð³Ð¾\n";
     }
 }
