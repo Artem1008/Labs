@@ -62,6 +62,6 @@ double MathExprIntepreter::NUMBER()
         number += Current();
         Next();
     }
-    if (number.length()==0) cout<<"Ž¦¨¤ «®áì ç¨á«® (pos="<<getPos()<<"\n";
+    if (number.length()==0) cout<<"ÐžÐ¶Ð¸Ð´Ð°Ð»Ð¾ÑÑŒ Ñ‡Ð¸ÑÐ»Ð¾ pos="<<getPos()<<"\n";
     return stod(number);
 }
