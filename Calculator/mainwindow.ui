@@ -29,7 +29,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Calculator</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="gridLayoutWidget">
@@ -303,7 +303,7 @@
       </widget>
      </item>
      <item row="1" column="3">
-      <widget class="QPushButton" name="Button1_13">
+      <widget class="QPushButton" name="ButtonCE">
        <property name="font">
         <font>
          <pointsize>20</pointsize>
