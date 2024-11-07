@@ -42,7 +42,7 @@ int ChekValue()
         int temp;
         cin>>temp;
         cin.ignore(32767,'\n');
-        if (cin.fail())
+        if(cin.fail())
         {
             cin.clear();
             cin.ignore(32767,'\n');
