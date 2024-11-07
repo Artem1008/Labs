@@ -19,7 +19,7 @@ int main()
     while(true)
     {
         ChekValue(index);
-        switch (index)
+        switch(index)
         {
         case 1:
             CalcSpeed();
