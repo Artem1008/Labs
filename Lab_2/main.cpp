@@ -1,5 +1,5 @@
 #include "main.h"
-//TASK опредёлен в pro иначе жалуется "macro name missing"
+#define TASK 1
 
 using namespace std;
 
