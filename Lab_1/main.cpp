@@ -98,13 +98,13 @@ int ChekValue(T &Value)
     {
         cin>>Value;
         cin.ignore(32767,'\n');
-        if (cin.fail())
+        if(cin.fail())
         {
             cin.clear();
             cin.ignore(32767,'\n');
             cout<<"Вы ввели некоректное значение\n";
         }
-        else   return 1;
+        else return 1;
     }
     cout<<"Привышено число попыток ввода данных\n";
     return -1;
