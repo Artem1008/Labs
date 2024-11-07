@@ -254,7 +254,7 @@ return 0;
 ```
 Ответ: 5 4
 2
-
+``` cpp
 1 #include <iostream>
 2 int tmp = 1;
 3 int getNumbers( {
@@ -274,7 +274,9 @@ return 0;
 17
 18 return 0;
 19
-//Ответ:
+```
+Рабочий вариант
+``` cpp
 #include <iostream>
 int tmp = 1;
 int getNumbers( ){
@@ -294,3 +296,4 @@ std::cout << tmp << "Чтобы программа скомпилилась ну
 
 return 0;
 }
+```
