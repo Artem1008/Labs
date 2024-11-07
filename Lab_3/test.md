@@ -46,7 +46,7 @@ std::cout << return() << std::endl;
 std::cout << return() << std::endl;
 }
 ```
-возможно так, но идею не кода не понял
+возможно так, но идею кода не понял
 ``` cpp
 #include <iostream>
 int return5() {
