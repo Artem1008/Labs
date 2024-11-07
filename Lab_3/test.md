@@ -1,5 +1,7 @@
-//************************************************************************1****************************************************************************
-//a)
+1
+а)
+``` cpp
+
 #include <iostream>
 int return 5(){
 return 5;
@@ -11,7 +13,9 @@ int main(){
 std::cout << (return5() + return8() ) << std::endl;
 return 0
 }
-
+```
+Рабочий вариант
+``` cpp
 #include <iostream>
 int return5(){
 return 5;
@@ -23,9 +27,11 @@ int main(){
 std::cout << (return5() + return8() ) << std::endl;
 return 0;
 }
-//Ответ :13
+``` 
+Ответ :13
 
-//b)
+b)
+``` cpp
 int return() {
   return 5;
     int return()
@@ -39,7 +45,9 @@ int main(){
 std::cout << return() << std::endl;
 std::cout << return() << std::endl;
 }
-//возможно так, но идею не кода не понял
+```
+возможно так, но идею не кода не понял
+``` cpp
 #include <iostream>
 int return5() {
     return 5; 
@@ -53,9 +61,11 @@ int main(){
     std::cout << return5() << std::endl;
     std::cout << returnk() << std::endl;
 }
-//Ответ: 5 3
+```
+Ответ: 5 3
 
-//c)
+c)
+``` cpp
 #include <iostream>
 void prints
 ()
@@ -67,7 +77,9 @@ int main ()
 std::cout << prints() << std::endl;
 return 0;
 }
-
+```
+Рабочий вариант
+``` cpp
 #include <iostream>
 void prints()
 {
@@ -79,9 +91,11 @@ int main ()
 prints();
 return 0;
 }
-//Ответ: O_o
+```
+Ответ: O_o
 
-//d)
+d)
+``` cpp
 #include <iostream>
 int getNumbers()
 {
@@ -95,7 +109,9 @@ std::cout << getNumbers() << std::endl;
 std::cout << getNumbers << std::endl;
 return 0;
 }
-
+```
+Рабочий вариант
+``` cpp
 #include <iostream>
 int getNumbers()
 {
@@ -109,9 +125,11 @@ std::cout << getNumbers() << std::endl;
 std::cout << getNumbers() << std::endl;
 return 0;
 }
-//Ответ: 6 6 6
+```
+Ответ: 6 6 6
 
 e)
+``` cpp
 int main()
 {
 std::cout << multiply(7, 8) << std::endl;
@@ -128,6 +146,9 @@ constexpr int y(x); // в дальнейшем переменная usersAge н�
 std::cout << y << std::endl;
 return 0;
 }
+```
+Рабочий вариант
+``` cpp
 #include <iostream>
 
 int multiply(int a,int b)
@@ -140,7 +161,6 @@ int main2()
 std::cout << multiply(7, 8) << std::endl;
 return 0;
 }
-
 int main() {
 int x;
 std::cin >> x;
@@ -149,8 +169,10 @@ const_cast<int&>(y)=x;
 std::cout << y << std::endl;
 return 0;
 }
+```
 
-//f)
+f)
+``` cpp
 #include <iostream>
 #define VALUE 1
 int main() {
@@ -162,9 +184,11 @@ std::cout << VALUE <<"\n";
 std::cout << VALUE <<"\n";
 #endif
 }
-//Ответ: 1
+```
+Ответ: 1
 
-//g)
+g)
+``` cpp
 #include <iostream>
 namespace Mix {
 enum class Fruits {
@@ -181,7 +205,9 @@ Fruits fruit = Fruits::LEMON;
 std::cout << "MIX\n";
 return 1;
 }
-
+```
+Рабочий вариант
+``` cpp
 #include <iostream>
 namespace Mix {
 enum class Fruits {
@@ -198,9 +224,12 @@ Mix::Fruits fruit = Mix::Fruits::LEMON;
 std::cout << "MIX\n";
 return 1;
 }
-//Ответ: MIX
+```
+Ответ: MIX
 
-//h)
+h)
+Исходный код
+``` cpp
 #include <iostream>
 namespace DoMath
 {
@@ -222,8 +251,9 @@ std::cout << DoMath::add(5, 4) << '\n';
 std::cout << DoMath::subtract(5, 4) << '\n';
 return 0;
 }
-//Ответ: 5 4
-//************************************************************************2****************************************************************************
+```
+Ответ: 5 4
+2
 
 1 #include <iostream>
 2 int tmp = 1;
