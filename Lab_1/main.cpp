@@ -80,7 +80,7 @@ void CalcBoost()
     cout<<"Введите значение конечной:\n";
     if(ChekValue(EndSpeed)==-1) return;
     cout<<"Введите время:\n";
-    if(ChekValue(Time) == -1) return;
+    if(ChekValue(Time)==-1) return;
     cout<<"Ускорение: "<<(EndSpeed-BeginSpeed)/Time<<endl;
 }
 void CalcRadius()
