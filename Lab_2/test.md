@@ -1,13 +1,14 @@
-//1
-//неправильный код 
+неправильный код 
+``` cpp
 #include <iostream>
 nt main() {
 int a ;
 int 5 = 4;
 int л = 4;
 }
-
-//исправленный код
+```
+исправленный код
+``` cpp
 #include <iostream>
 
 int main() {
@@ -15,9 +16,10 @@ int a ;
 int b = 4;
 int l = 4;
 }
-
-//2
-//программный код
+```
+2)
+программный код
+``` cpp
 #include <iostream>
 int main() {
 int x = 5;
@@ -35,27 +37,34 @@ int z;
 //e
 std::cout << z << std::endl; // #e
 }
+```
 // вывод приложения 3 3 6 3 произвольное
 
-// программный код
+программный код
+``` cpp
 #include <iostream>
 int main() {
 int x = 1;
 x = x++;
 std::cout << x << "\n";
+}
+```
 // вывод приложения
 1
 
-//программный код
+программный код
+``` cpp
 #include <iostream>
 int main(){
 int x = 1;
 std::cout << ++x << "\n";
 }
+```
 //вывод приложения
 2
 
-//программный код
+программный код
+``` cpp
 #include <iostream>
 #include <bitset>
 const int option_1 = 0;
@@ -76,10 +85,12 @@ std::cout << "Bit 3 has value: " << bits.test(option_3) << '\n';
 std::cout << "Bit 7 has value: " << bits.test(option_7) << '\n';
 std::cout << "All the bits: " << bits << '\n';
 }
+```
 //вывод приложения
 1 0 0 0000 0001 
 
-//программный код
+программный код
+``` cpp
 #include <iostream>
 int main() {
 uint8_t a(1), b(1), c(3);
@@ -90,10 +101,12 @@ printf("b: %d \n", b);
 c |= 1;
 printf("c: %d \n", c);
 }
+```
 //вывод приложения
 2 2 3
 
-//программный код
+программный код
+``` cpp
 #include <iostream>
 int main() {
 int x = (08); 
@@ -104,9 +117,11 @@ int bin(0);
 bin = 0b101;
 std::cout << "bin 0b101: " << bin << std::endl;
 }
+``` 
 //Ошибка! в 8-ой системк не может быть 8
 
-//программный код
+программный код
+``` cpp
 #include <iostream>
 int main() {
 int x{8};
@@ -114,6 +129,7 @@ std::cout << "hex: " << std::hex << x << std::endl;
 std::cout << "oct: " << std::oct << x << std::endl;
 std::cout << "dec: " << std::dec << x << std::endl;
 }
+``` 
 //вывод приложения
 8 10 8
 
