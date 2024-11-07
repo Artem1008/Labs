@@ -1,4 +1,5 @@
 #include "main.h"
+#define TASK 1
 
 //TASK опредёлен в pro иначе жалуется "macro name missing"
 static int var{12};
