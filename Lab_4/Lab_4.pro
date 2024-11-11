@@ -16,7 +16,9 @@ SOURCES += \
         task4.cpp \
         task5.cpp \
         task6.cpp \
-        task7.cpp
+        task7.cpp\
+        task8.cpp\
+        task9.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
