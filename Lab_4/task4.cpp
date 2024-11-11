@@ -3,15 +3,15 @@
 int task4()
 {
     int number;
-    printf("введите число для которого необходимо вычеслить факториал:\n");
+    printf("╨▓╨▓╨╡╨┤╨╕╤В╨╡ ╤З╨╕╤Б╨╗╨╛ ╨┤╨╗╤П ╨║╨╛╤В╨╛╤А╨╛╨│╨╛ ╨╜╨╡╨╛╨▒╤Е╨╛╨┤╨╕╨╝╨╛ ╨▓╤Л╤З╨╡╤Б╨╗╨╕╤В╤М ╤Д╨░╨║╤В╨╛╤А╨╕╨░╨╗:\n");
     if(ChekValue(number)==-1) return -1;
-    printf("Факториал %d методом рекурсии = %d\n",number,CalcFactorialRecursion(number));
-    printf("Факториал %d методом итерации = %d\n",number,CalcFactorialIteration(number));
-    printf("Введите длину последовательности Фибоначчи:\n");
+    printf("╨д╨░╨║╤В╨╛╤А╨╕╨░╨╗ %d ╨╝╨╡╤В╨╛╨┤╨╛╨╝ ╤А╨╡╨║╤Г╤А╤Б╨╕╨╕ = %d\n",number,CalcFactorialRecursion(number));
+    printf("╨д╨░╨║╤В╨╛╤А╨╕╨░╨╗ %d ╨╝╨╡╤В╨╛╨┤╨╛╨╝ ╨╕╤В╨╡╤А╨░╤Ж╨╕╨╕ = %d\n",number,CalcFactorialIteration(number));
+    printf("╨Т╨▓╨╡╨┤╨╕╤В╨╡ ╨┤╨╗╨╕╨╜╤Г ╨┐╨╛╤Б╨╗╨╡╨┤╨╛╨▓╨░╤В╨╡╨╗╤М╨╜╨╛╤Б╤В╨╕ ╨д╨╕╨▒╨╛╨╜╨░╤З╤З╨╕:\n");
     if(ChekValue(number)==-1) return -1;
     CalcFibonachi(number);
     int sum;
-    printf("Введите сумму основания пирамиды:\n");
+    printf("╨Т╨▓╨╡╨┤╨╕╤В╨╡ ╤Б╤Г╨╝╨╝╤Г ╨╛╤Б╨╜╨╛╨▓╨░╨╜╨╕╤П ╨┐╨╕╤А╨░╨╝╨╕╨┤╤Л:\n");
     if(ChekValue(sum)==-1) return -1;
     int CountString=CalcString(sum);
     CalcPiramida(sum,CountString);
@@ -41,11 +41,11 @@ int ChekValue(T &Value)
         {
             std::cin.clear();
             std::cin.ignore(32767,'\n');
-            std::cout<<"Вы ввели некоректное значение\n";
+            std::cout<<"╨Т╤Л ╨▓╨▓╨╡╨╗╨╕ ╨╜╨╡╨║╨╛╤А╨╡╨║╤В╨╜╨╛╨╡ ╨╖╨╜╨░╤З╨╡╨╜╨╕╨╡\n";
         }
         else return 1;
     }
-    std::cout<<"Привышено число попыток ввода данных\n";
+    std::cout<<"╨Я╤А╨╕╨▓╤Л╤И╨╡╨╜╨╛ ╤З╨╕╤Б╨╗╨╛ ╨┐╨╛╨┐╤Л╤В╨╛╨║ ╨▓╨▓╨╛╨┤╨░ ╨┤╨░╨╜╨╜╤Л╤Е\n";
     return -1;
 }
 void CalcFibonachi(int number)
