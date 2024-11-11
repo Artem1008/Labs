@@ -29,5 +29,13 @@ int main()
     std::cout<<"Задание 7:"<<'\n';
     task7();
 #endif
+#if(TASK==8)
+    std::cout<<"Задание 8:"<<'\n';
+    task8();
+#endif
+#if(TASK==9)
+    std::cout<<"Задание 9:"<<'\n';
+    task9();
+#endif
 }
 
