@@ -94,14 +94,14 @@ int task5()
             }
             else if (type==9)
             {
-                printf("ÑÆ ·¢®§†≠®Ô\n");
+                printf("–î–æ —Å–≤–∏–¥–∞–Ω–∏—è\n");
                 return 0;
             }
-            else printf("í®Ø† ØÆ§ §†≠≠Î¨ ≠Æ¨•‡Æ¨ ≠• ·„È•·‚¢„•‚\n");
+            else printf("–¢–∏–ø–∞ –ø–æ–¥ –¥–∞–Ω–Ω—ã–º –Ω–æ–º–µ—Ä–æ–º –Ω–µ —Å—É—â–µ—Å—Ç–≤—É–µ—Ç\n");
         }
         else
         {
-            printf("‡†ß¨•‡ ·´®Ë™Æ¨ ¨†´\n");
+            printf("—Ä–∞–∑–º–µ—Ä —Å–ª–∏—à–∫–æ–º –º–∞–ª\n");
         }
     }
 
@@ -109,18 +109,18 @@ int task5()
 
 void InputType(int & type)
 {
-    printf("Ç¢•§®‚• ‚®Ø ¨†··®¢†:\n");
+    printf("–í–≤–µ–¥–∏—Ç–µ —Ç–∏–ø –º–∞—Å—Å–∏–≤–∞:\n");
     printf("1. char\n");
     printf("2. short\n");
     printf("3. int\n");
     printf("4. float\n");
     printf("5. double\n");
-    printf("9. ÇÎÂÆ§\n");
+    printf("9. –í—ã—Ö–æ–¥\n");
     ChekValue(type);
 }
 void InputSize(int & size)
 {
-    printf("Ç¢•§®‚• ‡†ß¨•‡ ¨†··®¢†:\n");
+    printf("–í–≤–µ–¥–∏—Ç–µ —Ä–∞–∑–º–µ—Ä –º–∞—Å—Å–∏–≤–∞:\n");
     ChekValue(size);
 }
 template<typename T>
@@ -173,10 +173,10 @@ int ChekValue(T &Value)
         {
             std::cin.clear();
             std::cin.ignore(32767,'\n');
-            std::cout<<"ÇÎ ¢¢•´® ≠•™Æ‡•™‚≠Æ• ß≠†Á•≠®•\n";
+            std::cout<<"–í—ã –≤–≤–µ–ª–∏ –Ω–µ–∫–æ—Ä–µ–∫—Ç–Ω–æ–µ –∑–Ω–∞—á–µ–Ω–∏–µ\n";
         }
         else return 1;
     }
-    std::cout<<"è‡®¢ÎË•≠Æ Á®·´Æ ØÆØÎ‚Æ™ ¢¢Æ§† §†≠≠ÎÂ\n";
+    std::cout<<"–ü—Ä–∏–≤—ã—à–µ–Ω–æ —á–∏—Å–ª–æ –ø–æ–ø—ã—Ç–æ–∫ –≤–≤–æ–¥–∞ –¥–∞–Ω–Ω—ã—Ö\n";
     return -1;
 }
