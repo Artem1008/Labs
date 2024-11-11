@@ -78,6 +78,14 @@ int task6();
 */
 int task7();
 /**
+* @brief Функция для восьмого задания
+*/
+int task8();
+/**
+* @brief Функция для девятого задания
+*/
+int task9();
+/**
 * @brief Функция запроса типа
 */
 void InputType(int & type);
