@@ -5,7 +5,7 @@
 void task2()
 {
     int matrix1[5][5];
-    printf("å†‚‡®Ê† 5Â5:\n");
+    printf("–ú–∞—Ç—Ä–∏—Ü–∞ 5—Ö5:\n");
     for(int i=0;i<5;i++)
     {
         for(int j=0;j<5;j++)
@@ -19,7 +19,7 @@ void task2()
     srand(8888);
     int rezult=0;
     static const double fraction = 1.0 / (static_cast<double>(RAND_MAX)+1.0);
-    printf("å†‚‡®Ê† 8Â8:\n");
+    printf("–ú–∞—Ç—Ä–∏—Ü–∞ 8—Ö8:\n");
     for(int i=0;i<8;i++)
     {
         for(int j=0;j<8;j++)
@@ -30,5 +30,5 @@ void task2()
         }
         printf("\n");
     }
-    printf("C„¨¨† Ì´•¨•≠‚Æ¢ ¨†‚‡®ÊÎ, ´•¶†È®Â ¢ÎË• £´†¢≠Æ© §®†£Æ≠†´®:%d\n",rezult);
+    printf("C—É–º–º–∞ —ç–ª–µ–º–µ–Ω—Ç–æ–≤ –º–∞—Ç—Ä–∏—Ü—ã, –ª–µ–∂–∞—â–∏—Ö –≤—ã—à–µ –≥–ª–∞–≤–Ω–æ–π –¥–∏–∞–≥–æ–Ω–∞–ª–∏:%d\n",rezult);
 }
