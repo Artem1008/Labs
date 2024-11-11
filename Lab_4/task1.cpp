@@ -9,8 +9,8 @@ void task1()
     {
         std::cout<<(var=mersenne())<<'\n';
     }
-    printf("Œ ªá¨¬ã¬: %u\n",operation(MAX,mass,sizeof(mass)/sizeof(*mass)));
-    printf("Œ¨­¨¬ã¬: %u",operation(MIN,mass,sizeof(mass)/sizeof(*mass)));
+    printf("ĞœĞ°ĞºÑĞ¸Ğ¼ÑƒĞ¼: %u\n",operation(MAX,mass,sizeof(mass)/sizeof(*mass)));
+    printf("ĞœĞ¸Ğ½Ğ¸Ğ¼ÑƒĞ¼: %u",operation(MIN,mass,sizeof(mass)/sizeof(*mass)));
 }
 
 
