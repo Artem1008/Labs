@@ -168,6 +168,7 @@ std::cout << 5 << '\n'; // и это
 3
 4
 5
+
 c)
 ```cpp
 #include <iostream>
