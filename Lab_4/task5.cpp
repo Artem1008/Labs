@@ -15,7 +15,7 @@ int task5()
             if(type==1)
             {
                 char* pArr;
-                pArr=CreateArray(pArr,size);
+                CreateArray(pArr,size);
                 for(int i=0;size>i;i++)
                 {
                     std::cout<<pArr[i]<<" ";
@@ -31,7 +31,7 @@ int task5()
             else if(type==2)
             {
                 short* pArr;
-                pArr=CreateArray(pArr,size);
+                CreateArray(pArr,size);
                 for(int i=0;size>i;i++)
                 {
                     std::cout<<pArr[i]<<" ";
@@ -47,7 +47,7 @@ int task5()
             else if(type==3)
             {
                 int* pArr;
-                pArr=CreateArray(pArr,size);
+                CreateArray(pArr,size);
                 for(int i=0;size>i;i++)
                 {
                     std::cout<<pArr[i]<<" ";
@@ -63,7 +63,7 @@ int task5()
             else if(type==4)
             {
                 float* pArr;
-                pArr=CreateArray(pArr,size);
+                CreateArray(pArr,size);
                 for(int i=0;size>i;i++)
                 {
                     std::cout<<pArr[i]<<" ";
@@ -79,7 +79,7 @@ int task5()
             else if(type==5)
             {
                 double* pArr;
-                pArr=CreateArray(pArr,size);
+                CreateArray(pArr,size);
                 for(int i=0;size>i;i++)
                 {
                     std::cout<<pArr[i]<<" ";
@@ -124,7 +124,7 @@ void InputSize(int & size)
     ChekValue(size);
 }
 template<typename T>
-T* CreateArray(T* pArr,int size)
+void CreateArray(T* &pArr,int size)
 {
     pArr=new T[size];
     srand(7777);
@@ -133,7 +133,6 @@ T* CreateArray(T* pArr,int size)
     {
         pArr[i]=static_cast<int>(rand() * fraction * (MAXVALUE-MINVALUE+1) +MINVALUE);
     }
-    return pArr;
 }
 template<typename T>
 void Quicksort(T* pArr,int begin, int end)
