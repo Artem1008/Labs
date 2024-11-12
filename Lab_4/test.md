@@ -133,6 +133,7 @@ ptr =&value;
 }
 ```
 Что выведет программа:
+
 a)
 ```cpp
 #include <cstdlib> // нужно для функции exit()
@@ -144,6 +145,7 @@ std::cout << 3;
 }
 ```
 Ответ: Hi !
+
 b)
 ```cpp
 #include <iostream>
@@ -168,7 +170,6 @@ std::cout << 5 << '\n'; // и это
 5
 c)
 ```cpp
-c)
 #include <iostream>
 const int size = 5;
 void Func(int *ptr, int size) {
