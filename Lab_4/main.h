@@ -97,7 +97,7 @@ void InputSize(int & size);
 * @brief Функция запроса размера
 */
 template<typename T>
-T* CreateArray(T* pArr,int size);
+void CreateArray(T* &pArr,int size);
 /**
 * @brief Функция быстрой сортировки
 */
