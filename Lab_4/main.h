@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <sstream>
 #include <iomanip>
+#include <functional>
 
 #define MAX  SeekMax
 #define MIN  SeekMin
@@ -18,7 +19,7 @@ int ChekValue(T &Value);
 * @brief Функция операций над массивами
 */
 template<typename T>
-int operation(T(*)(T[], int), T[], int);
+T operation(T(*)(T[], int), T[], int);
 /**
 * @brief Функция определения минимума
 */
@@ -88,7 +89,7 @@ int task9();
 /**
 * @brief Функция запроса типа
 */
-void InputType(int & type);
+void InputType(int &type);
 /**
 * @brief Функция запроса размера
 */
@@ -108,4 +109,28 @@ void Quicksort(T* pArr,int begin, int end);
 */
 template<typename T>
 int Partition(T* pArr,int begin, int end);
+/**
+* @brief Функция подсчета числа комбинаций
+*/
+int CalcCombination(int,int);
+/**
+* @brief Функция операций с переменными
+*/
+int LogicOperation(std::function<int(int, int)> pfcn,int a1,int a2);
+/**
+* @brief Шаблон функции И
+*/
+int AND(int a1 ,int a2);
+/**
+* @brief Шаблон функции ИЛИ
+*/
+int OR(int a1 ,int a2);
+/**
+* @brief Шаблон функции  XOR
+*/
+int XOR(int a1 ,int a2);
+/**
+* @brief Шаблон Замены четного на нечетное значение
+*/
+void FuncSwap(char* &pArr,int size);
 #endif // MAIN_H
