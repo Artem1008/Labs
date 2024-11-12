@@ -4,14 +4,14 @@
 int task8()
 {
     int Operator;
-    printf("Ç¢•§®‚• ‚®Ø ¨†··®¢†:\n");
-    printf("1. à\n");
-    printf("2. àãà\n");
+    printf("–í–≤–µ–¥–∏—Ç–µ —Ç–∏–ø –º–∞—Å—Å–∏–≤–∞:\n");
+    printf("1. –ò\n");
+    printf("2. –ò–õ–ò\n");
     printf("3. XOR\n");
-    printf("9. ÇÎÂÆ§\n");
+    printf("9. –í—ã—Ö–æ–¥\n");
     if(ChekValue(Operator)==-1) return -1;
     int a1,a2;
-    printf("Ç¢•§®‚• 2 Á®·´† Á•‡•ß Ø‡Æ°•´:\n");
+    printf("–í–≤–µ–¥–∏—Ç–µ 2 —á–∏—Å–ª–∞ —á–µ—Ä–µ–∑ –ø—Ä–æ–±–µ–ª:\n");
     scanf("%d %d",&a1,&a2);
     switch(Operator)
     {
@@ -39,11 +39,11 @@ int ChekValue(T &Value)
         {
             std::cin.clear();
             std::cin.ignore(32767,'\n');
-            std::cout<<"ÇÎ ¢¢•´® ≠•™Æ‡•™‚≠Æ• ß≠†Á•≠®•\n";
+            std::cout<<"–í—ã –≤–≤–µ–ª–∏ –Ω–µ–∫–æ—Ä–µ–∫—Ç–Ω–æ–µ –∑–Ω–∞—á–µ–Ω–∏–µ\n";
         }
         else return 1;
     }
-    std::cout<<"è‡®¢ÎË•≠Æ Á®·´Æ ØÆØÎ‚Æ™ ¢¢Æ§† §†≠≠ÎÂ\n";
+    std::cout<<"–ü—Ä–∏–≤—ã—à–µ–Ω–æ —á–∏—Å–ª–æ –ø–æ–ø—ã—Ç–æ–∫ –≤–≤–æ–¥–∞ –¥–∞–Ω–Ω—ã—Ö\n";
     return -1;
 }
 int AND(int a1 ,int a2)
