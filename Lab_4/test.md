@@ -9,6 +9,17 @@ for (int i = 0; i < sizeof(array); ++i)
 std::cout << array[i] << '\n';
 }
 ```
+Рабочий вариант
+```cpp
+#include <iostream>
+int main() {
+short array[5]{1,3,5,7,9};
+short *ptr = array;
+*ptr = 111;
+for (int i = 0; i < sizeof(array)/sizeof(*array); ++i)
+std::cout << array[i] << '\n';
+}
+```
 b)
 ```cpp
 #include <iostream>
@@ -20,6 +31,19 @@ std::cout << *ptr[i] << '\n';
 int main() {
 int array[size]{1,3,5,7,9};
 Func(&array, size);
+}
+```
+Рабочий вариант
+```cpp
+#include <iostream>
+const int size = 5;
+void Func(int *ptr, int size) {
+for (int i = 0; i < size; ++i)
+std::cout << ptr[i] << '\n';
+}
+int main() {
+int array[size]{1,3,5,7,9};
+Func(array, size);
 }
 ```
 c)
@@ -34,15 +58,15 @@ p = value;
 *p = *&value;
 }
 ```
-d)
+Рабочий вариант
 ```cpp
 #include <iostream>
 int main() {
 short value;
 short *p;
-p = value;
+p = &value;
 *p = value;
-*p = &value;
+*p = value;
 *p = *&value;
 }
 ```
@@ -57,6 +81,18 @@ const short &ref2 = 78;
 ref1 = 3;
 *&value = 4;
 const *short const p3;
+}
+```
+Рабочий вариант
+```cpp
+#include <iostream>
+int main() {
+short value, value1(3);
+short &ref=value;
+const short &ref1 = value;
+const short &ref2 = 78;
+*&value = 4;
+const short *const p3=&value1;
 }
 ```
 f)
@@ -74,6 +110,9 @@ std::cout << "Результат: " << value << '\n';
 return 0;
 }
 ```
+Рабочий вариант
+```cpp
+```
 g)
 ```cpp
 int main() {
@@ -81,6 +120,16 @@ int value = 45;
 int *ptr = &value;
 *ptr = &value;
 ptr = value;
+}
+```
+Рабочий вариант
+```cpp
+#include <iostream>
+int main() {
+int value = 45;
+int *ptr = &value;
+*ptr = value;
+ptr =&value;
 }
 ```
 Что выведет программа:
@@ -94,6 +143,7 @@ exit(0); // завершает выполнение программы и воз
 std::cout << 3;
 }
 ```
+Ответ: Hi !
 b)
 ```cpp
 #include <iostream>
@@ -111,8 +161,14 @@ default:
 std::cout << 5 << '\n'; // и это
 }}
 ```
+Ответ:
+2
+3
+4
+5
 c)
 ```cpp
+c)
 #include <iostream>
 const int size = 5;
 void Func(int *ptr, int size) {
@@ -127,8 +183,26 @@ std::cout << '\n';
 }
 int main() {
 int array[size]{1,3,5,7,9};
-```
 Func(array, size);
 for (int i = 0; i < size; ++i)
 std::cout << array[i] << '\n';
 }
+```
+Ответ:
+1
+3
+5
+7
+9
+
+5
+3
+5
+7
+9
+
+5
+3
+5
+7
+9
