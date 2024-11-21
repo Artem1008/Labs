@@ -15,6 +15,7 @@ int task4()
     if(ChekValue(sum)==-1) return -1;
     int CountString=CalcString(sum);
     CalcPiramida(sum,CountString);
+    return 1;
 }
 int CalcFactorialRecursion(int number)
 {
@@ -28,6 +29,7 @@ int CalcFactorialIteration(int number)
     {
         rezult*=number;
     }
+    return rezult;
 }
 template<typename T>
 int ChekValue(T &Value)
