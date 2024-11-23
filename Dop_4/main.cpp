@@ -204,8 +204,8 @@ void EnumerationSort(T* pArr,int size)
 template<typename T>
 int LookLittle(T* pArr,int start, int size)
 {
-    int LittlePosition=size-1;
-    for(int i=size-1;i>start;i--)
+    int LittlePosition=start;
+    for(int i=start;i<size;i++)
     {
         if(pArr[LittlePosition]>pArr[i]) LittlePosition=i;
     }
