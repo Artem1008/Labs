@@ -7,7 +7,7 @@ void task4()
 {
      char text[25][MAX_CHAR];
      int line=0;
-     std::cout<<"‚¢¥¤¨â¥ áâà®ª¨\n";
+     std::cout<<"Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÑ‚Ñ€Ð¾ÐºÐ¸\n";
      for(int i=0;i<25;i++)
      {
          std::cin.getline(text[i], MAX_CHAR);
@@ -23,9 +23,9 @@ void task4()
 int SortSting(char ch[] ,int line)
 {
     int type;
-    printf("‚¢¥¤¨â¥ â¨¯ á®àâ¨à®¢ª¨:\n");
-    printf("1. ® ¤«¨­¥\n");
-    printf("2. ®  «ä ¢¨âã\n");
+    printf("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‚Ð¸Ð¿ ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²ÐºÐ¸:\n");
+    printf("1. ÐŸÐ¾ Ð´Ð»Ð¸Ð½Ðµ\n");
+    printf("2. ÐŸÐ¾ Ð°Ð»Ñ„Ð°Ð²Ð¸Ñ‚Ñƒ\n");
     if(ChekValue(type)==-1) return -1;
     switch(type)
     {
@@ -36,7 +36,7 @@ int SortSting(char ch[] ,int line)
          SortABC(ch,line);
         break;
     default:
-         printf("­¥¢¥à­® ¢¢¥«¨ â¨¯");
+         printf("Ð½ÐµÐ²ÐµÑ€Ð½Ð¾ Ð²Ð²ÐµÐ»Ð¸ Ñ‚Ð¸Ð¿");
     }
 }
 void SortABC(char ch[] ,int line)
@@ -113,10 +113,10 @@ int ChekValue(T &Value)
         {
             std::cin.clear();
             std::cin.ignore(32767,'\n');
-            std::cout<<"‚ë ¢¢¥«¨ ­¥ª®à¥ªâ­®¥ §­ ç¥­¨¥\n";
+            std::cout<<"Ð’Ñ‹ Ð²Ð²ÐµÐ»Ð¸ Ð½ÐµÐºÐ¾Ñ€ÐµÐºÑ‚Ð½Ð¾Ðµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ\n";
         }
         else return 1;
     }
-    std::cout<<"à¨¢ëè¥­® ç¨á«® ¯®¯ëâ®ª ¢¢®¤  ¤ ­­ëå\n";
+    std::cout<<"ÐŸÑ€Ð¸Ð²Ñ‹ÑˆÐµÐ½Ð¾ Ñ‡Ð¸ÑÐ»Ð¾ Ð¿Ð¾Ð¿Ñ‹Ñ‚Ð¾Ðº Ð²Ð²Ð¾Ð´Ð° Ð´Ð°Ð½Ð½Ñ‹Ñ…\n";
     return -1;
 }
