@@ -2,6 +2,6 @@
 
 void task1(int i)
 {
- printf("†§‡•· ‰„≠™Ê®® task1 0x%08x\n",reinterpret_cast<void*>(task1));
- printf("†§‡•· Ø•‡•¨•≠≠Æ© ·Æß§†≠≠Æ© ¢ ·‚Ì™• 0x%08x\n",&i);
+ printf("–∞–¥—Ä–µ—Å —Ñ—É–Ω–∫—Ü–∏–∏ task1 0x%08x\n",reinterpret_cast<void*>(task1));
+ printf("–∞–¥—Ä–µ—Å –ø–µ—Ä–µ–º–µ–Ω–Ω–æ–π —Å–æ–∑–¥–∞–Ω–Ω–æ–π –≤ —Å—Ç—ç–∫–µ 0x%08x\n",&i);
 }
