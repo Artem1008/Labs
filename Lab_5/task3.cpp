@@ -1,15 +1,17 @@
 #include "main.h"
-/*
-struct �ontinent
-{
-    struct { std::string type; int count;}head;
-    struct { std::string type; int count;}eyes;
-   int countpaw;
-   std::string skin;
-   std::string tail;
-}Animal;
-void task3()
-{
 
+void task3_1()
+{
+    std::string text="Александр             Македонский герой,\tно зачем                же стулья\t                       ломать";
+
+    for(int i=0;i<=(int)text.length();i++)
+    {
+        if (text[i]=='\t') text[i]=' ';
+        if ((text[i]==' ')&&(text[i-1]==' '))
+        {
+            i--;
+            text.erase(i,1);
+        }
+    }
+    std::cout<<text;
 }
-*/
