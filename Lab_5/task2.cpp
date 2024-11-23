@@ -10,19 +10,19 @@ struct newtype
 
 void task2()
 {
-  printf("ëÆß§†© ·¢ÆÒ ¶®¢Æ‚≠Æ•\n");
-  printf("Ç¢•§®‚• ‚®Ø £Æ´Æ¢Î ® ®Â ™Æ´®Á•·‚¢Æ:");
+  printf("–°–æ–∑–¥–∞–π —Å–≤–æ—ë –∂–∏–≤–æ—Ç–Ω–æ–µ\n");
+  printf("–í–≤–µ–¥–∏—Ç–µ —Ç–∏–ø –≥–æ–ª–æ–≤—ã –∏ –∏—Ö –∫–æ–ª–∏—á–µ—Å—Ç–≤–æ:");
   std::cin>>Animal.head.type>>Animal.head.count;
-  printf("Ç¢•§®‚• ‚®Ø £´†ß ® ®Â ™Æ´®Á•·‚¢Æ:");
+  printf("–í–≤–µ–¥–∏—Ç–µ —Ç–∏–ø –≥–ª–∞–∑ –∏ –∏—Ö –∫–æ–ª–∏—á–µ—Å—Ç–≤–æ:");
   std::cin>>Animal.eyes.type>>Animal.eyes.count;
-  printf("Ç¢•§®‚• ™Æ´®Á•·‚¢Æ ´†Ø:");
+  printf("–í–≤–µ–¥–∏—Ç–µ –∫–æ–ª–∏—á–µ—Å—Ç–≤–æ –ª–∞–ø:");
    std::cin>>Animal.countpaw;
    //std::cin.clear();
    std::cin.ignore(32767,'\n');
-  printf("Ç¢•§®‚• ‚®Ø Ë™„‡Î:");
+  printf("–í–≤–µ–¥–∏—Ç–µ —Ç–∏–ø —à–∫—É—Ä—ã:");
   std::getline(std::cin,Animal.skin);
-  printf("Ç¢•§®‚• ‚®Ø Â¢Æ·‚†:");
+  printf("–í–≤–µ–¥–∏—Ç–µ —Ç–∏–ø —Ö–≤–æ—Å—Ç–∞:");
    std::getline(std::cin,Animal.tail);
-  printf("ì ¢†Ë•£Æ ·„È•·‚¢†:\n");
-  printf("%d %s £Æ´Æ¢, %d %s £´†ß,%d ´†Ø,%s Ë™„‡Æ© ® %s Â¢Æ·‚Æ¨",Animal.head.count,Animal.head.type.c_str(),Animal.eyes.count,Animal.eyes.type.c_str(),Animal.countpaw,Animal.skin.c_str(),Animal.tail.c_str());
+  printf("–£ –≤–∞—à–µ–≥–æ —Å—É—â–µ—Å—Ç–≤–∞:\n");
+  printf("%d %s –≥–æ–ª–æ–≤, %d %s –≥–ª–∞–∑,%d –ª–∞–ø,%s —à–∫—É—Ä–æ–π –∏ %s —Ö–≤–æ—Å—Ç–æ–º",Animal.head.count,Animal.head.type.c_str(),Animal.eyes.count,Animal.eyes.type.c_str(),Animal.countpaw,Animal.skin.c_str(),Animal.tail.c_str());
 }
