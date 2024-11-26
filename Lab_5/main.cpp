@@ -37,10 +37,6 @@ int main()
     std::cout<< "Задание 3:"<<'\n';
     task3();
 #endif
-#if(TASK==31)
-    std::cout<< "Задание 3:"<<'\n';
-    task3_1();
-#endif
 #if(TASK==4)
     std::cout<< "Задание 4:"<<'\n';
     task4();
@@ -52,5 +48,13 @@ int main()
 #if(TASK==6)
     std::cout<< "Задание 6:"<<'\n';
     task6();
+#endif
+#if(TASK==7)
+    std::cout<< "Задание 7:"<<'\n';
+    task7();
+#endif
+#if(TASK==8)
+    std::cout<< "Задание 8:"<<'\n';
+    task8();
 #endif
 }
