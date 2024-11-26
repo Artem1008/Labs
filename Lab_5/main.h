@@ -2,6 +2,7 @@
 #define MAIN_H
 #include <iostream>
 
+
 /**
 * @brief Функция для первого задания
 */
@@ -15,10 +16,6 @@ void task2();
 */
 void task3();
 /**
-* @brief Функция для третьего задания
-*/
-void task3_1();
-/**
 * @brief Функция для четвертого задания
 */
 void task4();
@@ -30,6 +27,14 @@ void task5();
 * @brief Функция для шестого задания
 */
 void task6();
+/**
+* @brief Функция для седьмого задания
+*/
+void task7();
+/**
+* @brief Функция для восьмого задания
+*/
+void task8();
 /**
 * @brief Функция сортировки массива строк
 */
@@ -63,4 +68,12 @@ int LookLittleABC(char ch[],int start, int size);
 * @brief Функция обмена местами
 */
 void CharSwap(char* ch1,int begin,int end);
+/**
+* @brief Функция перевода числа в строку
+*/
+std::string IntToString(int);
+/**
+* @brief Функция перевода строки в число
+*/
+int StringToInt(std::string );
 #endif // MAIN_H
