@@ -20,7 +20,7 @@ struct City
     Country myCountry;
     Continent myContinent;
 };
-void InitWorld( std::map<std::string, City> &mCity,City* pCity)
+void InitWorld( std::map<std::string, City> &mCity,City* const pCity)
 {
     mCity["Город 1"]={"Город 1",{"Провинция 1"},{"Столица 1","Городостан 1"},{"Атлантида 1"}};
     mCity["Город 2"]={"Город 2",{"Провинция 1"},{"Столица 1","Городостан 1"},{"Атлантида 1"}};
@@ -54,7 +54,7 @@ void InitWorld( std::map<std::string, City> &mCity,City* pCity)
         std::cout<<pCity[i].myContinent.name<<" "<<pCity[i].myRegion.name<<" "<<pCity[i].myCountry.Capital<<" "<<pCity[i].myCountry.name<<" "<<pCity[i].name<<'\n';
     }
 }
-void SeekCity(City* pCity,std::string UserCity,int size)
+void SeekCity(City* const pCity,std::string UserCity,int size)
 {
     for(int i=0;i<size;i++)
     {
