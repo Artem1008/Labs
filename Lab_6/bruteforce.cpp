@@ -10,15 +10,14 @@ Bruteforce::Bruteforce()
     flagCapital=false;
     flagSymbols=false;
     lengthPass=1;
-    
+
 }
 std::string Bruteforce::RunFind()
 {
-    std::string str=Letters;
-    std::cout<<Capital<<'n';
-    if (flagNumber) str.append(Number);
-    if (flagCapital) str.append(Capital);
-    if (flagSymbols) str.append(Symbols);
+    std::string str=MLETTERS;
+    if (flagNumber) str.append(MNUMBER);
+    if (flagCapital) str.append(MCAPITAL);
+    if (flagSymbols) str.append(MSYMBOL);
     std::string FindPass;
     recursFind("",str,lengthPass,FindPass);
     return FindPass;
