@@ -5,15 +5,15 @@
 extern std::string pass;
 class Bruteforce
 {
+#define MCAPITAL "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+#define MLETTERS "abcdefghijklmnopqrstuvwxyz"
+#define MNUMBER  "0123456789"
+#define MSYMBOL  "!\"№;%:?*()~.,/|\\"
 private:
     bool flagNumber;
     bool flagCapital;
     bool flagSymbols;
     int lengthPass;
-    const char *Capital=new char[27]{'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','\0'};
-    const char *Letters=new char[27]{'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','\0'};
-    const char *Number=new char[11]{'0','1','2','3','4','5','6','7','8','9','\0'};
-    const char * Symbols=new char[15]{'!',';','%',':','?','*','(',')','~','.',',','/','|','\\','\0'};
 public:
     bool getFlagNumber(){return flagNumber;}
     void setFlagNumber(bool _flag){flagNumber= _flag;}
