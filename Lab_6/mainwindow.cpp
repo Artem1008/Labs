@@ -37,6 +37,7 @@ void MainWindow::on_pushButton_clicked()
 {
     ((QPushButton*)sender())->setEnabled(false);
     std::string temp=myFind.RunFind();
+    if (temp=="") temp="Password not found";
     ui->GeneralPass->setText(QString::fromStdString(temp));
     ((QPushButton*)sender())->setEnabled(true);
 }
