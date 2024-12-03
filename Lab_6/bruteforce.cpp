@@ -19,7 +19,6 @@ std::string Bruteforce::RunFind()
     if (flagNumber) str.append(Number);
     if (flagCapital) str.append(Capital);
     if (flagSymbols) str.append(Symbols);
-    qDebug()<<"lengthPass="<<lengthPass;
     std::string FindPass;
     recursFind("",str,lengthPass,FindPass);
     return FindPass;
