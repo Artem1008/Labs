@@ -15,7 +15,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_SymbolsBox_clicked(bool checked)
 {
-myFind.setFlagSymbols(checked);
+    myFind.setFlagSymbols(checked);
 }
 
 void MainWindow::on_numberBox_clicked(bool checked)
@@ -26,7 +26,6 @@ void MainWindow::on_numberBox_clicked(bool checked)
 void MainWindow::on_CapitalBox_clicked(bool checked)
 {
     myFind.setFlagCapital(checked);
-    qDebug()<<pass.c_str();
 }
 
 void MainWindow::on_UserPass_textEdited(const QString &arg1)
@@ -37,6 +36,12 @@ void MainWindow::on_UserPass_textEdited(const QString &arg1)
 void MainWindow::on_pushButton_clicked()
 {
     ((QPushButton*)sender())->setEnabled(false);
-    ui->GeneralPass->setText(QString::fromStdString(myFind.RunFind()));
+    std::string temp=myFind.RunFind();
+    ui->GeneralPass->setText(QString::fromStdString(temp));
     ((QPushButton*)sender())->setEnabled(true);
+}
+
+void MainWindow::on_lineEdit_textEdited(const QString &arg1)
+{
+    myFind.setLengthPass(arg1.toUInt());
 }
