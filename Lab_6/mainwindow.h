@@ -29,6 +29,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_lineEdit_textEdited(const QString &arg1);
+
 private:
     Bruteforce myFind;
     Ui::MainWindow *ui;
