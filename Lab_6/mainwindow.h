@@ -3,7 +3,8 @@
 
 #include <QMainWindow>
 #include "bruteforce.h"
-
+#include "palindrom.h"
+#include "complex.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -31,8 +32,25 @@ private slots:
 
     void on_lineEdit_textEdited(const QString &arg1);
 
+    void on_lineEdit_2_textEdited(const QString &arg1);
+
+    void on_pushButton_2_clicked();
+
+    void on_lineEdit_3_textEdited(const QString &arg1);
+
+    void on_lineEdit_4_textEdited(const QString &arg1);
+
+    void on_lineEdit_5_textEdited(const QString &arg1);
+
+    void on_pushButton_3_clicked();
+
 private:
     Bruteforce myFind;
+    Complex<int> *myComplex1;
+    Complex<int> *myComplex2;
+    Complex<int> *rezult2;
+    QChar operation;
+    Palindrom myPalindrom;
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H
