@@ -1,6 +1,8 @@
+#include <QValidator>
+#include <QDebug>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "QDebug"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -45,4 +47,73 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_lineEdit_textEdited(const QString &arg1)
 {
     myFind.setLengthPass(arg1.toUInt());
+}
+
+void MainWindow::on_lineEdit_2_textEdited(const QString &arg1)
+{
+    ((QLineEdit*)sender())->setValidator(new QRegExpValidator(QRegExp("[А-Яа-яёЁ,' ',',',0-9A-Za-z]{50}")));
+    myPalindrom.setStr(arg1);
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    QPalette palettered;
+    palettered.setColor(QPalette::Base,Qt::red);
+    QPalette palettegreen;
+    palettegreen.setColor(QPalette::Base,Qt::green);
+    bool rezult;
+    rezult=myPalindrom.CheckPalindrom();
+    if (rezult) ui->lineEdit_2->setPalette(palettegreen);
+    else ui->lineEdit_2->setPalette(palettered);
+}
+
+void MainWindow::on_lineEdit_3_textEdited(const QString &arg1)
+{
+    ((QLineEdit*)sender())->setValidator(new QRegExpValidator(QRegExp("[0-9]{1,5}[+','\\-','*','\','^']{1}[0-9]{1,5}[i]{1}")));
+    int a1;
+    int a2;
+    QChar op1;
+    QString string = arg1;
+    QTextStream stream(&string);
+    stream>>a1>>op1>>a2;
+    myComplex1=new Complex<int>(a1,a2,op1);
+}
+
+void MainWindow::on_lineEdit_4_textEdited(const QString &arg1)
+{
+    ((QLineEdit*)sender())->setValidator(new QRegExpValidator(QRegExp("[0-9]{1,5}[+','\\-','*','\','^']{1}[0-9]{1,5}[i]{1}")));
+    int a1;
+    int a2;
+    QChar op1;
+    QString string = arg1;
+    QTextStream stream(&string);
+    stream>>a1>>op1>>a2;
+    myComplex2=new Complex<int>(a1,a2,op1);
+}
+
+void MainWindow::on_lineEdit_5_textEdited(const QString &arg1)
+{
+    ((QLineEdit*)sender())->setValidator(new QRegExpValidator(QRegExp("['+','-','*','/','^']{1}")));
+    operation=arg1[0];
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    QString rezult;
+    switch(operation.unicode())
+    {
+    case u'+':
+        *rezult2=*myComplex1+*myComplex2;
+        break;
+    case u'-':
+        *rezult2=*myComplex1-*myComplex2;
+        break;
+    case u'*':
+        *rezult2=*myComplex1**myComplex2;
+        break;
+    case u'/':
+        *rezult2=(*myComplex1)/(*myComplex2);
+        break;
+    }
+
 }
