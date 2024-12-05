@@ -10,12 +10,16 @@ CONFIG += c++11
 
 SOURCES += \
     bruteforce.cpp \
+    complex.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    palindrom.cpp
 
 HEADERS += \
     bruteforce.h \
-    mainwindow.h
+    complex.h \
+    mainwindow.h \
+    palindrom.h
 
 FORMS += \
     mainwindow.ui
