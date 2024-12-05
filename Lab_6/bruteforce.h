@@ -8,7 +8,7 @@ class Bruteforce
 #define MCAPITAL "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 #define MLETTERS "abcdefghijklmnopqrstuvwxyz"
 #define MNUMBER  "0123456789"
-#define MSYMBOL  "!\"№;%:?*()~.,/|\\"
+#define MSYMBOL  "!\"ь;%:?*()~.,/|\\"
 private:
     bool flagNumber;
     bool flagCapital;
