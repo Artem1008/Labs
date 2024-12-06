@@ -6,19 +6,19 @@
 template<typename T>
 class Complex
 {
-    typedef T type_value;
+    typedef T value_type;
     typedef T& ref;
     typedef T* point;
 private:
-     type_value Re;
-     type_value Im;
+     value_type Re;
+     value_type Im;
      QChar Op;
 public:  
-     void setRe(type_value value){Re=value;}
-     void setIm(type_value value){Im=value;}
+     void setRe(value_type value){Re=value;}
+     void setIm(value_type value){Im=value;}
      void setOp(QChar value){Op=value;}
-    Complex( const type_value _re=type_value(1),const type_value _im=type_value(1),const QChar _op='+'):Re(_re),Im(_im),Op(_op){}
-    template<typename secT>
+    Complex( const value_type _re=value_type(1),const value_type _im=T(1),const QChar& _op='+'):Re(_re),Im(_im),Op(_op){}
+   template<typename secT>
     Complex( const Complex<secT>& copy_complex):Re(copy_complex.Re),Im(copy_complex.Im){}
     Complex<T> operator+(const Complex<T>& complex) const;
     Complex<T> operator-(const Complex<T>& complex) const;
@@ -33,9 +33,9 @@ public:
     Complex<T> sqrt();
     //возвести в квадрат
     Complex<T> pow();
-    QString GetTrigonometricForm() const;
-    QString GetArefmicForm() const;
-    QString GetExpForm() const;
+    QString GetTrigonometricForm();
+    QString GetArefmicForm();
+    QString GetExpForm();
 };
 
 #endif // COMPLEX_H
