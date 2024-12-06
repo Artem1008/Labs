@@ -2,6 +2,7 @@
 #include <QDebug>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "complex.cpp"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -99,21 +100,21 @@ void MainWindow::on_lineEdit_5_textEdited(const QString &arg1)
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    QString rezult;
+
     switch(operation.unicode())
     {
     case u'+':
-        *rezult2=*myComplex1+*myComplex2;
+        *rezult=(*myComplex1+*myComplex2);
         break;
     case u'-':
-        *rezult2=*myComplex1-*myComplex2;
+        *rezult=(*myComplex1-*myComplex2);
         break;
     case u'*':
-        *rezult2=*myComplex1**myComplex2;
+       *rezult=((*myComplex1)*(*myComplex2));
         break;
     case u'/':
-        *rezult2=(*myComplex1)/(*myComplex2);
+       *rezult=((*myComplex1)/(*myComplex2));
         break;
     }
-
+    ui->lineEdit_6->setText(rezult->GetArefmicForm());
 }
