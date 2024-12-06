@@ -77,7 +77,8 @@ void MainWindow::on_lineEdit_3_textEdited(const QString &arg1)
     QString string = arg1;
     QTextStream stream(&string);
     stream>>a1>>op1>>a2;
-    myComplex1=new Complex<int>(a1,a2,op1);
+    if (op1=='-') a2*=(-1);
+    myComplex1=new Complex<int>(a1,a2);
 }
 
 void MainWindow::on_lineEdit_4_textEdited(const QString &arg1)
@@ -89,7 +90,8 @@ void MainWindow::on_lineEdit_4_textEdited(const QString &arg1)
     QString string = arg1;
     QTextStream stream(&string);
     stream>>a1>>op1>>a2;
-    myComplex2=new Complex<int>(a1,a2,op1);
+    if (op1=='-') a2*=(-1);
+    myComplex2=new Complex<int>(a1,a2);
 }
 
 void MainWindow::on_lineEdit_5_textEdited(const QString &arg1)
@@ -104,17 +106,36 @@ void MainWindow::on_pushButton_3_clicked()
     switch(operation.unicode())
     {
     case u'+':
-        *rezult=(*myComplex1+*myComplex2);
+       rezult = new Complex<int>(*myComplex1+*myComplex2);
         break;
     case u'-':
-        *rezult=(*myComplex1-*myComplex2);
+       rezult=new Complex<int>(*myComplex1-*myComplex2);
         break;
     case u'*':
-       *rezult=((*myComplex1)*(*myComplex2));
+      rezult=new Complex<int>((*myComplex1)*(*myComplex2));
         break;
     case u'/':
-       *rezult=((*myComplex1)/(*myComplex2));
+      rezult=new Complex<int>((*myComplex1)/(*myComplex2));
         break;
     }
     ui->lineEdit_6->setText(rezult->GetArefmicForm());
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    if (VeiwType==Arefmic)
+    {
+        if (rezult!=nullptr) ui->lineEdit_6->setText(rezult->GetTrigonometricForm());
+        VeiwType=Trigonometric;
+    }
+    else if (VeiwType==Trigonometric)
+    {
+        if (rezult!=nullptr) ui->lineEdit_6->setText(rezult->GetExpForm());
+        VeiwType=Exp;
+    }
+    else if (VeiwType==Exp)
+    {
+        if (rezult!=nullptr) ui->lineEdit_6->setText(rezult->GetArefmicForm());
+        VeiwType=Arefmic;
+    }
 }
