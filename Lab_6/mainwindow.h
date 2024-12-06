@@ -4,7 +4,12 @@
 #include "bruteforce.h"
 #include "palindrom.h"
 #include "complex.h"
-
+enum ComplexType
+{
+    Arefmic=1,
+    Trigonometric,
+    Exp,
+};
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -44,8 +49,11 @@ private slots:
 
     void on_pushButton_3_clicked();
 
+    void on_pushButton_4_clicked();
+
 private:
     Bruteforce myFind;
+    ComplexType VeiwType=Arefmic;
     Complex<int> *myComplex1;
     Complex<int> *myComplex2;
     Complex<int> *rezult;
