@@ -6,6 +6,7 @@
 
 //(a + bi)
 //(c + di)
+
 template<typename T>
 Complex<T> Complex<T>::operator+(const Complex<T>& complex) const
 {
@@ -33,6 +34,7 @@ const Complex<T>& Complex<T>::operator!() const
    setIm(b*-1);
   return *this;
 }
+
 template<typename T>
 const Complex<T>& Complex<T>::operator+=(const Complex<T>& complex) const
 {
@@ -72,17 +74,17 @@ Complex<T>  Complex<T> ::pow()
 
 }
 template<typename T>
-QString Complex<T> ::GetTrigonometricForm() const
+QString Complex<T> ::GetTrigonometricForm()
 {
     //double mod=::sqrt(a*a+b*b);
 }
 template<typename T>
-QString Complex<T> ::GetArefmicForm() const
+QString Complex<T> ::GetArefmicForm()
 {
     return QString::number(Re)+"+"+QString::number(Im)+"i";
 }
 template<typename T>
-QString Complex<T> ::GetExpForm() const
+QString Complex<T> ::GetExpForm()
 {
 
 }
