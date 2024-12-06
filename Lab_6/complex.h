@@ -10,15 +10,19 @@ class Complex
     typedef T& ref;
     typedef T* point;
 private:
-     value_type Re;
-     value_type Im;
-     QChar Op;
+    double phi;
+    double mod;
+    value_type Re;
+    value_type Im;
 public:  
-     void setRe(value_type value){Re=value;}
-     void setIm(value_type value){Im=value;}
-     void setOp(QChar value){Op=value;}
-    Complex( const value_type _re=value_type(1),const value_type _im=T(1),const QChar& _op='+'):Re(_re),Im(_im),Op(_op){}
-   template<typename secT>
+    void setRe(value_type value){Re=value;}
+    void setIm(value_type value){Im=value;}
+    void setMod(double value){mod=value;}
+    double getMod(){return mod;}
+    void setPhi(double value){phi=value;}
+    double getPhi(){return phi;}
+    Complex( const value_type _re=value_type(1),const value_type _im=T(1)):Re(_re),Im(_im){}
+    template<typename secT>
     Complex( const Complex<secT>& copy_complex):Re(copy_complex.Re),Im(copy_complex.Im){}
     Complex<T> operator+(const Complex<T>& complex) const;
     Complex<T> operator-(const Complex<T>& complex) const;
