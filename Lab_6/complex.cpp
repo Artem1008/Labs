@@ -15,7 +15,7 @@ Complex<T> Complex<T>::operator+(const Complex<T>& complex) const
 template<typename T>
 Complex<T> Complex<T>::operator-(const Complex<T>& complex) const
 {
-  return Complex<T>(a-c,b-d);
+    return Complex<T>(a-c,b-d);
 }
 template<typename T>
 Complex<T> Complex<T>::operator*(const Complex<T>& complex) const
@@ -25,14 +25,14 @@ Complex<T> Complex<T>::operator*(const Complex<T>& complex) const
 template<typename T>
 Complex<T> Complex<T>::operator/(const Complex<T>& complex) const
 {
-  return Complex<T>((a*c+b*d)/(c*c+d*d), (b*c-a*d)/(c*c+d*d));
+    return Complex<T>((a*c+b*d)/(c*c+d*d), (b*c-a*d)/(c*c+d*d));
 }
 template<typename T>
 const Complex<T>& Complex<T>::operator!() const
 {
-   setRe(a);
-   setIm(b*-1);
-  return *this;
+    setRe(a);
+    setIm(b*-1);
+    return *this;
 }
 
 template<typename T>
@@ -66,25 +66,34 @@ const Complex<T>& Complex<T>::operator/=(const Complex<T>& complex) const
 template<typename T>
 Complex<T>  Complex<T> ::sqrt()
 {
-
+    a=::sqrt((mod+a)/2);
+    b=(b/fabs(b))*(::sqrt((mod-a)/2));
+    return *this;
 }
 template<typename T>
 Complex<T>  Complex<T> ::pow()
 {
-
+ return this*=this;
 }
 template<typename T>
 QString Complex<T> ::GetTrigonometricForm()
 {
-    //double mod=::sqrt(a*a+b*b);
+    mod=(::sqrt(a*a+b*b));
+    double alpha=1 / tan(b/a);
+    if(a>=0&&b>=0) phi=alpha;
+    else if(a<0&&b>=0) phi=M_PI-alpha;
+    else if(a<0&&b<0) phi=M_PI+alpha;
+    else if(a>=0&&b>0) phi=2*M_PI-alpha;
+    return QString::number(mod)+"(cos"+QString::number(phi)+"+sin"+QString::number(phi)+')';
 }
 template<typename T>
 QString Complex<T> ::GetArefmicForm()
 {
-    return QString::number(Re)+"+"+QString::number(Im)+"i";
+    if(Im>0)return QString::number(Re)+'+'+QString::number(Im)+"i";
+    else return QString::number(Re)+QString::number(Im)+"i";
 }
 template<typename T>
 QString Complex<T> ::GetExpForm()
 {
-
+return QString::number(mod)+"exp(i"+QString::number(phi)+")";
 }
