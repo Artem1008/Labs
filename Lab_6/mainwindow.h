@@ -1,10 +1,10 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
 #include <QMainWindow>
 #include "bruteforce.h"
 #include "palindrom.h"
 #include "complex.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -48,7 +48,7 @@ private:
     Bruteforce myFind;
     Complex<int> *myComplex1;
     Complex<int> *myComplex2;
-    Complex<int> *rezult2;
+    Complex<int> *rezult;
     QChar operation;
     Palindrom myPalindrom;
     Ui::MainWindow *ui;
