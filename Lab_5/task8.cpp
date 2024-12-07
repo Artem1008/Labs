@@ -7,14 +7,7 @@ struct Address {
     std::string City;
     std::string Street;
     std::string House;
-};/*
-union bitflags {
-    char sum;
-    unsigned char Country: 1;
-    unsigned char City: 1;
-    unsigned char Street: 1;
-    unsigned char House: 1;
-}flags;*/
+};
 
 void Parse(const std::string& line, Address* const address)
 {
