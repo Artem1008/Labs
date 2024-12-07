@@ -25,6 +25,7 @@ int task8()
          printf("%d",LogicOperation(XOR,a1,a2));
         break;
     }
+    return 1;
 }
 
 template<typename T>
