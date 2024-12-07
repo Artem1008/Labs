@@ -8,6 +8,7 @@ void task7()
     str=IntToString(a1);
     printf("%s",str.c_str());
 }
+
 std::string IntToString(int a1)
 {
     std::string result;
@@ -18,6 +19,7 @@ std::string IntToString(int a1)
     }
     return result;
 }
+
 int StringToInt(std::string str)
 {
     int rezult=0;
