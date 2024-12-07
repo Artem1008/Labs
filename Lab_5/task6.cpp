@@ -38,6 +38,7 @@ int SortSting(char ch[] ,int line)
     default:
          printf("неверно ввели тип");
     }
+     return 1;
 }
 void SortABC(char ch[] ,int line)
 {
