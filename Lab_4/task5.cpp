@@ -104,7 +104,7 @@ int task5()
             printf("размер слишком мал\n");
         }
     }
-
+    return 1;
 }
 
 void InputType(int & type)
