@@ -1,4 +1,5 @@
 #include "main.h"
+#include <cstring>
 
 std::string Pack(std::string str)
 {
@@ -17,7 +18,7 @@ std::string Pack(std::string str)
                 rezult=rezult+IntToString(countABC+1);
                 countABC=0;
             }
-            rezult+= std::tolower(str[i-1]);
+           rezult+= std::tolower(str[i-1]);
         }
     }
     return rezult;
@@ -29,21 +30,22 @@ std::string Unpack(std::string str)
     std::string sCount;
     for(int i=0;i<(int)str.length();i++)
     {
-        while (isdigit(str[i]))
+        if (isdigit(str[i]))
         {
             sCount += str[i];
+            continue;
         }
         if(sCount!="")
         {
-            for(int i=0;i<stod(sCount);i++)
+            for(int j=0;j<stod(sCount);j++)
             {
-                rezult+=str[i];
+                rezult+=std::toupper(str[i]);
             }
             sCount="";
         }
         else
         {
-            rezult+=str[i];
+            rezult+=std::toupper(str[i]);
         }
     }
     return rezult;
@@ -52,7 +54,8 @@ void task4()
 {
     std::string str="AAAABCCCCCDDDDE";
     printf("Исходная строка: %s\n",str.c_str());
-    printf("После упаковки: %s\n",Pack(str).c_str());
-    printf("После распаковки: %s\n",Unpack(str).c_str());
+    std::string strpack=Pack(str);
+    printf("После упаковки: %s\n",strpack.c_str());
+    std::string strunpack=Unpack(strpack);
+    printf("После распаковки: %s\n",strunpack.c_str());
 }
-
