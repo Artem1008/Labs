@@ -52,7 +52,7 @@ void task4()
 {
     std::string str="AAAABCCCCCDDDDE";
     printf("Исходная строка: %s\n",str.c_str());
-    printf("После упоковки: %s\n",Pack(str).c_str());
-    printf("После распоковки: %s\n",Unpack(str).c_str());
+    printf("После упаковки: %s\n",Pack(str).c_str());
+    printf("После распаковки: %s\n",Unpack(str).c_str());
 }
 
