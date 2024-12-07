@@ -17,7 +17,7 @@ std::string Pack(std::string str)
                 rezult=rezult+IntToString(countABC+1);
                 countABC=0;
             }
-            rezult=rezult+str[i-1];
+            rezult+= std::tolower(str[i-1]);
         }
     }
     return rezult;
