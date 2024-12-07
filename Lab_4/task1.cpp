@@ -9,8 +9,8 @@ void task1()
     {
         std::cout<<(var=mersenne())<<'\n';
     }
-    printf("Максимум: %u\n",operation(MAX,mass,sizeof(mass)/sizeof(*mass)));
-    printf("Минимум: %u",operation(MIN,mass,sizeof(mass)/sizeof(*mass)));
+    printf("Максимум: %u\n",(unsigned int)operation(MAX,mass,sizeof(mass)/sizeof(*mass)));
+    printf("Минимум: %u",(unsigned int)operation(MIN,mass,sizeof(mass)/sizeof(*mass)));
 }
 
 
