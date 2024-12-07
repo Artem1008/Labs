@@ -224,8 +224,13 @@ int main() {
 #include <iostream>
 using namespace std;
 int main() {
-    setlocale (LC_ALL, "rus" );
-    wstring s = L"I'am an developer";
-    wcout << L"Why is you? : " << L"I'am an developer"<< '\n';
-}
+setlocale (LC_ALL, "Russian");
+wstring s = L"I'am an developer";
+wstring
+        s1 = s.substr(0, 3),
+        s2 = s.substr(1, 3),
+        s3 = s.substr(0, s.length()-1),
+        s4 = s.substr(1);
+        wcout << L"Why is you? : " << s1+s2+s3+s4 << '\n';
+  }
 ```
