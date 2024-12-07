@@ -41,6 +41,7 @@ int task6()
         printf("Arr[%d]=0x%x, *Arr[%d]=%d \n",i,Arr,i,*Arr);
         Arr++;
     }
+    return 1;
 }
 template<typename T>
 int ChekValue(T &Value)
