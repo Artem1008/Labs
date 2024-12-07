@@ -75,6 +75,7 @@ void task8()
     // Россия, г. Томск, ул. Кирова 43
     std::string line;
     Address* address=new Address;
+   std::cout <<"Введите адрес в формате Страна, город, улица, дом: \n";
     getline(std::cin, line);
     Parse(line, address);
     //Unify(address);
