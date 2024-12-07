@@ -20,4 +20,5 @@ int task7()
             }
         }
     }
+   return 1;
 }
