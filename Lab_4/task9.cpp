@@ -15,6 +15,7 @@ int task9()
     {
         printf("%d ",pChar[i]);
     }
+    return 1;
 }
 void FuncSwap(char* &pArr,int size)
 {
