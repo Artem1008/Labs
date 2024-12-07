@@ -17,7 +17,6 @@ SOURCES += \
         task5.cpp \
         task6.cpp \
         task7.cpp \
-        task7.cpp \
         task8.cpp
 
 # Default rules for deployment.
