@@ -1,7 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 #include <iostream>
-
+#include <map>
 
 /**
 * @brief Функция для первого задания
