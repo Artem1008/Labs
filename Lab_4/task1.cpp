@@ -37,7 +37,8 @@ T SeekMax(T mass[] ,int size)
 }
 
 template<typename T>
-int operation(T(* op)(T[], int), T mass[], int size)
+T operation(T(* op)(T[], int), T mass[], int size)
 {
     return op(mass, size);
 }
+
