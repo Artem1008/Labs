@@ -20,24 +20,13 @@ MainWindow::~MainWindow()
 }
 void MainWindow::InitDepo()
 {
-    TreeModel  *model = new TreeModel(*myDisp,myDrivers,myCar,this);
+
+    TreeModel  *model = new TreeModel(*myDisp,myDrivers,myCar,myFlights,this);
     ui->listFlight->setModel(model);
     ui->tableFlight->setModel(model);
     connect(ui->listFlight, SIGNAL(clicked(const QModelIndex&)),ui->tableFlight, SLOT(setRootIndex(const QModelIndex&)));
     ComboBoxDelegat* delegate= new ComboBoxDelegat (myDrivers,this);
     ui->tableFlight->setItemDelegateForRow(3,delegate);
-}
-void CreateFlight( QVector<Flight>& _flights)
-{
-    while(1)
-    {
-        _flights.append({1,"Томск","Новосибирск" });
-    }
-}
-void MainWindow::SimFlights()
-{
-    std::thread FirstThread(CreateFlight,myFlights);
-    FirstThread.join();
 }
 
 void MainWindow::on_SymbolsBox_clicked(bool checked)
