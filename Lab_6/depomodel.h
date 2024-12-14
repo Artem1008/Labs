@@ -13,6 +13,7 @@ class TreeModel : public QStandardItemModel
 public:
     explicit TreeModel(Dispatcher& _disp,QVector<Driver>& _drivers, QVector<Car>&_cars, QObject *parent);
     void initialize();
+    void SetFlight(Flight _value);
 private:
     Dispatcher* muDisp;
     QVector<Driver>* myDrivers;
