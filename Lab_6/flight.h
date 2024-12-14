@@ -12,6 +12,7 @@ private:
     QString StopPoint;
     Driver *driver;
 public:
+    static int Index;
     Flight(int _num=-1,QString _startpoint="",QString _stoppoint="");
     void SetNumber(int _value){Number=_value;}
     int GetNumber() const {return Number;}
