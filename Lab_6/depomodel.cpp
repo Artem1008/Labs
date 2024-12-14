@@ -9,7 +9,11 @@ TreeModel::TreeModel(Dispatcher& _disp,QVector<Driver>& _drivers, QVector<Car>&_
     myCar=&_cars;
     initialize();
 };
-
+void TreeModel::SetFlight(Flight _value)
+{
+    myFlight.append({QString::number(_value.Index),{_value.Index++,"начальный город"/*+QString::number(_value.Index)*/,"конечный город"/*+QString::number(_value.Index)*/}});
+    //myFlight.append({"2",{2,"начальный город","конечный город"}});
+}
 void TreeModel::initialize()
 {
     setColumnCount(1);
