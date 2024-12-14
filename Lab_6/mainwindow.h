@@ -20,6 +20,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+//int Flight::Index=1;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -28,8 +29,6 @@ public:
     MainWindow(QWidget *parent = nullptr);
     void InitDepo();
     ~MainWindow();
-     QVector<Flight> myFlights;
-
 private slots:
 
     void on_SymbolsBox_clicked(bool checked);
@@ -59,7 +58,6 @@ private slots:
     void on_pushButton_4_clicked();
 
     void on_pushButton_5_clicked();
-    void SimFlights();
 private:
     Bruteforce myFind;
     ComplexType VeiwType=Arefmic;
@@ -70,6 +68,7 @@ private:
     Palindrom myPalindrom;
     Ui::MainWindow *ui;
     Dispatcher* myDisp =new Dispatcher("Умывальников начальник");
+
     QVector<Driver> myDrivers
     {
         {"Водитель 1"},
@@ -81,6 +80,12 @@ private:
         {333,"Камаз"},
         {4444,"Газель"},
         {555,"Каблук"}
+    };
+    QVector<Flight> myFlights
+    {
+        {1,"Томск","Новосибирск"},
+        {2,"Топки","Иваново"},
+        {3,"Кемерово","Мариинск"},
     };
 };
 #endif // MAINWINDOW_H
