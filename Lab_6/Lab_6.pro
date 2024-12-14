@@ -10,14 +10,25 @@ CONFIG += c++11
 
 SOURCES += \
     bruteforce.cpp \
-    complex.cpp \
+    car.cpp \
+    comboboxdelegat.cpp \
+    depomodel.cpp \
+    dispatcher.cpp \
+    driver.cpp \
+    flight.cpp \
     main.cpp \
     mainwindow.cpp \
     palindrom.cpp
 
 HEADERS += \
     bruteforce.h \
+    car.h \
+    comboboxdelegat.h \
     complex.h \
+    depomodel.h \
+    dispatcher.h \
+    driver.h \
+    flight.h \
     mainwindow.h \
     palindrom.h
 
