@@ -1,19 +1,43 @@
 #include <QValidator>
+#include <QStringListModel>
+#include <QTableView>
+#include <QItemSelectionModel>
 #include <QDebug>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "complex.cpp"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    InitDepo();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+void MainWindow::InitDepo()
+{
+    TreeModel  *model = new TreeModel(*myDisp,myDrivers,myCar,this);
+    ui->listFlight->setModel(model);
+    ui->tableFlight->setModel(model);
+    connect(ui->listFlight, SIGNAL(clicked(const QModelIndex&)),ui->tableFlight, SLOT(setRootIndex(const QModelIndex&)));
+    ComboBoxDelegat* delegate= new ComboBoxDelegat (myDrivers,this);
+    ui->tableFlight->setItemDelegateForRow(3,delegate);
+}
+void CreateFlight( QVector<Flight>& _flights)
+{
+    while(1)
+    {
+        _flights.append({1,"Томск","Новосибирск" });
+    }
+}
+void MainWindow::SimFlights()
+{
+    std::thread FirstThread(CreateFlight,myFlights);
+    FirstThread.join();
 }
 
 void MainWindow::on_SymbolsBox_clicked(bool checked)
@@ -70,7 +94,7 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_lineEdit_3_textEdited(const QString &arg1)
 {
-    ((QLineEdit*)sender())->setValidator(new QRegExpValidator(QRegExp("[0-9]{1,5}[+','\\-','*','\','^']{1}[0-9]{1,5}[i]{1}")));
+    ((QLineEdit*)sender())->setValidator(new QRegExpValidator(QRegExp("[0-9]{1,5}[+','\\-']{1}[0-9]{1,5}[i]{1}")));
     int a1;
     int a2;
     QChar op1;
@@ -83,7 +107,7 @@ void MainWindow::on_lineEdit_3_textEdited(const QString &arg1)
 
 void MainWindow::on_lineEdit_4_textEdited(const QString &arg1)
 {
-    ((QLineEdit*)sender())->setValidator(new QRegExpValidator(QRegExp("[0-9]{1,5}[+','\\-','*','\','^']{1}[0-9]{1,5}[i]{1}")));
+    ((QLineEdit*)sender())->setValidator(new QRegExpValidator(QRegExp("[0-9]{1,5}[+','\\-']{1}[0-9]{1,5}[i]{1}")));
     int a1;
     int a2;
     QChar op1;
@@ -106,16 +130,16 @@ void MainWindow::on_pushButton_3_clicked()
     switch(operation.unicode())
     {
     case u'+':
-       rezult = new Complex<int>(*myComplex1+*myComplex2);
+        rezult = new Complex<int>(*myComplex1+*myComplex2);
         break;
     case u'-':
-       rezult=new Complex<int>(*myComplex1-*myComplex2);
+        rezult=new Complex<int>(*myComplex1-*myComplex2);
         break;
     case u'*':
-      rezult=new Complex<int>((*myComplex1)*(*myComplex2));
+        rezult=new Complex<int>((*myComplex1)*(*myComplex2));
         break;
     case u'/':
-      rezult=new Complex<int>((*myComplex1)/(*myComplex2));
+        rezult=new Complex<int>((*myComplex1)/(*myComplex2));
         break;
     }
     ui->lineEdit_6->setText(rezult->GetArefmicForm());
@@ -138,4 +162,9 @@ void MainWindow::on_pushButton_4_clicked()
         if (rezult!=nullptr) ui->lineEdit_6->setText(rezult->GetArefmicForm());
         VeiwType=Arefmic;
     }
+}
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    qDebug();
 }
