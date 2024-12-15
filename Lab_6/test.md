@@ -481,7 +481,7 @@ public:
 char *Window::*pwCaption = &Window::szWinCaption; // в курсе про это небыло
 const char * (Window::* pfnwGC)() = &Window::GetCaption; //в курсе про это небыло
 bool (Window:: *pfnwSC)( const char * ) = &Window::SetCaption;// в курсе про это небыло
-//ну тут всё просто, создаются объекты в области видимости фаила
+
 Window wMainWindow;
 Window* pwChildWindow = new Window;
 const char *szUntitled = "Untitled - ";
