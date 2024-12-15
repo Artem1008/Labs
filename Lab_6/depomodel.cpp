@@ -10,40 +10,6 @@ TreeModel::TreeModel(Dispatcher& _disp,QVector<Driver>& _drivers, QVector<Car>&_
     myFlight=&_flight;
     initialize();
 };
-void TreeModel::SetFlight(Flight _value)
-{
-    //myFlight.append({QString::number(_value.Index),{_value.Index++,"начальный город"/*+QString::number(_value.Index)*/,"конечный город"/*+QString::number(_value.Index)*/}});
-   // myFlight.append({"Заявка 1",{2,"начальный город","конечный город"}});
-}
-
-QVariant TreeModel::data(const QModelIndex &index, int nRole) const
-{
- //   const Driver& data = (*myDrivers).at(index.row());
- //  QVariant value;
-    switch ( nRole )
-    {
-    case Qt::DisplayRole:
-    {
-        // value = ;
-        qDebug()<<"123";
-    }
-        break;
-    case Qt::EditRole:
-    {
-        //value = data.second;
-        qDebug()<<"123";
-    }
-        break;
-    case Qt::UserRole:
-    {
-        //value = data.second;
-        qDebug()<<"123";
-    }
-        break;
-    default:
-        break;
-    }
-}
 void TreeModel::initialize()
 {
     setColumnCount(1);
