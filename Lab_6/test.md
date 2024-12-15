@@ -477,9 +477,9 @@ public:
     char *szWinCaption; // Window caption.
 };
 // Declare a pointer
-char Window::*pwCaption = &Window::szWinCaption; //это же не статические объекты, это для чего? что бы создать указатель на поле класса?
+char Window::*pwCaption = &Window::szWinCaption; //это же не статические объекты, это для чего? что бы создать указатель на поле класса? в курсе про это небыло
 const char * (Window::* pfnwGC)() = &Window::GetCaption; 
-bool (Window:: pfnwSC)( const char * ) = &Window::SetCaption;//это же не статические объекты, это для чего? что бы создать указатель на поле класса?
+bool (Window:: pfnwSC)( const char * ) = &Window::SetCaption;//это же не статические объекты, это для чего? что бы создать указатель на поле класса? в курсе про это небыло
 //ну тут всё просто, создаются объекты в области видимости фаила
 Window wMainWindow;
 Window* pwChildWindow = new Window;
