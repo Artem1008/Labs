@@ -25,6 +25,7 @@ void MainWindow::InitDepo()
     ui->listFlight->setModel(model);
     ui->tableFlight->setModel(model);
     connect(ui->listFlight, SIGNAL(clicked(const QModelIndex&)),ui->tableFlight, SLOT(setRootIndex(const QModelIndex&)));
+    emit ui->listFlight->clicked(model->index(0, 0, QModelIndex()));
     ComboBoxDelegat* delegate= new ComboBoxDelegat (myDrivers,this);
     ui->tableFlight->setItemDelegateForRow(3,delegate);
 }
