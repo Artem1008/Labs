@@ -28,7 +28,6 @@ void MainWindow::InitDepo()
     ComboBoxDelegat* delegate= new ComboBoxDelegat (myDrivers,this);
     ui->tableFlight->setItemDelegateForRow(3,delegate);
 }
-
 void MainWindow::on_SymbolsBox_clicked(bool checked)
 {
     myFind.setFlagSymbols(checked);
