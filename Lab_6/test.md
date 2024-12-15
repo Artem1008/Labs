@@ -465,7 +465,9 @@ int cUntitledLen = strlen(szUntitled);
 int main() {
 }
 ```
-Рабочий вариант
+Рабочий вариант 
+пример из https://learn.microsoft.com/ru-ru/cpp/cpp/pointers-to-members?view=msvc-170
+но в курс про это небыло!!!!
 ```cpp
 #include <cstring>
 class Window {
@@ -477,7 +479,6 @@ public:
     char *szWinCaption; // Window caption.
 };
 // Declare a pointer
-//пример из https://learn.microsoft.com/ru-ru/cpp/cpp/pointers-to-members?view=msvc-170
 char *Window::*pwCaption = &Window::szWinCaption; // в курсе про это небыло
 const char * (Window::* pfnwGC)() = &Window::GetCaption; //в курсе про это небыло
 bool (Window:: *pfnwSC)( const char * ) = &Window::SetCaption;// в курсе про это небыло
