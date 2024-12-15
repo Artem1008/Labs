@@ -35,9 +35,6 @@ void MainWindow::DebugSlot(QStandardItem *item)
     if (!item) return;
     int indexVect=item->parent()->child(0)->text().toInt()-1;
     myFlights[indexVect].Setdriver(item->text());
-    qDebug()<<myFlights[0].Getdriver();
-    qDebug()<<myFlights[1].Getdriver();
-    qDebug()<<myFlights[2].Getdriver();
 }
 void MainWindow::on_SymbolsBox_clicked(bool checked)
 {
