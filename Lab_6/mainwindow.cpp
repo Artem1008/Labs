@@ -21,13 +21,23 @@ MainWindow::~MainWindow()
 void MainWindow::InitDepo()
 {
 
-    TreeModel  *model = new TreeModel(*myDisp,myDrivers,myCar,myFlights,this);
+    model = new TreeModel(myDrivers,myFlights,this);
     ui->listFlight->setModel(model);
     ui->tableFlight->setModel(model);
-    connect(ui->listFlight, SIGNAL(clicked(const QModelIndex&)),ui->tableFlight, SLOT(setRootIndex(const QModelIndex&)));
+    connect(ui->listFlight, SIGNAL(clicked(const QModelIndex&)),ui->tableFlight, SLOT(setRootIndex(const QModelIndex&)));  
     emit ui->listFlight->clicked(model->index(0, 0, QModelIndex()));
     ComboBoxDelegat* delegate= new ComboBoxDelegat (myDrivers,this);
     ui->tableFlight->setItemDelegateForRow(3,delegate);
+    connect(model, SIGNAL(itemChanged(QStandardItem*)),this, SLOT(DebugSlot(QStandardItem*)));
+}
+void MainWindow::DebugSlot(QStandardItem *item)
+{
+    if (!item) return;
+    int indexVect=item->parent()->child(0)->text().toInt()-1;
+    myFlights[indexVect].Setdriver(item->text());
+    qDebug()<<myFlights[0].Getdriver();
+    qDebug()<<myFlights[1].Getdriver();
+    qDebug()<<myFlights[2].Getdriver();
 }
 void MainWindow::on_SymbolsBox_clicked(bool checked)
 {
@@ -153,7 +163,4 @@ void MainWindow::on_pushButton_4_clicked()
     }
 }
 
-void MainWindow::on_pushButton_5_clicked()
-{
-    qDebug();
-}
+
