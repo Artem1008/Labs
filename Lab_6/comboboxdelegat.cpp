@@ -1,6 +1,6 @@
 #include "comboboxdelegat.h"
-
-ComboBoxDelegat::ComboBoxDelegat(QVector<Driver>& _drivers,QObject *parent)
+#include <QDebug>
+ComboBoxDelegat::ComboBoxDelegat(QMap<QString,Driver>& _drivers,QObject *parent)
     : QItemDelegate(parent)
 {
     myDrivers=_drivers;
@@ -8,9 +8,11 @@ ComboBoxDelegat::ComboBoxDelegat(QVector<Driver>& _drivers,QObject *parent)
 QWidget *ComboBoxDelegat::createEditor(QWidget *parent, const QStyleOptionViewItem &, const QModelIndex &) const
 {
     QComboBox *editor = new QComboBox(parent);
-    for(auto var:myDrivers)
+
+    QMap<QString,Driver>::const_iterator it = myDrivers.begin();
+    for(;it != myDrivers.end(); ++it)
     {
-        editor->addItem(var.GetName());
+       editor->addItem(it.key());
     }
     return editor;
 }
