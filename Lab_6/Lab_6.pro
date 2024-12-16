@@ -2,7 +2,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++11
+CONFIG += c++14
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -12,9 +12,9 @@ SOURCES += \
     bruteforce.cpp \
     car.cpp \
     comboboxdelegat.cpp \
-    depomodel.cpp \
-    dispatcher.cpp \
+    dispmodel.cpp \
     driver.cpp \
+    drivermodel.cpp \
     flight.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -25,9 +25,9 @@ HEADERS += \
     car.h \
     comboboxdelegat.h \
     complex.h \
-    depomodel.h \
-    dispatcher.h \
+    dispmodel.h \
     driver.h \
+    drivermodel.h \
     flight.h \
     mainwindow.h \
     palindrom.h
