@@ -11,36 +11,50 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    InitDepo();
+    //инициализация интерфуйса диспетчера
+    InitDispatcher();
+    InitDriver();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-void MainWindow::InitDepo()
+void MainWindow::InitDispatcher()
 {
-
-    model = new TreeModel(myDrivers,myFlights,this);
-    ui->listFlight->setModel(model);
-    ui->tableFlight->setModel(model);
+    modelDisp = new ModelDisp(myFlights,this);
+    ui->listFlight->setModel(modelDisp);
+    ui->tableFlight->setModel(modelDisp);
     connect(ui->listFlight, SIGNAL(clicked(const QModelIndex&)),ui->tableFlight, SLOT(setRootIndex(const QModelIndex&)));  
-    emit ui->listFlight->clicked(model->index(0, 0, QModelIndex()));
+    emit ui->listFlight->clicked(modelDisp->index(0, 0, QModelIndex()));
     ComboBoxDelegat* delegate= new ComboBoxDelegat (myDrivers,this);
     ui->tableFlight->setItemDelegateForRow(3,delegate);
-    connect(model, SIGNAL(itemChanged(QStandardItem*)),this, SLOT(DebugSlot(QStandardItem*)));
+    connect(modelDisp, SIGNAL(itemChanged(QStandardItem*)),this, SLOT(UpdateSlot(QStandardItem*)));
 }
-void MainWindow::DebugSlot(QStandardItem *item)
+
+void MainWindow::InitDriver()
+{
+    modelDriver = new ModelDriver(myDrivers,myFlights,this);
+    ui->listFlight_2->setModel(modelDriver);
+    ui->tableFlight_2->setModel(modelDriver);
+    connect(ui->listFlight_2, SIGNAL(clicked(const QModelIndex&)),ui->tableFlight_2, SLOT(setRootIndex(const QModelIndex&)));
+    emit ui->listFlight_2->clicked(modelDriver->index(0, 0, QModelIndex()));
+}
+void MainWindow::UpdateSlot(QStandardItem *item)
 {
     if (!item) return;
     int indexVect=item->parent()->child(0)->text().toInt()-1;
+    //имитация записи в базу данных
     myFlights[indexVect].Setdriver(item->text());
+    qDebug()<<item->text();
+    qDebug()<<myDrivers.value(item->text()).GetName();
+    myDrivers.value(item->text()).SetRequest("Заявка"+QString::number(myFlights.at(indexVect).GetNumber()));
+    modelDriver->initialize();
 }
 void MainWindow::on_SymbolsBox_clicked(bool checked)
 {
     myFind.setFlagSymbols(checked);
 }
-
 void MainWindow::on_numberBox_clicked(bool checked)
 {
     myFind.setFlagNumber(checked);
@@ -87,7 +101,6 @@ void MainWindow::on_pushButton_2_clicked()
     if (rezult) ui->lineEdit_2->setPalette(palettegreen);
     else ui->lineEdit_2->setPalette(palettered);
 }
-
 void MainWindow::on_lineEdit_3_textEdited(const QString &arg1)
 {
     ((QLineEdit*)sender())->setValidator(new QRegExpValidator(QRegExp("[0-9]{1,5}[+','\\-']{1}[0-9]{1,5}[i]{1}")));
@@ -100,7 +113,6 @@ void MainWindow::on_lineEdit_3_textEdited(const QString &arg1)
     if (op1=='-') a2*=(-1);
     myComplex1=new Complex<int>(a1,a2);
 }
-
 void MainWindow::on_lineEdit_4_textEdited(const QString &arg1)
 {
     ((QLineEdit*)sender())->setValidator(new QRegExpValidator(QRegExp("[0-9]{1,5}[+','\\-']{1}[0-9]{1,5}[i]{1}")));
@@ -113,7 +125,6 @@ void MainWindow::on_lineEdit_4_textEdited(const QString &arg1)
     if (op1=='-') a2*=(-1);
     myComplex2=new Complex<int>(a1,a2);
 }
-
 void MainWindow::on_lineEdit_5_textEdited(const QString &arg1)
 {
     ((QLineEdit*)sender())->setValidator(new QRegExpValidator(QRegExp("['+','-','*','/','^']{1}")));
@@ -140,7 +151,6 @@ void MainWindow::on_pushButton_3_clicked()
     }
     ui->lineEdit_6->setText(rezult->GetArefmicForm());
 }
-
 void MainWindow::on_pushButton_4_clicked()
 {
     if (VeiwType==Arefmic)
