@@ -1,16 +1,12 @@
-//#include <QSpacerItem>
 #include <QComboBox>
-#include "depomodel.h"
+#include "dispmodel.h"
 
-TreeModel::TreeModel(Dispatcher& _disp,QVector<Driver>& _drivers, QVector<Car>&_cars,QVector<Flight> & _flight, QObject *parent = nullptr) : QStandardItemModel(parent)
+ModelDisp::ModelDisp(QVector<Flight> & _flight, QObject *parent = nullptr) : QStandardItemModel(parent)
 {
-    muDisp=&_disp;
-    myDrivers=&_drivers;
-    myCar=&_cars;
     myFlight=&_flight;
     initialize();
 };
-void TreeModel::initialize()
+void ModelDisp::initialize()
 {
     setColumnCount(1);
     setRowCount((*myFlight).size());
@@ -32,5 +28,5 @@ void TreeModel::initialize()
         item->appendColumn(items);
         setItem(row, item);
     }
-    setVerticalHeaderLabels(QStringList() << "Номер" << "Начало пути"<<"Конец пути"<<"Водитель");
+      setVerticalHeaderLabels(QStringList() << "Номер" << "Начало пути"<<"Конец пути"<<"Водитель");
 }
