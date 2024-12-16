@@ -1,22 +1,25 @@
 #ifndef DRIVER_H
 #define DRIVER_H
 #include <QString>
-#include "car.h"
 
+#include "car.h"
+//
 class Driver
 {
 private:
-    QString Name;
+   QString Name;
     //назначеный автомобиль
-   Car *mycar;
+   Car *mycar=nullptr;
    //назначенная заявка
-   QString *Request;
+   QString Request;
 public:
    Driver(QString _name):Name(_name){}
     //обновить статус машины
     void UpdateStatusCar(StatusCar);
-    QString GetName(){return Name;}
-    void SetRequest(QString &value){Request=&value;}
+    QString GetName() const {return Name;}
+    QString GetNameCar() const;
+    void SetRequest(QString value){Request=value;}
+    QString GetRequest() const {return Request;}
     void SetCar(Car &value){mycar=&value;}
 };
 
