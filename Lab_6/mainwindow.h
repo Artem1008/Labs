@@ -1,12 +1,14 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include <QMainWindow>
-#include<thread>
+#include <QMap>
+#include <thread>
 #include "bruteforce.h"
 #include "palindrom.h"
 #include "complex.h"
-#include "depomodel.h"
+#include "dispmodel.h"
 #include "comboboxdelegat.h"
+#include "drivermodel.h"
 
 
 enum ComplexType
@@ -27,7 +29,8 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    void InitDepo();
+    void InitDispatcher();
+    void InitDriver();
     ~MainWindow();
 private slots:
 
@@ -57,7 +60,7 @@ private slots:
 
     void on_pushButton_4_clicked();
 
-    void on_pushButton_5_clicked();
+    void UpdateSlot(QStandardItem*);
 private:
     Bruteforce myFind;
     ComplexType VeiwType=Arefmic;
@@ -67,13 +70,14 @@ private:
     QChar operation;
     Palindrom myPalindrom;
     Ui::MainWindow *ui;
-    Dispatcher* myDisp =new Dispatcher("Умывальников начальник");
-
-    QVector<Driver> myDrivers
+    ModelDisp  *modelDisp;
+    ModelDriver  *modelDriver;
+    //имитация запроса из базы данных
+    QMap<QString,Driver> myDrivers
     {
-        {"Водитель 1"},
-        {"Водитель 2"},
-        {"Водитель 3"}
+        {"Водитель 1",{"Вася"}},
+        {"Водитель 2",{"Петя"}},
+        {"Водитель 3",{"Коля"}}
     };
     QVector<Car> myCar
     {
