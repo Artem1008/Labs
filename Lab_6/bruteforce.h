@@ -1,3 +1,6 @@
+/*
+ * Класс перебора пароля
+*/
 #ifndef BRUTEFORCE_H
 #define BRUTEFORCE_H
 #include <QDebug>
