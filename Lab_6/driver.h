@@ -1,7 +1,9 @@
+/*
+ * Класс водителя
+*/
 #ifndef DRIVER_H
 #define DRIVER_H
 #include <QString>
-
 #include "car.h"
 //
 class Driver
