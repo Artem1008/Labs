@@ -2,9 +2,7 @@
 
 Projection::Projection(QWidget *parent):QWidget(parent)
 {
-
 }
-
 void Projection::paintEvent(QPaintEvent *event)
 {
     QPainter painter;
