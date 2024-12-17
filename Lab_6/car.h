@@ -1,3 +1,7 @@
+/*
+ * Класс машины
+ * TODO не сипользуется 
+*/
 #ifndef CAR_H
 #define CAR_H
 #include <QString>
