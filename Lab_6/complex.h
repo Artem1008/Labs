@@ -1,3 +1,6 @@
+/*
+ * Класс комплексных чисел
+*/
 #ifndef COMPLEX_H
 #define COMPLEX_H
 #define Cre complex.Re
