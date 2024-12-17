@@ -1,3 +1,6 @@
+/*
+ * Класс палиндрома
+*/
 #ifndef PALINDROM_H
 #define PALINDROM_H
 #include <QString>
