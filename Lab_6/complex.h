@@ -20,7 +20,7 @@ private:
     double mod;
     value_type Re;
     value_type Im;
-public:  
+public:
     void setRe(value_type value){Re=value;}
     void setIm(value_type value){Im=value;}
     void setMod(double value){mod=value;}

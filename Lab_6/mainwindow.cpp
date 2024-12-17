@@ -25,7 +25,7 @@ void MainWindow::InitDispatcher()
     modelDisp = new ModelDisp(myFlights,this);
     ui->listFlight->setModel(modelDisp);
     ui->tableFlight->setModel(modelDisp);
-    connect(ui->listFlight, SIGNAL(clicked(const QModelIndex&)),ui->tableFlight, SLOT(setRootIndex(const QModelIndex&)));  
+    connect(ui->listFlight, SIGNAL(clicked(const QModelIndex&)),ui->tableFlight, SLOT(setRootIndex(const QModelIndex&)));
     emit ui->listFlight->clicked(modelDisp->index(0, 0, QModelIndex()));
     ComboBoxDelegat* delegate= new ComboBoxDelegat (myDrivers,this);
     ui->tableFlight->setItemDelegateForRow(3,delegate);
@@ -46,9 +46,7 @@ void MainWindow::UpdateSlot(QStandardItem *item)
     int indexVect=item->parent()->child(0)->text().toInt()-1;
     //имитация записи в базу данных
     myFlights[indexVect].Setdriver(item->text());
-    qDebug()<<item->text();
-    qDebug()<<myDrivers.value(item->text()).GetName();
-    myDrivers.value(item->text()).SetRequest("Заявка"+QString::number(myFlights.at(indexVect).GetNumber()));
+    myDrivers.find(item->text()).value().SetRequest("Заявка"+QString::number(myFlights.at(indexVect).GetNumber()));
     modelDriver->initialize();
 }
 void MainWindow::on_SymbolsBox_clicked(bool checked)
@@ -169,5 +167,31 @@ void MainWindow::on_pushButton_4_clicked()
         VeiwType=Arefmic;
     }
 }
+int CheckGeometry(Projection &projection,  Brick &brick)
+{
+    QMap<int,QPair<int,int>>::const_iterator it = brick.sizes.begin();
+    for(;it != brick.sizes.end(); ++it)
+    {
+          if(((projection.x<=it.value().second)&&(projection.y<=it.value().first))||((projection.y<=it.value().second)&&(projection.x<=it.value().first))) return it.key();
+    }
+    return -1;
+}
+void MainWindow::on_lineEdit_10_textEdited(const QString &arg1)
+{
+    ((QLineEdit*)sender())->setValidator(new QRegExpValidator(QRegExp("[0-9]{4}")));
+    myProjection.SetX(arg1.toInt());
+    ui->myProject->SetX(arg1.toInt());
+    ui->myBrickView->Setindex(CheckGeometry(myProjection,myBrick));
+    ui->myBrickView->repaint();
+    ui->myProject->repaint();
+}
 
-
+void MainWindow::on_lineEdit_9_textEdited(const QString &arg1)
+{
+    ((QLineEdit*)sender())->setValidator(new QRegExpValidator(QRegExp("[0-9]{4}")));
+    myProjection.SetY(arg1.toInt());
+    ui->myProject->SetY(arg1.toInt());
+    ui->myBrickView->Setindex(CheckGeometry(myProjection,myBrick));
+    ui->myBrickView->repaint();
+    ui->myProject->repaint();
+}

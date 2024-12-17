@@ -9,7 +9,8 @@
 #include "dispmodel.h"
 #include "comboboxdelegat.h"
 #include "drivermodel.h"
-
+#include "brick.h"
+#include "projection.h"
 
 enum ComplexType
 {
@@ -61,6 +62,10 @@ private slots:
     void on_pushButton_4_clicked();
 
     void UpdateSlot(QStandardItem*);
+    void on_lineEdit_10_textEdited(const QString &arg1);
+
+    void on_lineEdit_9_textEdited(const QString &arg1);
+
 private:
     Bruteforce myFind;
     ComplexType VeiwType=Arefmic;
@@ -70,8 +75,11 @@ private:
     QChar operation;
     Palindrom myPalindrom;
     Ui::MainWindow *ui;
+    Brick myBrick;
+    Projection myProjection;
     ModelDisp  *modelDisp;
     ModelDriver  *modelDriver;
+
     //имитация запроса из базы данных
     QMap<QString,Driver> myDrivers
     {
