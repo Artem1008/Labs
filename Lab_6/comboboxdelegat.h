@@ -1,5 +1,5 @@
 /*
- * Класс комплексных чисел
+ * Класс делегата ComboBox
 */
 #ifndef COMBOBOXDELEGAT_H
 #define COMBOBOXDELEGAT_H
