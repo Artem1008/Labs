@@ -172,7 +172,7 @@ int CheckGeometry(Projection &projection,  Brick &brick)
     QMap<int,QPair<int,int>>::const_iterator it = brick.sizes.begin();
     for(;it != brick.sizes.end(); ++it)
     {
-          if(((projection.x<=it.value().second)&&(projection.y<=it.value().first))||((projection.y<=it.value().second)&&(projection.x<=it.value().first))) return it.key();
+          if(((projection.x>=it.value().second)&&(projection.y>=it.value().first))||((projection.y>=it.value().second)&&(projection.x>=it.value().first))) return it.key();
     }
     return -1;
 }
