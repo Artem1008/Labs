@@ -1,3 +1,6 @@
+/*
+ * Класс модели депо
+*/
 #ifndef LISTMODELFLIGHT_H
 #define LISTMODELFLIGHT_H
 #include <QStandardItemModel>
