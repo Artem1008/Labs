@@ -9,6 +9,7 @@ CONFIG += c++14
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    brick.cpp \
     bruteforce.cpp \
     car.cpp \
     comboboxdelegat.cpp \
@@ -18,9 +19,11 @@ SOURCES += \
     flight.cpp \
     main.cpp \
     mainwindow.cpp \
-    palindrom.cpp
+    palindrom.cpp \
+    projection.cpp
 
 HEADERS += \
+    brick.h \
     bruteforce.h \
     car.h \
     comboboxdelegat.h \
@@ -30,7 +33,8 @@ HEADERS += \
     drivermodel.h \
     flight.h \
     mainwindow.h \
-    palindrom.h
+    palindrom.h \
+    projection.h
 
 FORMS += \
     mainwindow.ui
