@@ -1,3 +1,6 @@
+/*
+ * Класс модели управления водителями
+*/
 #ifndef MODELDRIVER_H
 #define MODELDRIVER_H
 #include <QStandardItemModel>
