@@ -1,3 +1,6 @@
+/*
+ * Класс стандартного кирпича с отрисовкой
+*/
 #ifndef BRICK_H
 #define BRICK_H
 #include <QWidget>
