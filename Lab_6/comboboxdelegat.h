@@ -1,3 +1,6 @@
+/*
+ * Класс комплексных чисел
+*/
 #ifndef COMBOBOXDELEGAT_H
 #define COMBOBOXDELEGAT_H
 #include <QObject>
