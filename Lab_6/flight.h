@@ -1,3 +1,6 @@
+/*
+ * Класс заявки на рейс
+*/
 #ifndef FLIGHT_H
 #define FLIGHT_H
 #include <QString>
