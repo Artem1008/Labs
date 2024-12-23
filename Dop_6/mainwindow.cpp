@@ -112,6 +112,7 @@ void MainWindow::on_Conect_1_clicked()
     _client=new Client((char*)"192.168.159.1",666);
     int err =_client->InitClient();
     QTextBrowser* test=ui->centralwidget->findChild<QTextBrowser*>("textBrowser_1");
+     qDebug()<<"on_Conect_1_clicked "<<test;
     std::thread clientthread(clientrfunct,_client,test);
     HandleError((char*)"client",err);
     clientthread.detach();
@@ -120,9 +121,10 @@ void MainWindow::on_Conect_1_clicked()
 void MainWindow::on_Conect_2_clicked()
 {
     _client2=new Client((char*)"192.168.159.1",666);
-    int err =_client->InitClient();
+    int err =_client2->InitClient();
     QTextBrowser* test=ui->centralwidget->findChild<QTextBrowser*>("textBrowser_2");
-    std::thread clientthread(clientrfunct,_client,test);
+    qDebug()<<"on_Conect_2_clicked "<<test;
+    std::thread clientthread(clientrfunct,_client2,test);
     HandleError((char*)"client",err);
      clientthread.detach();
 
