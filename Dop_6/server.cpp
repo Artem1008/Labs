@@ -1,17 +1,19 @@
 #include "server.h"
 
+static std::vector<SOCKET> arrsocket;
 static int nclients=0;
 DWORD Server::SexToClient(LPVOID client_socket)
 {
-     qDebug()<<"Start SexToClient"<<client_socket;
     SOCKET my_sock;
     my_sock = ((SOCKET *)client_socket)[0];
     char buff[20 * 1024];
     int bytes_recv;
     while ((bytes_recv = recv(my_sock, &buff[0], sizeof(buff), 0)) &&bytes_recv != SOCKET_ERROR)
     {
-       buff[sizeof(buff)]='1'+'\0';
-       send(my_sock, &buff[0], bytes_recv, 0);
+        for (auto i : arrsocket)
+        {
+            send( i, &buff[0], bytes_recv, 0);
+        }
     }
     nclients--;
     printf("-disconnect\n");
@@ -70,6 +72,7 @@ int Server::StartServer()
         if (nclients) printf("%d user on-line\n", nclients);
         else printf("No User on line\n");
         DWORD thID;
+        arrsocket.push_back(client_socket);
         CreateThread(NULL, NULL, SexToClient, &client_socket, NULL, &thID);
     }
     return 0;
