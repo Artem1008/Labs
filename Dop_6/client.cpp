@@ -36,32 +36,19 @@ int Client::InitClient()
     }
 }
 
-void Client::StartClient()
+void Client::StartClient(QTextBrowser* obj)
 {
     int nsize;
     while ((nsize = recv(my_sock, &buff[0], sizeof(buff) - 1, 0)) != SOCKET_ERROR)
         {
-            // ставим завершающий ноль в конце строки
             buff[nsize] = 0;
-            qDebug()<<"asdasdasd"<<buff;
-            // выводим на экран
-            printf("S=>C:%s", buff);
-            // читаем пользовательский ввод с клавиатуры
-            printf("S<=C:"); fgets(&buff[0], sizeof(buff) - 1, stdin);
-
-
-            // проверка на "quit"
+            obj->append(buff);
             if (!strcmp(&buff[0], "quit\n"))
             {
-                // Корректный выход
-                printf("Exit...");
                 closesocket(my_sock);
                 WSACleanup();
             }
-            // передаем строку клиента серверу
-            send(my_sock, &buff[0], strlen(&buff[0]), 0);
         }
-
 }
 
 void Client::SetMessag(std::string str)
@@ -77,20 +64,6 @@ void Client::SetMessag(std::string str)
     // передаем строку клиента серверу
     send(my_sock, str.c_str(), strlen(str.c_str()), 0);
 }
-
-std::string Client::GetMessag()
-{
-    int nsize;
-    std::string str;
-    while ((nsize = recv(my_sock, &buff[0], sizeof(buff) - 1, 0)) != SOCKET_ERROR)
-    {
-        str=buff;
-        printf("str...%s",str.c_str());
-        return str;
-
-    }
-}
-
 
 Client::~Client()
 {
