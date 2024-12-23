@@ -446,7 +446,7 @@
        <string>connect</string>
       </property>
      </widget>
-     <widget class="QTextBrowser" name="textBrowser">
+     <widget class="QTextBrowser" name="textBrowser_1">
       <property name="geometry">
        <rect>
         <x>10</x>
