@@ -3,14 +3,11 @@
 
 void serverfunct(Server* serv)
 {
-   qDebug()<<"serverfunct";
-   int err;
-   err=serv->StartServer();
-   qDebug()<<err;
+    serv->StartServer();
 }
-void clientrfunct(Client* client)
+void clientrfunct(Client* client,QTextBrowser* obj)
 {
-    client->StartClient();
+    client->StartClient(obj);
 
 }
 MainWindow::MainWindow(QWidget *parent)
@@ -114,7 +111,8 @@ void MainWindow::on_Conect_1_clicked()
 {
     _client=new Client((char*)"192.168.159.1",666);
     int err =_client->InitClient();
-    std::thread clientthread(clientrfunct,_client);
+    QTextBrowser* test=ui->centralwidget->findChild<QTextBrowser*>("textBrowser_1");
+    std::thread clientthread(clientrfunct,_client,test);
     HandleError((char*)"client",err);
     clientthread.detach();
 }
@@ -123,9 +121,10 @@ void MainWindow::on_Conect_2_clicked()
 {
     _client2=new Client((char*)"192.168.159.1",666);
     int err =_client->InitClient();
-    std::thread clientthread(clientrfunct,_client);
+    QTextBrowser* test=ui->centralwidget->findChild<QTextBrowser*>("textBrowser_2");
+    std::thread clientthread(clientrfunct,_client,test);
     HandleError((char*)"client",err);
-    clientthread.detach();
+     clientthread.detach();
 
 }
 
