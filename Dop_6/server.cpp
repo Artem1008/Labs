@@ -1,6 +1,6 @@
 #include "server.h"
 
-int Server::nclients=0;
+static int nclients=0;
 DWORD Server::SexToClient(LPVOID client_socket)
 {
      qDebug()<<"Start SexToClient"<<client_socket;
@@ -10,7 +10,8 @@ DWORD Server::SexToClient(LPVOID client_socket)
     int bytes_recv;
     while ((bytes_recv = recv(my_sock, &buff[0], sizeof(buff), 0)) &&bytes_recv != SOCKET_ERROR)
     {
-        qDebug()<<"получил данные: "<<buff;
+       buff[sizeof(buff)]='1'+'\0';
+       send(my_sock, &buff[0], bytes_recv, 0);
     }
     nclients--;
     printf("-disconnect\n");
@@ -51,7 +52,6 @@ int Server::InitServer()
 
 int Server::StartServer()
 {  
-    qDebug()<<"StartServer";
     if (listen(server_sock, 0x100))
     {
         closesocket(server_sock);
@@ -62,7 +62,6 @@ int Server::StartServer()
     int client_addr_size = sizeof(client_addr);
     while ((client_socket = accept(server_sock, (sockaddr *)&client_addr, &client_addr_size)))
     {
-        qDebug()<<"Start accept"<<client_socket;
         nclients++;
         HOSTENT *hst;
         hst = gethostbyaddr((char *)&client_addr. sin_addr.s_addr, 4, AF_INET);
@@ -72,6 +71,6 @@ int Server::StartServer()
         else printf("No User on line\n");
         DWORD thID;
         CreateThread(NULL, NULL, SexToClient, &client_socket, NULL, &thID);
-        //SexToClient(&client_socket);
     }
+    return 0;
 }
