@@ -5,6 +5,7 @@
 #include <winsock2.h>
 #include <windows.h>
 #include <QDebug>
+#include <QTextBrowser>
 
 class Client
 {
@@ -19,10 +20,8 @@ private:
 public:
     Client(char* _address ,int _port);
     int InitClient();
-    void StartClient();
+    void StartClient(QTextBrowser*);
     void SetMessag(std::string);
-
-    std::string GetMessag();
     ~Client();
 };
 
