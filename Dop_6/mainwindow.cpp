@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     _server=new Server();
     err= _server->InitServer();
     HandleError((char*)"server",err);
-    qDebug()<<"err"<<err;
+    InitForm();
     if(err>=0)
     {
     std::thread serverthread(serverfunct,_server);
