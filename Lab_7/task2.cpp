@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include<bitset>
+#include<QDebug>
 
 struct Address {
     std::string Country;
@@ -31,7 +32,7 @@ void Parse(const std::string& line,  Address* const address)
                 break;
             case 1:
                 temp2=line.substr(Pos,i-Pos);
-                if(temp2!="г.")
+                if(temp2!="╨│.")
                 {
                     address->City=line.substr(Pos,i-Pos-1);
                     Pos=i+1;
@@ -44,7 +45,7 @@ void Parse(const std::string& line,  Address* const address)
                 break;
             case 3:
                 temp2=line.substr(Pos,i-Pos);
-                if(temp2!="ул.")
+                if(temp2!="╤Г╨╗.")
                 {
                     address->Street=line.substr(Pos,i-Pos-1);
                     Pos=i+1;
@@ -69,9 +70,9 @@ void Parse(const std::string& line,  Address* const address)
 
 void Unify(Address* const address)
 {
- address->City="город "+address->City;
- address->Street="улица "+address->Street;
- address->House="дом "+address->House;
+ address->City="╨│╨╛╤А╨╛╨┤ "+address->City;
+ address->Street="╤Г╨╗╨╕╤Ж╨░ "+address->Street;
+ address->House="╨┤╨╛╨╝ "+address->House;
 }
 std::string Format(const Address& address)
 {
@@ -80,11 +81,11 @@ std::string Format(const Address& address)
 
 void task2()
 {
-    // Россия, г. Томск, ул. Кирова 43
-    // Россия, город Томск, проспект Кирова, дом 43
+    // ╨а╨╛╤Б╤Б╨╕╤П, ╨│. ╨в╨╛╨╝╤Б╨║, ╤Г╨╗. ╨Ъ╨╕╤А╨╛╨▓╨░ 43
+    // ╨а╨╛╤Б╤Б╨╕╤П, ╨│╨╛╤А╨╛╨┤ ╨в╨╛╨╝╤Б╨║, ╨┐╤А╨╛╤Б╨┐╨╡╨║╤В ╨Ъ╨╕╤А╨╛╨▓╨░, ╨┤╨╛╨╝ 43
     std::string line;
     Address* address=new Address;
-    std::cout <<"Введите адрес в формате Страна, город, улица, дом: \n";
+    std::cout <<"╨Т╨▓╨╡╨┤╨╕╤В╨╡ ╨░╨┤╤А╨╡╤Б ╨▓ ╤Д╨╛╤А╨╝╨░╤В╨╡ ╨б╤В╤А╨░╨╜╨░, ╨│╨╛╤А╨╛╨┤, ╤Г╨╗╨╕╤Ж╨░, ╨┤╨╛╨╝: \n";
     while (getline(std::cin, line))
     {
         Parse(line, address);
