@@ -25,7 +25,7 @@ void ChekValue(T &Value)
         {
             std::cin.clear();
             std::cin.ignore(32767,'\n');
-            std::cout<<"ÇÎ ¢¢•´® ≠•™Æ‡•™‚≠Æ• ß≠†Á•≠®•\n";
+            std::cout<<"–í—ã –≤–≤–µ–ª–∏ –Ω–µ–∫–æ—Ä–µ–∫—Ç–Ω–æ–µ –∑–Ω–∞—á–µ–Ω–∏–µ\n";
         }
         if (Value> MAXCOUNT)
         {
@@ -42,7 +42,7 @@ void task1()
     std::vector<int> data;
     try
     {
-        printf("Ç¢•§®‚• §´®≠„ ØÆ·´•§Æ¢†‚•´Ï≠Æ·‚® î®°Æ≠†ÁÁ®:\n");
+        printf("–í–≤–µ–¥–∏—Ç–µ –¥–ª–∏–Ω—É –ø–æ—Å–ª–µ–¥–æ–≤–∞—Ç–µ–ª—å–Ω–æ—Å—Ç–∏ –§–∏–±–æ–Ω–∞—á—á–∏:\n");
         ChekValue(number) ;
         //int CoreCount = std::thread::hardware_concurrency();
         data.push_back(0);
@@ -59,8 +59,8 @@ void task1()
     }
     catch (ret::erorrs a)
     {
-        if (a==ret::ErrIO) printf("è‡®¢ÎË•≠Æ Á®·´Æ ØÆØÎ‚Æ™ ¢¢Æ§† §†≠≠ÎÂ");
-        if (a==ret::ErrSize) printf("è‡®¢ÎË•≠ ‡†ß¨•‡");
+        if (a==ret::ErrIO) printf("–ü—Ä–∏–≤—ã—à–µ–Ω–æ —á–∏—Å–ª–æ –ø–æ–ø—ã—Ç–æ–∫ –≤–≤–æ–¥–∞ –¥–∞–Ω–Ω—ã—Ö");
+        if (a==ret::ErrSize) printf("–ü—Ä–∏–≤—ã—à–µ–Ω —Ä–∞–∑–º–µ—Ä");
     }
     catch (std::runtime_error &ex)
     {
