@@ -29,7 +29,7 @@ int FinalFunction()
 //возможно в ТЗ имелось введу что то другое
 int Function()
 {
-    LoggerGuard logger("Function completed");
+    LoggerGuard logger("Function completed\n");
     int value = 1;
     try {
         value = SomeFunction();
@@ -53,4 +53,8 @@ int Function()
 void task3()
 {
     Function();
+    //либо второй вариант если печатает одно и тоже то можно сделать обёртку
+    LoggerGuard logger("Function completed\n");
+    Function();
+    logger.print();
 }
