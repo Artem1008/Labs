@@ -1,95 +1,71 @@
-#include <iostream>
-#include <string>
-#include<bitset>
-#include<QDebug>
+﻿#include <iostream>
+#include <thread>
+#include <mutex>
+#include <sstream>
+#include <QDebug>
+using namespace std;
 
-struct Address {
-    std::string Country;
-    std::string City;
-    std::string Street;
-    std::string House;
+mutex mutex2;
+class Check
+{
+    ostringstream out;
+    int Summ;
+    wstring name;
+public:
+    Check(int _sum,wstring _name):Summ(_sum),name(_name){};
+    Check(const Check& copy_check)
+    {
+       Summ= copy_check.Summ;
+       name= copy_check.name;
+    }
+    Check& operator=(const Check& check)
+    {
+        if (this != &check)
+        {
+           Summ = check.Summ;
+           name = check.name;
+        }
+        return *this;
+    }
+    void addSumm(int _summa){ Summ+=_summa;};
+    void subSumm(int _summa){ Summ-=_summa;};
+    wstring GetName() const {return name;};
+    int GetSumm() const {return Summ;};
 };
 
-
-void Parse(const std::string& line,  Address* const address)
+void transaction(Check& CheckOut,Check& CheckIn,unsigned int sum)
 {
-    std::bitset <4> bitflags;
-    std::string temp2;
-    char temp;
-    int Pos=0;
-    for(int i=0;i<=(int)line.length();i++)
+    Check* temp1=nullptr;
+    Check* temp2=nullptr;
+    try
     {
-        temp=line[i];
-        if (line[i]==' '||line[i]=='\0')
-        {
-            switch (bitflags.to_ulong())
-            {
-            case 0:
-                temp2=line.substr(Pos,i-Pos);
-                address->Country=line.substr(Pos,i-Pos-1);
-                Pos=i+1;
-                bitflags[0]=1;
-                break;
-            case 1:
-                temp2=line.substr(Pos,i-Pos);
-                if(temp2!="г.")
-                {
-                    address->City=line.substr(Pos,i-Pos-1);
-                    Pos=i+1;
-                    bitflags[1]=1;
-                }
-                else
-                {
-                    Pos=i+1;
-                }
-                break;
-            case 3:
-                temp2=line.substr(Pos,i-Pos);
-                if(temp2!="ул.")
-                {
-                    address->Street=line.substr(Pos,i-Pos-1);
-                    Pos=i+1;
-                    bitflags[2]=1;
-                }
-                else
-                {
-                    Pos=i+1;
-                }
-                break;
-            case 7:
-                temp2=line.substr(Pos,i-Pos);
-                address->House=line.substr(Pos,i-Pos);
-                Pos=i+1;
-                bitflags[3]=1;
-                break;
-            }
-        }
+        const std::lock_guard<std::mutex> lock(mutex2);
+        temp1=new Check(CheckOut);
+        temp2=new Check(CheckIn);
+        CheckOut.subSumm(sum);
+        CheckIn.addSumm(sum);
+        wcout << CheckOut.GetName().c_str()<<L" состояние счёта:"<<CheckOut.GetSumm()<<"\n";
+        wcout <<CheckIn.GetName().c_str()<<L" состояние счёта:"<<CheckIn.GetSumm()<<"\n";
+        //throw(-1);
+        this_thread::sleep_for(chrono::seconds(1));
     }
-
-}
-
-void Unify(Address* const address)
-{
- address->City="город "+address->City;
- address->Street="улица "+address->Street;
- address->House="дом "+address->House;
-}
-std::string Format(const Address& address)
-{
-    return  address.Country+", "+address.City+", "+address.Street+", "+address.House;
+    // возвращение счётов в исходное состояние при сработавшем исключении
+    catch (...) {
+        if(temp1!=nullptr)
+        CheckOut=*temp1;
+        if(temp2!=nullptr)
+        CheckIn=*temp2;
+        wcout << CheckOut.GetName().c_str()<<L" состояние счёта:"<<CheckOut.GetSumm()<<"\n";
+        wcout <<CheckIn.GetName().c_str()<<L" состояние счёта:"<<CheckIn.GetSumm()<<"\n";
+    }
 }
 
 void task2()
 {
-    // Россия, г. Томск, ул. Кирова 43
-    // Россия, город Томск, проспект Кирова, дом 43
-    std::string line;
-    Address* address=new Address;
-    std::cout <<"Введите адрес в формате Страна, город, улица, дом: \n";
-    while (getline(std::cin, line))
-    {
-        Parse(line, address);
-        Unify(address);
-        std::cout << Format(*address) << "\n";
-    }
+     setlocale(LC_ALL, "");
+    Check check1(5000,L"Вася");
+    Check check2(4000,L"Петя");
+    thread(transaction,std::ref(check1),std::ref(check2),500).join();
+    thread(transaction,std::ref(check2),std::ref(check1),1200).join();
+
 }

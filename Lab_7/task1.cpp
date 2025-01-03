@@ -38,7 +38,7 @@ void ChekValue(T &Value)
 
 void task1()
 {
-    unsigned  int number;
+    unsigned int number;
     std::vector<int> data;
     try
     {
