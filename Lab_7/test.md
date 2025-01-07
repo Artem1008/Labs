@@ -105,7 +105,6 @@ void threadFunction(int time ) {
     std::this_thread::sleep_for(std::chrono::seconds(time));
 }
 int main() {
-    std::cout<<"11111\n";
     std::thread t1(threadFunction,3);
     std::thread t2(threadFunction,1);
     std::thread t3(threadFunction,10);
