@@ -71,6 +71,7 @@ int main() {
 ```
 3) Перенесите рисунок представленный ниже на программный код t задается
 пользователем в сек:
+
 ![image](https://github.com/user-attachments/assets/25eba7c7-13e2-427e-adfd-da7406d2fb1b)
 
 ```cpp
