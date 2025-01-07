@@ -1,48 +1,22 @@
-1) Найдите ошибки в коде, чтобы программа представленная ниже заработала, можно только
-добавлять что-то, но убирать нельзя.
+1) Найдите ошибки в коде, чтобы программа представленная ниже заработала, можно
+только добавлять что-то, но убирать нельзя..
 ```cpp
-#include <iostream>
-class Integer {
-    Integer(int number) {
-        value=number;
-        std::cout << "Object created." << std::endl;
-    }
-    int getValue() { return value; }
-    void setValue(int number) { value = number; }
-    void print() {
-        std::cout << "Value: " << value << std::endl;
-    }
-    private
-    int value;
+std::mutex g_lock;
+void threadFunction() {
+std::cout << "entered thread " << std::this_thread::get_id() << std::endl;
+std::this_thread::sleep_for(std::chrono::seconds(rand()%10));
+std::cout << "leaving thread " << std::this_thread::get_id() << std::endl;
+g_lock.unlock();
 }
-    int main() {
-    Integer integer;
-    setValue(3);
-    std::cout << "Value: " << getValue() << std::endl;
+int main() {
+srand((unsigned int)time(0));
+std::thread t1(threadFunction);
+std::thread t2(threadFunction);
+std::thread t3();
+return 0;
 }
-#include<iostream>
 ```
 Рабочий вариант
 ```cpp
-#include <iostream>
-class Integer {
-public:
-    Integer(int number=0)
-    {
-        value=number;
-        std::cout << "Object created." << std::endl;
-    }
-    int getValue() { return value; }
-    void setValue(int number) { value = number; }
-    void print() {
-        std::cout << "Value: " << value << std::endl;
-    }
-private:
-    int value;
-};
-int main() {
-    Integer integer;
-    integer.setValue(3);
-    std::cout << "Value: " << integer.getValue() << std::endl;
-}
+
 ```
