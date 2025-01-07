@@ -3,17 +3,17 @@
 ```cpp
 std::mutex g_lock;
 void threadFunction() {
-std::cout << "entered thread " << std::this_thread::get_id() << std::endl;
-std::this_thread::sleep_for(std::chrono::seconds(rand()%10));
-std::cout << "leaving thread " << std::this_thread::get_id() << std::endl;
-g_lock.unlock();
+    std::cout << "entered thread " << std::this_thread::get_id() << std::endl;
+    std::this_thread::sleep_for(std::chrono::seconds(rand()%10));
+    std::cout << "leaving thread " << std::this_thread::get_id() << std::endl;
+    g_lock.unlock();
 }
 int main() {
-srand((unsigned int)time(0));
-std::thread t1(threadFunction);
-std::thread t2(threadFunction);
-std::thread t3();
-return 0;
+    srand((unsigned int)time(0));
+    std::thread t1(threadFunction);
+    std::thread t2(threadFunction);
+    std::thread t3();
+    return 0;
 }
 ```
 Рабочий вариант
@@ -24,21 +24,21 @@ return 0;
 
 std::mutex g_lock;
 void threadFunction() {
-g_lock.lock();
-std::cout << "entered thread " << std::this_thread::get_id() << std::endl;
-std::this_thread::sleep_for(std::chrono::seconds(rand()%10));
-std::cout << "leaving thread " << std::this_thread::get_id() << std::endl;
-g_lock.unlock();
+    g_lock.lock();
+    std::cout << "entered thread " << std::this_thread::get_id() << std::endl;
+    std::this_thread::sleep_for(std::chrono::seconds(rand()%10));
+    std::cout << "leaving thread " << std::this_thread::get_id() << std::endl;
+    g_lock.unlock();
 }
 int main() {
-srand((unsigned int)time(0));
-std::thread t1(threadFunction);
-std::thread t2(threadFunction);
-std::thread t3(threadFunction);
-t1.join();
-t2.join();
-t3.join();
-return 0;
+    srand((unsigned int)time(0));
+    std::thread t1(threadFunction);
+    std::thread t2(threadFunction);
+    std::thread t3(threadFunction);
+    t1.join();
+    t2.join();
+    t3.join();
+    return 0;
 }
 ```
 2) Найдите ошибки в коде, чтобы программа представленная ниже заработала, можно
@@ -81,16 +81,14 @@ int main() {
 
 std::mutex g_lock;
 void threadFunction() {
-g_lock.lock();
-std::this_thread::sleep_for(std::chrono::seconds(7));
-g_lock.unlock();
+    g_lock.lock();
+    std::this_thread::sleep_for(std::chrono::seconds(7));
+    g_lock.unlock();
 }
 int main() {
-std::cout<<"11111\n";
-std::thread t1(threadFunction);
-t1.join();
-std::cout<<"22222";
-return 0;
+    std::thread t1(threadFunction);
+    t1.join();
+    return 0;
 }
 ```
 4) Перенесите рисунок представленный ниже на программный код:
@@ -104,21 +102,17 @@ return 0;
 
 std::mutex g_lock;
 void threadFunction(int time ) {
-std::cout<<"start "<<time<<"\n";
-std::this_thread::sleep_for(std::chrono::seconds(time));
+    std::this_thread::sleep_for(std::chrono::seconds(time));
 }
 int main() {
-std::cout<<"11111\n";
-std::thread t1(threadFunction,3);
-std::thread t2(threadFunction,1);
-std::thread t3(threadFunction,10);
-t1.join();
-std::cout<<"end11\n";
-t2.join();
-std::cout<<"end22\n";
-t3.join();
-std::cout<<"end333\n";
-return 0;
+    std::cout<<"11111\n";
+    std::thread t1(threadFunction,3);
+    std::thread t2(threadFunction,1);
+    std::thread t3(threadFunction,10);
+    t1.join();
+    t2.join();
+    t3.join();
+    return 0;
 }
 ```
 4) Исправьте ошибки в программе.
