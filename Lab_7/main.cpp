@@ -23,7 +23,7 @@ int main()
     task4();
 #endif
 #if(TASK==5)
-    task3();
+    task5();
 #endif
 };
 

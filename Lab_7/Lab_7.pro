@@ -8,6 +8,7 @@ CONFIG -= app_bundle
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        CLog.cpp \
         main.cpp \
         task1.cpp \
         task2.cpp \
@@ -15,7 +16,7 @@ SOURCES += \
         task4.cpp \
         task5.cpp
 
-DEFINES += "TASK=3"
+DEFINES += "TASK=5"
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -23,5 +24,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    CLog.h \
     errors.h \
     main.h

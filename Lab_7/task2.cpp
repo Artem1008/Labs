@@ -2,7 +2,6 @@
 #include <thread>
 #include <mutex>
 #include <sstream>
-#include <QDebug>
 using namespace std;
 
 mutex mutex2;
