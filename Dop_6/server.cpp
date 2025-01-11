@@ -2,7 +2,7 @@
 
 static std::vector<SOCKET> arrsocket;
 static int nclients=0;
-DWORD Server::SexToClient(LPVOID client_socket)
+DWORD Server::ConncectToClient(LPVOID client_socket)
 {
     SOCKET my_sock;
     my_sock = ((SOCKET *)client_socket)[0];
@@ -73,7 +73,7 @@ int Server::StartServer()
         else printf("No User on line\n");
         DWORD thID;
         arrsocket.push_back(client_socket);
-        CreateThread(NULL, NULL, SexToClient, &client_socket, NULL, &thID);
+        CreateThread(NULL, NULL, ConncectToClient, &client_socket, NULL, &thID);
     }
     return 0;
 }
