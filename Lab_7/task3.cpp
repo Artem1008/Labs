@@ -1,61 +1,70 @@
-
 #include <iostream>
+#include <thread>
+#include <mutex>
+#include <sstream>
+using namespace std;
 
-class LoggerGuard
+mutex mutex2;
+class Check
 {
-private:
-    LoggerGuard();
-    std::string Message;
-    std::ostream& Out;
+    ostringstream out;
+    int Summ;
+    wstring name;
 public:
-    LoggerGuard(const std::string& message, std::ostream& out = std::cout):Message(message),Out(out){};
-    void print()
+    Check(int _sum,wstring _name):Summ(_sum),name(_name){};
+    Check(const Check& copy_check)
     {
-     Out<<Message;
-    };
-};
-int SomeFunction()
-{
-   return 0;
-}
-int SomeOtherFunction()
-{
-   return 0;
-}
-int FinalFunction()
-{
-   return 0;
-}
-//¢¬¥áâ® ¯¥ç â¨ áâà®ª¨ à §¤ã¢ ¥¬ ¯à®£à ¬¬ã ¥éñ ­  ¤®¯®«­¨â¥«ì­ë© ª« áá, ¨ ¢áñà ¢­® ­ ¤® ¯®áâ®ï­­® ¢ë§ë¢ âì ¬¥â®¤ ¨§ ­¥£®, ¯à¨ íâ®¬ § ¬¥­¨âì á®®¡é¥­¨¥ ­¥ ¯®«ãç¨âáï
-//¢®§¬®¦­® ¢ ’‡ ¨¬¥«®áì ¢¢¥¤ã çâ® â® ¤àã£®¥
-int Function()
-{
-    LoggerGuard logger("Function completed\n");
-    int value = 1;
-    try {
-        value = SomeFunction();
-        if (value == 0) {
-            logger.print();
-            return value;
-        }
-        value = SomeOtherFunction();
-        if (value == 0) {
-            logger.print();
-            return value;
-        }
-        value = FinalFunction(); // might throw an exception
-    } catch (...) {
-        logger.print();
-        throw; // throws the exception further.
+       Summ= copy_check.Summ;
+       name= copy_check.name;
     }
-    logger.print();
-    return value;
-}
-void task3()
+    Check& operator=(const Check& check)
+    {
+        if (this != &check)
+        {
+           Summ = check.Summ;
+           name = check.name;
+        }
+        return *this;
+    }
+    void addSumm(int _summa){ Summ+=_summa;};
+    void subSumm(int _summa){ Summ-=_summa;};
+    wstring GetName() const {return name;};
+    int GetSumm() const {return Summ;};
+};
+
+void transaction(Check& CheckOut,Check& CheckIn,unsigned int sum)
 {
-    Function();
-    //«¨¡® ¢â®à®© ¢ à¨ ­â ¥á«¨ ¯¥ç â ¥â ®¤­® ¨ â®¦¥ â® ¬®¦­® á¤¥« âì ®¡ñàâªã
-    LoggerGuard logger("Function completed\n");
-    Function();
-    logger.print();
+    Check* temp1=nullptr;
+    Check* temp2=nullptr;
+    try
+    {
+        const std::lock_guard<std::mutex> lock(mutex2);
+        temp1=new Check(CheckOut);
+        temp2=new Check(CheckIn);
+        CheckOut.subSumm(sum);
+        CheckIn.addSumm(sum);
+        wcout << CheckOut.GetName().c_str()<<L" ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ ÑÑ‡Ñ‘Ñ‚Ð°:"<<CheckOut.GetSumm()<<"\n";
+        wcout <<CheckIn.GetName().c_str()<<L" ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ ÑÑ‡Ñ‘Ñ‚Ð°:"<<CheckIn.GetSumm()<<"\n";
+        //throw(-1);
+        this_thread::sleep_for(chrono::seconds(1));
+    }
+    // Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰ÐµÐ½Ð¸Ðµ ÑÑ‡Ñ‘Ñ‚Ð¾Ð² Ð² Ð¸ÑÑ…Ð¾Ð´Ð½Ð¾Ðµ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð¿Ñ€Ð¸ ÑÑ€Ð°Ð±Ð¾Ñ‚Ð°Ð²ÑˆÐµÐ¼ Ð¸ÑÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ð¸
+    catch (...) {
+        if(temp1!=nullptr)
+        CheckOut=*temp1;
+        if(temp2!=nullptr)
+        CheckIn=*temp2;
+        wcout << CheckOut.GetName().c_str()<<L" ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ ÑÑ‡Ñ‘Ñ‚Ð°:"<<CheckOut.GetSumm()<<"\n";
+        wcout <<CheckIn.GetName().c_str()<<L" ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ ÑÑ‡Ñ‘Ñ‚Ð°:"<<CheckIn.GetSumm()<<"\n";
+    }
+}
+
+void task2()
+{
+     setlocale(LC_ALL, "");
+    Check check1(5000,L"Ð’Ð°ÑÑ");
+    Check check2(4000,L"ÐŸÐµÑ‚Ñ");
+    thread(transaction,std::ref(check1),std::ref(check2),500).join();
+    thread(transaction,std::ref(check2),std::ref(check1),1200).join();
+
 }
