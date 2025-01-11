@@ -5,7 +5,6 @@
 #include <windows.h>
 #include <QDebug>
 
-DWORD WINAPI ConnectToClient(LPVOID client_socket);
 static int nclients;
 class Server
 {
