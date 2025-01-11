@@ -5,7 +5,7 @@
 
 using std::cout;
 
-typedef struct ip_hdr //заголовок IP
+typedef struct ip_hdr 
 {
     unsigned char verhlen;
     unsigned char tos:6;
@@ -20,7 +20,7 @@ typedef struct ip_hdr //заголовок IP
     unsigned int destination;
 }IpHeader;
 
-typedef  struct icmp_hdr //заголовок ICMP
+typedef  struct icmp_hdr 
 {
     unsigned char i_type;
     unsigned char i_code;
@@ -66,13 +66,13 @@ unsigned int analize(char* data, sockaddr_in* adr)
 int ping(const char* Ip)
 {
  WSADATA wsaData;
-//удаленный адрес
+//├г┬д┬а┬л┬е┬н┬н├л┬й ┬а┬д├а┬е├б
 sockaddr_in list_adr;
 list_adr.sin_addr.S_un.S_addr = inet_addr(Ip);
 list_adr.sin_family = AF_INET;
 list_adr.sin_port = htons(6666);
 
-//локальный адрес
+//┬л┬о┬к┬а┬л├м┬н├л┬й ┬а┬д├а┬е├б
 sockaddr_in bnd;
 bnd.sin_addr.S_un.S_addr = htonl(INADDR_ANY);
 bnd.sin_family = AF_INET;
@@ -109,10 +109,10 @@ int outlent = sizeof(sockaddr_in);
 sockaddr_in out_;
 out_.sin_family = AF_INET;
 
-//ПИНГИ
+//┬П╦Ж┬Н╞Т╦Ж
 cout<<"Pinging address > "<<Ip<<"       ";
 
-    //Отправляет данные в определенный пункт назначения.
+    //┼╜├в┬п├а┬а┬в┬л├п┬е├в ┬д┬а┬н┬н├л┬е ┬в ┬о┬п├а┬е┬д┬е┬л┬е┬н┬н├л┬й ┬п├г┬н┬к├в ┬н┬а┬з┬н┬а├з┬е┬н┬и├п.
     sendto(listn,(char*)Packet,size,0,(sockaddr*)&list_adr,sizeof(list_adr));
     Sleep(1000);
 
@@ -120,7 +120,7 @@ cout<<"Pinging address > "<<Ip<<"       ";
     {
         if(WSAGetLastError()==WSAETIMEDOUT)
         {
-            cout<<"Request timeout\n";
+            cout<<"Reply from "<<Ip<<" Request timeout\n";
         }
     }
     analize(bf,&out_);
