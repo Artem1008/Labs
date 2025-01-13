@@ -24,11 +24,10 @@ void RandomArr(std::vector<int>& arr)
         else if (arr.back()>10&&arr.back()<20) logarr.insert(std::make_pair("ErrorMessage",CLog::Priority::Error));
         else if (arr.back()>20&&arr.back()<30) logarr.insert(std::make_pair("WarningMessage",CLog::Priority::Warning));
         else if (arr.back()>30&&arr.back()<40) logarr.insert(std::make_pair("SystemInformation",CLog::Priority::System));
-        else if (arr.back()>30&&arr.back()<40) logarr.insert(std::make_pair("ServiceInformation",CLog::Priority::Service));
-        else if (arr.back()>30&&arr.back()<40) logarr.insert(std::make_pair("DebuggingInformation",CLog::Priority::Debugging));
+        else if (arr.back()>40&&arr.back()<50) logarr.insert(std::make_pair("ServiceInformation",CLog::Priority::Service));
+        else if (arr.back()>50&&arr.back()<60) logarr.insert(std::make_pair("DebuggingInformation",CLog::Priority::Debugging));
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
-
 }
 void SortArr(std::vector<int>& arr)
 {
@@ -39,7 +38,6 @@ void SortArr(std::vector<int>& arr)
             std::sort(arr.begin(), arr.end());
         data_cond.notify_one();
         std::this_thread::sleep_for(std::chrono::seconds(1));
-
     }
 }
 void PrintArr(std::vector<int>& arr)
@@ -47,7 +45,9 @@ void PrintArr(std::vector<int>& arr)
     while(!gexit)
     {
         const std::lock_guard<std::mutex> lock(mutex3);
-         data_cond.wait(lock, [& arr] {return !arr.empty();});
+        data_cond.wait(lock, [](std::vector<int>& arr){
+             return !arr.empty();
+         });
          for(auto var:arr)
         {
             std::cout<<var<<" ";
