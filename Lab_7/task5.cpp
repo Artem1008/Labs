@@ -36,7 +36,8 @@ void SortArr(std::vector<int>& arr)
         std::lock_guard<std::mutex> lock(mutex3);
         if (!arr.empty())
             std::sort(arr.begin(), arr.end());
-        data_cond.notify_one();
+        //не работает
+        //data_cond.notify_one();
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 }
@@ -45,9 +46,11 @@ void PrintArr(std::vector<int>& arr)
     while(!gexit)
     {
         const std::lock_guard<std::mutex> lock(mutex3);
+         //не работает
+        /*
         data_cond.wait(lock, [](std::vector<int>& arr){
              return !arr.empty();
-         });
+         });*/
          for(auto var:arr)
         {
             std::cout<<var<<" ";
