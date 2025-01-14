@@ -2,11 +2,11 @@
 #define MAIN_H
 
 /**
-* @brief î„≠™Ê®Ô Ø®≠£†
+* @brief –§—É–Ω–∫—Ü–∏—è –ø–∏–Ω–≥–∞
 */
 void ping(const char* Ip);
 /**
-* @brief î„≠™Ê®Ô Ø®≠£†
+* @brief –§—É–Ω–∫—Ü–∏—è –ø–∏–Ω–≥–∞
 */
 void task2();
 #endif // MAIN_H
