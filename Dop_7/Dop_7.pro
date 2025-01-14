@@ -9,11 +9,12 @@ CONFIG -= app_bundle
 
 SOURCES += \
         main.cpp \
-        task1.cpp
+        task1.cpp \
+        task2.cpp
 
 LIBS += -lws2_32
 
-DEFINES += "TASK=1"
+DEFINES += "TASK=2"
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

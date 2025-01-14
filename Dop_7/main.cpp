@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string>
 #include  "main.h"
-
+#if(TASK==1)
 struct ipadr
 {
     int a1;
@@ -10,7 +10,7 @@ struct ipadr
     int a3;
     int a4;
 }IpStart,IpStop;
-
+#endif
 int main()
 {
 #if(TASK==1)
@@ -22,12 +22,15 @@ int main()
     //std::thread thread_array[size];
     for(int i=0;i<=size;i++)
     {
-       str=std::to_string(IpStart.a1)+'.'+std::to_string(IpStart.a2)+'.'+std::to_string(IpStart.a3)+'.'+std::to_string(IpStart.a4+i);
-      // thread_array[i] = std::thread(ping, str.c_str());
-       //if (thread_array[i].joinable()) thread_array[i].detach();
-       ping(str.c_str());
+        str=std::to_string(IpStart.a1)+'.'+std::to_string(IpStart.a2)+'.'+std::to_string(IpStart.a3)+'.'+std::to_string(IpStart.a4+i);
+        // thread_array[i] = std::thread(ping, str.c_str());
+        //if (thread_array[i].joinable()) thread_array[i].detach();
+        ping(str.c_str());
     }
 #endif
+#if(TASK==2)
+    task2();
+#endif
     return 0;
- }
+}
 
