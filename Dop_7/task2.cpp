@@ -26,11 +26,11 @@ public:
     State getState(){return estate;};
     std::string getName(){return Name;}
     void setState(State _state){estate=_state;};
-    //§Æ°†¢´Ô‚Ï ™´®•≠‚† ¢ ÆÁ•‡•§Ï
+    //–¥–æ–±–∞–≤–ª—è—Ç—å –∫–ª–∏–µ–Ω—Ç–∞ –≤ –æ—á–µ—Ä–µ–¥—å
 private:
     std::string Name;
     State estate;
-    int size; //‡†ß¨•‡ ÆÁ•‡•§®
+    int size; //—Ä–∞–∑–º–µ—Ä –æ—á–µ—Ä–µ–¥–∏
 };
 std::queue<Klient *> vKlient;
 
@@ -39,17 +39,17 @@ void addKlient()
     Klient *_klient;
     while(1)
     {
-        _klient= new Klient("ä´®•≠‚");
+        _klient= new Klient("–ö–ª–∏–µ–Ω—Ç");
         if((int)vKlient.size()<MAXSIZE)
         {
            mutex.lock();
            vKlient.push(_klient);
            mutex.unlock();
-           printf("™´®•≠‚ %s Æ¶®§†•‚ ¢ Ø‡®•¨≠Æ©,¢ ÆÁ•‡•§® %d Á•´Æ¢•™\n", _klient->getName().c_str(),vKlient.size());
+           printf("–∫–ª–∏–µ–Ω—Ç %s –æ–∂–∏–¥–∞–µ—Ç –≤ –ø—Ä–∏–µ–º–Ω–æ–π,–≤ –æ—á–µ—Ä–µ–¥–∏ %d —á–µ–ª–æ–≤–µ–∫\n", _klient->getName().c_str(),vKlient.size());
         }
         else
         {
-            printf("™´®•≠‚ %s „ËÒ´\n", _klient->getName().c_str());
+            printf("–∫–ª–∏–µ–Ω—Ç %s —É—à—ë–ª\n", _klient->getName().c_str());
         }
 
         std::this_thread::sleep_for(std::chrono::seconds(1));
@@ -63,14 +63,14 @@ void subKlient(Barber& _barber)
         if (vKlient.size()>0)
         {
             _barber.setState(Barber::cut);
-            printf("™´®•≠‚ %s ØÆ§·‚‡®£†•‚·Ô, ¢ ÆÁ•‡•§® %d Á•´Æ¢•™\n", vKlient.front()->getName().c_str(),vKlient.size());
+            printf("–∫–ª–∏–µ–Ω—Ç %s –ø–æ–¥—Å—Ç—Ä–∏–≥–∞–µ—Ç—Å—è, –≤ –æ—á–µ—Ä–µ–¥–∏ %d —á–µ–ª–æ–≤–µ–∫\n", vKlient.front()->getName().c_str(),vKlient.size());
             mutex.lock();
             vKlient.pop();
             mutex.unlock();
             std::this_thread::sleep_for(std::chrono::seconds(4));
             if(vKlient.size()==0)
             {
-                printf("°†‡°•‡ %s ·Ø®‚\n", _barber.getName().c_str());
+                printf("–±–∞—Ä–±–µ—Ä %s —Å–ø–∏—Ç\n", _barber.getName().c_str());
                 _barber.setState(Barber::sleep);
             }
         }
@@ -79,7 +79,7 @@ void subKlient(Barber& _barber)
 
 void task2()
 {
-    Barber pBarber("Ç†·Ô",3);
+    Barber pBarber("–í–∞—Å—è",3);
     std::thread t1(addKlient);
     std::thread t2(subKlient,std::ref(pBarber));
     t1.join();
