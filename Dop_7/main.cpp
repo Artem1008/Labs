@@ -15,7 +15,7 @@ int main()
 {
 #if(TASK==1)
     std::string str;
-    printf("%s","Ç¢•§®‚• §®†ØÆßÆ≠ †§‡•·Æ¢ (172.16.40.1-172.16.40.254):");
+    printf("%s","–í–≤–µ–¥–∏—Ç–µ –¥–∏–∞–ø–æ–∑–æ–Ω –∞–¥—Ä–µ—Å–æ–≤ (172.16.40.1-172.16.40.254):");
     std::getline(std::cin,str);
     sscanf(str.c_str(), "%d.%d.%d.%d-%d.%d.%d.%d", &IpStart.a1, &IpStart.a2, &IpStart.a3,&IpStart.a4,&IpStop.a1, &IpStop.a2, &IpStop.a3,&IpStop.a4);
     int size=IpStop.a4-IpStart.a4;
