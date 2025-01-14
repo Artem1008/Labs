@@ -5,7 +5,7 @@
 
 using std::cout;
 
-typedef struct ip_hdr //§ £®«®¢®ª IP
+typedef struct ip_hdr //Ğ·Ğ°Ğ³Ğ¾Ğ»Ğ¾Ğ²Ğ¾Ğº IP
 {
     unsigned char verhlen;
     unsigned char tos:6;
@@ -20,7 +20,7 @@ typedef struct ip_hdr //§ £®«®¢®ª IP
     unsigned int destination;
 }IpHeader;
 
-typedef  struct icmp_hdr //§ £®«®¢®ª ICMP
+typedef  struct icmp_hdr //Ğ·Ğ°Ğ³Ğ¾Ğ»Ğ¾Ğ²Ğ¾Ğº ICMP
 {
     unsigned char i_type;
     unsigned char i_code;
@@ -66,13 +66,13 @@ unsigned int analize(char* data, sockaddr_in* adr)
 int ping(const char* Ip)
 {
  WSADATA wsaData;
-//ã¤ «¥­­ë©  ¤à¥á
+//ÑƒĞ´Ğ°Ğ»ĞµĞ½Ğ½Ñ‹Ğ¹ Ğ°Ğ´Ñ€ĞµÑ
 sockaddr_in list_adr;
 list_adr.sin_addr.S_un.S_addr = inet_addr(Ip);
 list_adr.sin_family = AF_INET;
 list_adr.sin_port = htons(6666);
 
-//«®ª «ì­ë©  ¤à¥á
+//Ğ»Ğ¾ĞºĞ°Ğ»ÑŒĞ½Ñ‹Ğ¹ Ğ°Ğ´Ñ€ĞµÑ
 sockaddr_in bnd;
 bnd.sin_addr.S_un.S_addr = htonl(INADDR_ANY);
 bnd.sin_family = AF_INET;
@@ -109,10 +109,10 @@ int outlent = sizeof(sockaddr_in);
 sockaddr_in out_;
 out_.sin_family = AF_INET;
 
-//ˆƒˆ
+//ĞŸĞ˜ĞĞ“Ğ˜
 cout<<"Pinging address > "<<Ip<<"       ";
 
-    //â¯à ¢«ï¥â ¤ ­­ë¥ ¢ ®¯à¥¤¥«¥­­ë© ¯ã­ªâ ­ §­ ç¥­¨ï.
+    //ĞÑ‚Ğ¿Ñ€Ğ°Ğ²Ğ»ÑĞµÑ‚ Ğ´Ğ°Ğ½Ğ½Ñ‹Ğµ Ğ² Ğ¾Ğ¿Ñ€ĞµĞ´ĞµĞ»ĞµĞ½Ğ½Ñ‹Ğ¹ Ğ¿ÑƒĞ½ĞºÑ‚ Ğ½Ğ°Ğ·Ğ½Ğ°Ñ‡ĞµĞ½Ğ¸Ñ.
     sendto(listn,(char*)Packet,size,0,(sockaddr*)&list_adr,sizeof(list_adr));
     Sleep(1000);
 
