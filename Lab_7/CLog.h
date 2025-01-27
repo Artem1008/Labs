@@ -7,11 +7,13 @@
 
 class CLog
 {
-
 public:
-    enum Priority{ Alarm,Error,Warning,System,Service,Debugging,None};
-    static int m_nLevel;
     CLog();
-    static void PrintMessage(int priority,const char* str);
+    static int Level;
+    enum Priority{ Alarm=0x1,Error=0x2,Warning=0x4,Debugging=0x8,System=0x10,Service=0x20,All=0x3F};
+    static void PrintMessage(int,const char*);
+    static void SetLevel(int);
+    static bool CheckLevel(int);
 };
+
 #endif // YOURCLASS_H
