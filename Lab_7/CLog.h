@@ -14,7 +14,7 @@ public:
     enum Priority{ Alarm=0x1,Error=0x2,Warning=0x4,Debugging=0x8,System=0x10,Service=0x20,All=0x3F};
     static void PrintMessage(int,const char*);
     static void SetLevel(int);
-    static bool CheckLevel(int);
+    static bool CheckLevel(const int &);
 };
 
 #endif // YOURCLASS_H
