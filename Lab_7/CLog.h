@@ -3,7 +3,8 @@
 #include <ctime>
 #include <iomanip>
 #include <iostream>
-#define arr(x) x==1? "Alarm":(x==2? "Error": (x==3? "Warning": (x==4? "System": (x==5? "Service": (x==6? "Debugging":"NoName")))))
+#define arr(x) x==0x1? "Alarm":(x==0x2? "Error": (x==0x4? "Warning": (x==0x8? "Debugging": (x==0x10? "System": (x==0x20? "Service":"NoName")))))
+
 
 class CLog
 {
