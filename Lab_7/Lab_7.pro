@@ -16,7 +16,7 @@ SOURCES += \
         task4.cpp \
         task5.cpp
 
-DEFINES += "TASK=5"
+DEFINES += "TASK=4"
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
