@@ -18,7 +18,7 @@ void CLog::SetLevel(int _level)
 {
     Level=_level;
 }
-bool CLog::CheckLevel(int _level)
+bool CLog::CheckLevel(const int & _level)
 {
     return (_level&Level);
 }
