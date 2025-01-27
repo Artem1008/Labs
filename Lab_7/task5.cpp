@@ -33,30 +33,29 @@ void SortArr(std::vector<int>& arr)
 {
     while(!gexit)
     {
-        std::lock_guard<std::mutex> lock(mutex3);
+
         if (!arr.empty())
+        {
+            std::lock_guard<std::mutex> lock(mutex3);
             std::sort(arr.begin(), arr.end());
-        //не работает
-        //data_cond.notify_one();
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        }
     }
 }
 void PrintArr(std::vector<int>& arr)
 {
     while(!gexit)
     {
-        const std::lock_guard<std::mutex> lock(mutex3);
-         //не работает
-        /*
-        data_cond.wait(lock, [](std::vector<int>& arr){
-             return !arr.empty();
-         });*/
-         for(auto var:arr)
+
+        if (!arr.empty())
         {
-            std::cout<<var<<" ";
+            const std::lock_guard<std::mutex> lock(mutex3);
+            for(auto var:arr)
+            {
+                std::cout<<var<<" ";
+            }
+            std::cout<<'\n';
+            std::this_thread::sleep_for(std::chrono::seconds(1));
         }
-        std::cout<<'\n';
-        std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 }
 void PrintLog(std::map<const char *,int>& logarr)
@@ -77,9 +76,9 @@ void PrintLog(std::map<const char *,int>& logarr)
 void task5()
 {
     std::vector<int> arr;
-
     gexit=false;
     srand((int)time(0));
+    CLog::SetLevel(CLog::Priority::Alarm|CLog::Priority::Error);
     std::thread t1(RandomArr,std::ref(arr));
     std::thread t2(SortArr,std::ref(arr));
     std::thread t3(PrintArr,std::ref(arr));
@@ -89,4 +88,3 @@ void task5()
     t3.join();
     log.join();
 }
-
