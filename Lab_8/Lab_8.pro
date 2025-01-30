@@ -9,6 +9,7 @@ CONFIG -= app_bundle
 
 SOURCES += \
         main.cpp \
+        myfuct.cpp \
         task1.cpp \
         task2.cpp \
         task3.cpp \
@@ -16,7 +17,7 @@ SOURCES += \
         task5.cpp \
         task6.cpp
 
-DEFINES += "TASK=1"
+DEFINES += "TASK=2"
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -24,4 +25,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    main.h
+    main.h \
+    myfuct.h
