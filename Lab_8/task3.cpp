@@ -4,6 +4,7 @@
 
 #define KEY_UP 72
 #define KEY_DOWN 80
+#define BACKSPACE 8
 void ClearStringConsole(int value,std::string str);
 void task3()
 {
@@ -36,10 +37,14 @@ void task3()
             else itunits--;
             printf("\r%d %s",value,(*itunits).c_str());
         }
-        else if((c>=48)&&c<=57)
+        if((c>='0')&&c<='9')
         {
             value=value*10+(c-48);
-            //system("cls");
+            printf("\r%d %s",value,(*itunits).c_str());
+        }
+        if(c==BACKSPACE)
+        {
+            value/=10;
             printf("\r%d %s",value,(*itunits).c_str());
         }
     }
