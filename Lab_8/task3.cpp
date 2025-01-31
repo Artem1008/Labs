@@ -44,7 +44,7 @@ void task3()
         }
         if(c==BACKSPACE)
         {
-            value/=10;
+            if (value>0) value/=10;
             printf("\r%d %s",value,(*itunits).c_str());
         }
     }
