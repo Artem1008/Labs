@@ -23,7 +23,6 @@ public:
     }
     void addByte(unsigned long long _value,std::string unit)
     {
-
         value= ((value/tableConvert[unit])*10+_value)*tableConvert[unit];
     }
     void subByte(std::string unit)
