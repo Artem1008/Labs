@@ -32,7 +32,8 @@ public:
     {
          for (const auto& child : children)
          {
-            child->~TreeNode();
+            delete child;
+            //child->~TreeNode();
          }
          printf("удалился %d\n",value);
     }
