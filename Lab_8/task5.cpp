@@ -11,7 +11,6 @@ public:
         return *next;
     };
     const Node<T>& operator++(int);
-    friend std::ostream& operator<< (std::ostream &out, const Node &n);
     Node(T _data=0):data(_data){};
 };
 template <typename T>
@@ -20,11 +19,6 @@ const Node<T>& Node<T>::operator++(int)
     Node<T> temp(data);
     ++(*this);
     return temp;
-}
-template <typename T>
-std::ostream& operator<< (std::ostream &out, const Node<T>&n) {
-    out << n.data << "\n";
-    return out;
 }
 template <typename T=int>
 class Buffer
@@ -41,7 +35,7 @@ public:
     {
         CreateBufer(size);
     }
-    Buffer(const Buffer&) = delete;
+    Buffer(const Buffer&)= delete;
     void Add(T);
     T& operator[] (const int index);
     void pritfAll()
@@ -94,11 +88,12 @@ int Buffer<T>:: CreateBufer(int size)
             end=temp;
         }
     }
+    return 1;
 }
 
 int task5()
 {
-    int sizeBuf=10;
+    double sizeBuf=10;
     Buffer<> bufers(sizeBuf);
     for(int i=1;i<=sizeBuf;++i)
     {
