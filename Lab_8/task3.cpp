@@ -21,7 +21,7 @@ public:
         tableConvert.insert(std::make_pair("Мbyte", 1048576));
         tableConvert.insert(std::make_pair("Gbyte", 1073741824));
     }
-    void addByte(unsigned long long _value,std::string unit)
+    void addByte(int _value,std::string unit)
     {
         value= ((value/tableConvert[unit])*10+_value)*tableConvert[unit];
     }
@@ -36,13 +36,13 @@ public:
 
 };
 
-void ClearStringConsole(int value,std::string str);
+void ClearStringConsole(unsigned long long value,std::string str);
 void task3()
 {
     //если работает с STL будет на контейнерах
     //char units[][10]={"Gbyte","Мbyte","Kbyte","byte","MiB"};
     std::vector<std::string> units ={"byte","Kbyte","Мbyte","MiB","Gbyte"};
-    std::vector<std::string>::iterator itunits=units.begin();
+    auto itunits=units.begin();
     char c=0;
     Bytes value;
     printf("Введите число и стрелками вверх вниз выберите ед.изм.\n");
@@ -52,20 +52,12 @@ void task3()
         ClearStringConsole(value.getByte(*itunits),(*itunits));
         if (c == KEY_UP)
         {
-            if(itunits==units.end())
-            {
-                itunits=units.begin();
-            }
-            else
-            {
-                itunits++;
-            }
-           printf("\r%lld %s",value.getByte(*itunits),(*itunits).c_str());
+            itunits=((itunits+1)==units.end())?units.begin():++itunits;
+            printf("\r%lld %s",value.getByte(*itunits),(*itunits).c_str());
         }
         if (c == KEY_DOWN)
         {
-            if(itunits==units.begin()) itunits=units.end();
-            else itunits--;
+            itunits=(itunits==units.begin())?--units.end():--itunits;
             printf("\r%lld %s",value.getByte(*itunits),(*itunits).c_str());
         }
         if((c>='0')&&c<='9')
@@ -76,11 +68,11 @@ void task3()
         if(c==BACKSPACE)
         {
             if (value.getByte(*itunits)>0) value.subByte(*itunits);
-           printf("\r%lld %s",value.getByte(*itunits),(*itunits).c_str());
+            printf("\r%lld %s",value.getByte(*itunits),(*itunits).c_str());
         }
     }
 }
-void ClearStringConsole(int value,std::string str)
+void ClearStringConsole(unsigned long long value,std::string str)
 {
     std::string temp;
     temp.push_back('\r');
