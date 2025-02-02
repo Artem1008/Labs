@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <memory>
+
 //:-1: ошибка: cannot find -lasan
 //потому могу только догадываться. Деструктор вызывается только у root а под остальные объекты нет! либо как тут
 
@@ -38,7 +40,7 @@ public:
          printf("удалился %d\n",value);
     }
 };
-// либо делать умные указатели 
+// либо делать умные указатели
 class TreeNode2 {
 private:
     int value;
