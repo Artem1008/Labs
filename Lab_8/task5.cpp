@@ -14,7 +14,6 @@ public:
     friend std::ostream& operator<< (std::ostream &out, const Node &n);
     Node(T _data=0):data(_data){};
 };
-
 template <typename T>
 const Node<T>& Node<T>::operator++(int)
 {
@@ -44,7 +43,8 @@ public:
     }
     Buffer(const Buffer&) = delete;
     void Add(T);
-    void pritfbuf()
+    T& operator[] (const int index);
+    void pritfAll()
     {
         getpointer=begin;
         for(int i=1;i<=size;++i)
@@ -54,6 +54,13 @@ public:
         }
     }
 };
+template <typename T>
+T& Buffer<T>::operator[] (const int index)
+{
+    Node<T>* temp;
+    temp=begin+index;
+    return temp->data;
+}
 template <typename T>
 void Buffer<T>:: Add(T _data)
 {
@@ -91,11 +98,14 @@ int Buffer<T>:: CreateBufer(int size)
 
 int task5()
 {
-    Buffer<> bufers(10);
-    for(int i=1;i<=10;++i)
+    int sizeBuf=10;
+    Buffer<> bufers(sizeBuf);
+    for(int i=1;i<=sizeBuf;++i)
     {
         bufers.Add(i);
     }
-    bufers.pritfbuf();
+    bufers.pritfAll();
+    printf("\n%d ", bufers[0]);
+    printf("%d", bufers[1]);
     return 1;
 }
