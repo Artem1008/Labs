@@ -6,14 +6,15 @@ class Node
 public:
     T data;
     Node* next=nullptr;
-    const Node<T>& operator++()
+    Node<T>& operator++()
     {
-      return *next;
+        return *next;
     };
     const Node<T>& operator++(int);
     friend std::ostream& operator<< (std::ostream &out, const Node &n);
-    Node(T _data):data(_data){};
+    Node(T _data=0):data(_data){};
 };
+
 template <typename T>
 const Node<T>& Node<T>::operator++(int)
 {
@@ -21,7 +22,6 @@ const Node<T>& Node<T>::operator++(int)
     ++(*this);
     return temp;
 }
-
 template <typename T>
 std::ostream& operator<< (std::ostream &out, const Node<T>&n) {
     out << n.data << "\n";
@@ -32,36 +32,53 @@ class Buffer
 {
 private:
     int size;
-    void CreateBufer(int);
+    int CreateBufer(int);
 public:
     Node<T>* begin=nullptr;
     Node<T>* end=nullptr;
-    Node<T>*  pointer=nullptr;
+    Node<T>* setpointer=nullptr;
+    Node<T>* getpointer=nullptr;
     explicit  Buffer(int _size):size(_size)
     {
         CreateBufer(size);
     }
     Buffer(const Buffer&) = delete;
+    void Add(T);
     void pritfbuf()
     {
-        pointer=begin;
+        getpointer=begin;
         for(int i=1;i<=size;++i)
         {
-            printf("%d ",pointer->data);
-            //pointer=pointer->next;
-            ++pointer;
+            printf("%d ",getpointer->data);
+            ++getpointer;
         }
     }
 };
 template <typename T>
-void Buffer<T>:: CreateBufer(int size)
+void Buffer<T>:: Add(T _data)
 {
-    for(int i=1;i<=size;++i)
+    setpointer->data=_data;
+    setpointer=setpointer->next;
+}
+
+template <typename T>
+int Buffer<T>:: CreateBufer(int size)
+{
+    Node<T>* temp;
+    try
     {
-        Node<T>* temp=new Node<T>(i);
+        temp=new Node<T>[size];
+    }
+    catch (...)
+    {
+        printf("Ошибка выделения памяти");
+        return -1;
+    }
+    for(int i=0;i<size;++i,++temp)
+    {
         if(begin==nullptr)
         {
-            begin=end=temp;
+            getpointer=setpointer=begin=end=temp;
         }
         else
         {
@@ -74,6 +91,11 @@ void Buffer<T>:: CreateBufer(int size)
 
 int task5()
 {
-    Buffer<> bufers(3);
+    Buffer<> bufers(10);
+    for(int i=1;i<=10;++i)
+    {
+        bufers.Add(i);
+    }
     bufers.pritfbuf();
+    return 1;
 }
