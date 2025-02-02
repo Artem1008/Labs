@@ -44,15 +44,20 @@ public:
         for(int i=1;i<=size;++i)
         {
             printf("%d ",getpointer->data);
-            ++getpointer;
+            getpointer=getpointer->next;
+            //++getpointer;
         }
     }
 };
 template <typename T>
 T& Buffer<T>::operator[] (const int index)
 {
-    Node<T>* temp;
-    temp=begin+index;
+    Node<T>* temp=begin;
+    for(int i=1;i<=index;++i)
+    {
+        temp=temp->next;
+        //++temp;
+    }
     return temp->data;
 }
 template <typename T>
@@ -101,6 +106,11 @@ int task5()
     }
     bufers.pritfAll();
     printf("\n%d ", bufers[0]);
-    printf("%d", bufers[1]);
+    printf("%d\n", bufers[1]);
+    //проверка заколдованности)
+    for(int i=0;i<sizeBuf*3;++i)
+    {
+         printf("%d ", bufers[i]);
+    }
     return 1;
 }
