@@ -63,3 +63,106 @@ std::cout << "\n9 Data is at " << &CONSTT;
 std::cout << "\n10 Text is at " << reinterpret_cast<void*>(main) << "\n";
 }
 ```
+
+3) Найдите ошибки в коде, чтобы программа представленная ниже заработала, можно только добавлять что-то, но убирать нельзя.
+```cpp
+class Dollars {
+private:
+    int m_dollars;
+public:
+    Dollars(int dollars) { m_dollars = dollars; }
+    // выполняем Dollars + Dollars через дружественную функцию
+    friend Dollars operator+(const Dollars &d1, const Dollars &d2);
+    // выполняем Dollars - Dollars через дружественную функцию
+    Dollars operator-(const Dollars &d1, const Dollars &d2);
+    Dollars operator*(const Dollars &d1, const Dollars &d2);
+    Dollars operator/(const Dollars &d1, const Dollars &d2);
+    int getDollars() const { return m_dollars; }
+}
+// Примечание: Эта функция не является методом класса!
+Dollars +(const Dollars &d1, const Dollars &d2) {
+    // используем конструктор Dollars и operator+(int, int)
+    // мы имеем доступ к закрытому члену m_dollars, поскольку эта функция является дружественной классу Dollars
+    return Dollars(d1.m_dollars + d2.m_dollars);
+}
+// Примечание: Эта функция не является методом класса!
+Dollars operator-(const Dollars &d1, const Dollars &d2) {
+    // используем конструктор Dollars и operator-(int, int)
+    // мы имеем доступ к закрытому члену m_dollars, поскольку эта функция является дружественной классу Dollars
+    return Dollars(d1.m_dollars - d2.m_dollars);
+}
+// Примечание: Эта функция не является методом класса!
+Dollars operator*(const Dollars &d1, const Dollars &d2) {
+    // используем конструктор Dollars и operator*(int, int)
+    // мы имеем доступ к закрытому члену m_dollars, поскольку эта функция является дружественной классу Dollars
+    return Dollars(d1.m_dollars * d2.m_dollars);
+}
+// Примечание: Эта функция не является методом класса!
+Dollars /(const Dollars &d1, const Dollars &d2) {
+    // используем конструктор Dollars и operator/(int, int)
+    // мы имеем доступ к закрытому члену m_dollars, поскольку эта функция является дружественной классу Dollars
+    return Dollars(d1.m_dollars / d2.m_dollars);
+}
+int main() {
+    Dollars dollars1();
+    Dollars dollars2();
+    std::cout << "+: " << (dollars1 + dollars2).getDollars() << " dollars." << std::endl;
+    std::cout << "-: " << (dollars1 - dollars2).getDollars() << " dollars." << std::endl;
+    std::cout << "*: " << (dollars1 * dollars2).getDollars() << " dollars." << std::endl;
+    
+    std::cout << "/: " << (dollars1 / dollars2).getDollars() << " dollars." << std::endl;
+    std::cout << "/: " << (dollars1 + 3).getDollars() << " dollars." << std::endl;
+}
+```
+Рабочий вариант
+```cpp
+#include <iostream>
+
+class Dollars {
+private:
+    int m_dollars;
+public:
+    Dollars(int dollars=0) { m_dollars = dollars; }
+    // выполняем Dollars + Dollars через дружественную функцию
+    friend Dollars operator+(const Dollars &d1, const Dollars &d2);
+    // выполняем Dollars - Dollars через дружественную функцию
+    friend Dollars operator-(const Dollars &d1, const Dollars &d2);
+    friend Dollars operator*(const Dollars &d1, const Dollars &d2);
+    friend Dollars operator/(const Dollars &d1, const Dollars &d2);
+    int getDollars() const { return m_dollars; }
+};
+// Примечание: Эта функция не является методом класса!
+Dollars operator +(const Dollars &d1, const Dollars &d2) {
+    // используем конструктор Dollars и operator+(int, int)
+    // мы имеем доступ к закрытому члену m_dollars, поскольку эта функция является дружественной классу Dollars
+    return Dollars(d1.m_dollars + d2.m_dollars);
+}
+// Примечание: Эта функция не является методом класса!
+Dollars operator-(const Dollars &d1, const Dollars &d2) {
+    // используем конструктор Dollars и operator-(int, int)
+    // мы имеем доступ к закрытому члену m_dollars, поскольку эта функция является дружественной классу Dollars
+    return Dollars(d1.m_dollars - d2.m_dollars);
+}
+// Примечание: Эта функция не является методом класса!
+Dollars operator*(const Dollars &d1, const Dollars &d2) {
+    // используем конструктор Dollars и operator*(int, int)
+    // мы имеем доступ к закрытому члену m_dollars, поскольку эта функция является дружественной классу Dollars
+    return Dollars(d1.m_dollars * d2.m_dollars);
+}
+// Примечание: Эта функция не является методом класса!
+Dollars operator/(const Dollars &d1, const Dollars &d2) {
+    // используем конструктор Dollars и operator/(int, int)
+    // мы имеем доступ к закрытому члену m_dollars, поскольку эта функция является дружественной классу Dollars
+    return Dollars(d1.m_dollars / d2.m_dollars);
+}
+int main() {
+    Dollars dollars1;
+    Dollars dollars2;
+    std::cout << "+: " << (dollars1 + dollars2).getDollars() << " dollars." << std::endl;
+    std::cout << "-: " << (dollars1 - dollars2).getDollars() << " dollars." << std::endl;
+    std::cout << "*: " << (dollars1 * dollars2).getDollars() << " dollars." << std::endl;
+
+    std::cout << "/: " << (dollars1 / dollars2).getDollars() << " dollars." << std::endl;
+    std::cout << "/: " << (dollars1 + 3).getDollars() << " dollars." << std::endl;
+}
+```
