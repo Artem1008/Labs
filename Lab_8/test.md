@@ -166,3 +166,214 @@ int main() {
     std::cout << "/: " << (dollars1 + 3).getDollars() << " dollars." << std::endl;
 }
 ```
+4) Сделайте код программы рабочим, причем элементы массива выводим с использованием цикла foreach.
+```cpp
+#include <iostream>
+int sumArray(int array) {
+    int result = 0;
+    for (const auto &number : array)
+        result += number;
+    return result;
+}
+int main() {
+    int array[7] = { 10, 8, 6, 5, 4, 3, 1 };
+    std::cout << sumArray(array);
+    return 0;
+}
+```
+Рабочий вариант
+```cpp
+#include <iostream>
+int sumArray(int (&array)[7]) {
+    int result = 0;
+    for (const auto &number : array)
+        result += number;
+    return result;
+}
+int main() {
+    int array[7] = { 10, 8, 6, 5, 4, 3, 1 };
+    std::cout << sumArray(array);
+    return 0;
+}
+
+```
+4) Найдите ошибки в коде, чтобы программа представленная ниже заработала, можно только добавлять что-то, но убирать нельзя.
+```cpp
+void (*pfunc)();
+void print(int i) {
+    std::cout << i << " ";
+}
+int main() {
+    int data[]{1,2,3,4,5};
+    int len = sizeof(data)/sizeof(data[0]);
+    std::for_each(data, data+len, pfunc);
+    return 0;
+}
+```
+Рабочий вариант
+```cpp
+#include <iostream>
+#include <algorithm>
+
+void (*pfunc)(int );
+void print(int i) {
+    std::cout << i << " ";
+}
+int main() {
+    int data[]{1,2,3,4,5};
+    pfunc=print;
+    int len = sizeof(data)/sizeof(data[0]);
+    std::for_each(data, data+len, pfunc);
+    return 0;
+}
+```
+5) Найдите ошибки в коде, чтобы программа представленная ниже заработала, можно только добавлять что-то, но убирать нельзя.
+```cpp
+class Number {
+private:
+    int m_number;
+    Number(int number=0): m_number(number) {}
+    Number& operator++();
+    Number& operator--();
+    Number operator++(int);
+    Number operator--(int);
+    friend std::ostream& operator<< (std::ostream &out, const Number &n);
+}
+Number ::operator++() {
+    ++m_number;
+    return *this;
+}
+Number operator--(){
+    --m_number;
+    
+    return *this;
+}
+Number Number::operator++(int){
+    Number temp(m_number);
+    ++(*this);
+    return temp;
+}
+Number Number::operator--(int){
+    Number temp(m_number);
+    --(*this);
+    return temp;
+}
+std::ostream& operator<< (std::ostream &out, const Number &d){
+    out << d.m_number << "\n";
+    return out;
+}
+int main(){
+    Number number(6);
+    std::cout << ++number;
+    std::cout << number++;
+    std::cout << number;
+    std::cout << --number;
+    std::cout << number--;
+    std::cout << number;
+}
+```
+Рабочий вариант
+```cpp
+#include <iostream>
+
+class Number {
+private:
+    int m_number;
+public:
+    Number(int number=0): m_number(number) {}
+    Number& operator++();
+    Number& operator--();
+    Number operator++(int);
+    Number operator--(int);
+    friend std::ostream& operator<< (std::ostream &out, const Number &n);
+};
+Number& Number::operator++() {
+    ++m_number;
+    return *this;
+}
+Number& Number::operator--(){
+    --m_number;
+
+    return *this;
+}
+Number Number::operator++(int){
+    Number temp(m_number);
+    ++(*this);
+    return temp;
+}
+Number Number::operator--(int){
+    Number temp(m_number);
+    --(*this);
+    return temp;
+}
+std::ostream& operator<< (std::ostream &out, const Number &d){
+    out << d.m_number << "\n";
+    return out;
+}
+int main(){
+    Number number(6);
+    std::cout << ++number;
+    std::cout << number++;
+    std::cout << number;
+    std::cout << --number;
+    std::cout << number--;
+    std::cout << number;
+}
+```
+6) Найдите ошибки в коде, чтобы программа представленная ниже заработала, можно только добавлять что-то, но убирать нельзя.
+```cpp
+int main() {
+    std::vector<int> numbers = { 1, 2, 3, 4, 5 };
+    for (int n : numbers)
+        std::cout << n << "\t";
+    std::cout << std::endl;
+    for (auto iter = begin(); iter != end(); iter++) {
+        std::cout << *iter << "\t";
+    }
+}
+```
+Рабочий вариант
+```cpp
+#include <iostream>
+#include <vector>
+
+int main() {
+    std::vector<int> numbers = { 1, 2, 3, 4, 5 };
+    for (int n : numbers)
+        std::cout << n << "\t";
+    std::cout << std::endl;
+    for (auto iter = numbers.begin(); iter != numbers.end(); iter++) {
+        std::cout << *iter << "\t";
+    }
+}
+```
+7) Найдите ошибки в коде, чтобы программа представленная ниже заработала, можно только добавлять что-то, но убирать нельзя.
+```cpp
+int main() {
+    std::list<int> li;
+    for (int nCount = 0; nCount < 5; ++nCount)
+        li.push_back(nCount);
+    std::list<int>::iter it;
+    it = min_element(li.begin(), li.end());
+    std::cout << "min: " << it << ' ';
+    it = max_element(li.begin(), li.end());
+    std::cout << "max: " << it << ' ';
+}
+```
+Рабочий вариант
+```cpp
+#include <algorithm>
+#include <iostream>
+#include <list>
+
+int main() {
+    std::list<int> li;
+    for (int nCount = 0; nCount < 5; ++nCount)
+        li.push_back(nCount);
+    std::list<int>::iterator it;
+    it = min_element(li.begin(), li.end());
+    std::cout << "min: " << *it << ' ';
+    it = max_element(li.begin(), li.end());
+    std::cout << "max: " << *it << ' ';
+}
+```
