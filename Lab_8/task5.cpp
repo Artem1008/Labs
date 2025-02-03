@@ -13,7 +13,11 @@ public:
     const Node<T>& operator++(int);
     Node(T _data=0):data(_data){};
 };
-
+template<typename T>
+std::ostream& operator << (std::ostream& os, const Node<T>& node)
+{
+    return  os<<node.data;
+}
 template <typename T>
 const Node<T>& Node<T>::operator++(int)
 {
@@ -21,7 +25,6 @@ const Node<T>& Node<T>::operator++(int)
     ++(*this);
     return temp;
 }
-
 template <typename T=int>
 class Buffer
 {
@@ -48,9 +51,9 @@ public:
             printf("%d ",getpointer->data);
             getpointer=getpointer->next;
         }
+        printf("\n");
     }
 };
-
 template <typename T>
 T& Buffer<T>::operator[] (const int index)
 {
@@ -67,7 +70,6 @@ void Buffer<T>:: Add(T _data)
     setpointer->data=_data;
     setpointer=setpointer->next;
 }
-
 template <typename T>
 int Buffer<T>:: CreateBufer(int size)
 {
@@ -96,7 +98,6 @@ int Buffer<T>:: CreateBufer(int size)
     }
     return 1;
 }
-
 int task5()
 {
     double sizeBuf=10;
@@ -106,12 +107,12 @@ int task5()
         bufers.Add(i);
     }
     bufers.pritfAll();
-    printf("\n%d ", bufers[0]);
-    printf("%d\n", bufers[1]);
+    std::cout<<bufers[0]<<' ';
+    std::cout<<bufers[1]<<'\n';
     //проверка заколдованности)
     for(int i=0;i<sizeBuf*3;++i)
     {
-         printf("%d ", bufers[i]);
+        std::cout<<bufers[i]<<' ';
     }
     return 1;
 }
