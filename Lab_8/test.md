@@ -36,7 +36,3 @@
 | Data(bss)  | |
 | Heap | |
 | Stack | |
-
-```cpp
-
-```
