@@ -5,10 +5,12 @@
 
 | Название класса | Пара (pair) | Массив (array) | Вектор (vector) | Список (list) |
 | ---             | ---         | ---            | ---             | ---           |
-|Какую библиотеку подключить| | | | |
- 
+|Какую библиотеку подключить| <utility> | | | |
+|Синтаксис инициализации| std::pair <std::string,
+std::string> myName(“Ivan”,
+“Ivanov”); | | | | 
 
-<utility>
+
 
 Синтаксис инициализации std::pair <std::string,
 std::string> myName(“Ivan”,
