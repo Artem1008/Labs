@@ -31,8 +31,35 @@
 
 2) Разместите адреса (заполните адресное пространство)(заполните следующую таблицу), для примера представленного ниже:
 
-| text | 
-| Data | 
-| Data(bss) | 
-| Heap | 
-| Stack | 
+| 0x402db0 | text | 
+| 0x404010 | Data | 
+| 0x408030 | Data (bss) | 
+| 0x60fdf0 | Heap | 
+| 0x1031790 | Stack | 
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <array>
+const int CONSTT{3};
+int g_val{4};
+int g_val1;
+int main () {
+int v = 3;
+std::vector<int> vk;
+vk.push_back(1);
+vk.push_back(2);
+vk.push_back(3);
+std::array<int,3> ak;
+std::cout << "\n1 Heap is at " << &vk;
+std::cout << "\n2 Stack is at " << &vk.front();
+std::cout << "\n3 Heap is at " << &vk;
+std::cout << "\n4 Heap is at " << &ak.front();
+std::cout << "\n5 Heap is at " << &v;
+std::cout << "\n6 Stack is at " << malloc(8);
+std::cout << "\n7 Data is at " << &g_val;
+std::cout << "\n8 bss is at " << &g_val1;
+std::cout << "\n9 Data is at " << &CONSTT;
+std::cout << "\n10 Text is at " << reinterpret_cast<void*>(main) << "\n";
+}
+```
