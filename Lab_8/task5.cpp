@@ -42,6 +42,7 @@ public:
     }
     Buffer(const Buffer&)= delete;
     void Add(T);
+    void operator+ (T);
     T& operator[] (const int index);
     void pritfAll()
     {
@@ -54,6 +55,12 @@ public:
         printf("\n");
     }
 };
+template <typename T>
+void Buffer<T>::operator+ (T _data)
+{
+    setpointer->data=_data;
+    setpointer=setpointer->next;
+}
 template <typename T>
 T& Buffer<T>::operator[] (const int index)
 {
@@ -104,7 +111,8 @@ int task5()
     Buffer<> bufers(sizeBuf);
     for(int i=1;i<=sizeBuf;++i)
     {
-        bufers.Add(i);
+        //bufers.Add(i);
+        bufers+i;
     }
     bufers.pritfAll();
     std::cout<<bufers[0]<<' ';
