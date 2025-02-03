@@ -13,6 +13,7 @@ public:
     const Node<T>& operator++(int);
     Node(T _data=0):data(_data){};
 };
+
 template <typename T>
 const Node<T>& Node<T>::operator++(int)
 {
@@ -20,6 +21,7 @@ const Node<T>& Node<T>::operator++(int)
     ++(*this);
     return temp;
 }
+
 template <typename T=int>
 class Buffer
 {
@@ -45,10 +47,10 @@ public:
         {
             printf("%d ",getpointer->data);
             getpointer=getpointer->next;
-            //++getpointer;
         }
     }
 };
+
 template <typename T>
 T& Buffer<T>::operator[] (const int index)
 {
@@ -56,7 +58,6 @@ T& Buffer<T>::operator[] (const int index)
     for(int i=1;i<=index;++i)
     {
         temp=temp->next;
-        //++temp;
     }
     return temp->data;
 }
