@@ -65,7 +65,6 @@ public:
             child->Print(depth + 1);
         }
     }
-    //возможно надо что то типо того
     ~TreeNode2()
     {
          printf("удалился %d\n",value);
