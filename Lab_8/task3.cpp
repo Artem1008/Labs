@@ -39,7 +39,7 @@ public:
 void ClearStringConsole(unsigned long long value,std::string str);
 void task3()
 {
-    //если работает с STL будет на контейнерах
+    //если работаем с STL, то  будет на контейнерах
     //char units[][10]={"Gbyte","Мbyte","Kbyte","byte","MiB"};
     std::vector<std::string> units ={"byte","Kbyte","Мbyte","MiB","Gbyte"};
     auto itunits=units.begin();
