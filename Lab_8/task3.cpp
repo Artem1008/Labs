@@ -82,9 +82,6 @@ void ClearStringConsole(unsigned long long value,std::string str)
     {
         temp.push_back(' ');
     }
-    for(size_t i=0;i<str.size();i++)
-    {
-        temp.push_back(' ');
-    }
+    temp.insert(3,str.size(),' ');
     printf("%s",temp.c_str());
 }
