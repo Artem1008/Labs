@@ -21,9 +21,8 @@ public:
     Matrix<T> operator-(const Matrix<T> m) const;
     Matrix<T> operator*(const Matrix<T> m) const;
     Matrix<T>& operator=(const Matrix<T>& m) const;
-   // friend std::ostream& operator<<(std::ostream &os,const Matrix<T>& refmatrix);
     template<class T2>
-    friend std::ostream& operator << (std::ostream& os, const Matrix<T2>& val);
+    friend std::ostream& operator << (std::ostream& os, const Matrix<T2>& refmatrix);
 };
 
 #include <matrix.inl>
