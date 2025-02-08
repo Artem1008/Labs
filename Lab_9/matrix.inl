@@ -4,16 +4,14 @@ template<typename T>
 Matrix<T>::Matrix(int _rows, int _columns):rows(_rows),columns(_columns)
 {
     srand (time(NULL));
-    T** data = new T*[rows];
+    data = new (std::nothrow)T*[rows];
     for(int i=0;i<rows;++i)
     {
-        data[i] = new int[columns];
+        data[i] = new (std::nothrow)T[columns];
         for (int j = 0; j < columns; ++j)
         {
             data[i][j] = rand() % 256;
-            //printf("%d ", data[i][j]);
         }
-        //printf("\n");
     }
 }
 template<typename T>
@@ -57,14 +55,14 @@ Matrix<T>& Matrix<T>::operator=(const Matrix<T>& m) const
 {
 
 }
-template<typename T>
-std::ostream& operator<<(std::ostream &os,const Matrix<T>& refmatrix)
+template<typename T2>
+std::ostream& operator<<(std::ostream &os,const Matrix<T2>& refmatrix)
 {
     for(int i=0;i<refmatrix.rows;++i)
     {
         for (int j = 0; j<refmatrix.columns; ++j)
         {
-            printf("%d",refmatrix.data[i][ j]);
+             os<<refmatrix.data[i][ j]<<' ';
         }
         os<<'\n';
     }
