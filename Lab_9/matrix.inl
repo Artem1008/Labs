@@ -1,70 +1,42 @@
-# include <matrix.h>
+#ifndef MATRIX_H
+#define MATRIX_H
+#include <cstdlib>
+#include <ctime>
+#include <iostream>
+
 
 template<typename T>
-Matrix<T>::Matrix(int _rows, int _columns):rows(_rows),columns(_columns)
-{
-    srand (time(NULL));
-    data = new (std::nothrow)T*[rows];
-    for(int i=0;i<rows;++i)
+class Matrix {
+private:
+    T** data;
+    int rows;
+    int columns;
+public:
+    Matrix(int rows, int columns);
+    ~Matrix(){};
+    Matrix<T>& multiply(int x);
+    Matrix<T>& add(Matrix<T> m);
+    Matrix<T>& sub(Matrix<T> m);
+    Matrix<T> operator+(const Matrix<T>& m) const;
+    Matrix<T> operator-(const Matrix<T>& m) const;
+    Matrix<T> operator*(const Matrix<T>& m) const;
+    Matrix<T>& operator=(const Matrix<T>& m);
+    template<typename T2>
+    friend Matrix<T>& operator*(Matrix<T>& refmatrix,T2 val)
     {
-        data[i] = new (std::nothrow)T[columns];
-        for (int j = 0; j < columns; ++j)
+        Matrix<T>* temp=new Matrix<T>(refmatrix.rows,refmatrix.columns);
+        for(int i=0;i<refmatrix.rows;++i)
         {
-            data[i][j] = rand() % 256;
+            for (int j = 0; j<refmatrix.columns; ++j)
+            {
+                 temp->data[i][ j]=refmatrix.data[i][ j]*val;
+            }
         }
+        return *temp;
     }
-}
-template<typename T>
-Matrix<T>& Matrix<T>::multiply(int x)
-{
-    for(int i=0;i<(*data).size();++i)
-    {
-        for (int j = 0; j < (*data[i]).size(); ++j)
-        {
-            data[i][j]*=x;
-        }
-    }
-}
-template<typename T>
-Matrix<T>& Matrix<T>::add(Matrix<T> m)
-{
+    template<typename T2>
+    friend std::ostream& operator << (std::ostream& os, const Matrix<T2>& refmatrix);
+};
 
-}
-template<typename T>
-Matrix<T>& Matrix<T>::sub(Matrix<T> m)
-{
-
-}
-template<typename T>
-Matrix<T> Matrix<T>::operator+(const Matrix<T> m) const
-{
-
-}
-template<typename T>
-Matrix<T> Matrix<T>::operator-(const Matrix<T> m) const
-{
-
-}
-template<typename T>
-Matrix<T> Matrix<T>::operator*(const Matrix<T> m) const
-{
-
-}
-template<typename T>
-Matrix<T>& Matrix<T>::operator=(const Matrix<T>& m) const
-{
-
-}
-template<typename T2>
-std::ostream& operator<<(std::ostream &os,const Matrix<T2>& refmatrix)
-{
-    for(int i=0;i<refmatrix.rows;++i)
-    {
-        for (int j = 0; j<refmatrix.columns; ++j)
-        {
-             os<<refmatrix.data[i][ j]<<' ';
-        }
-        os<<'\n';
-    }
-   return  os;
-}
+#include <matrix.inl>
+#endif // MATRIX_H
