@@ -1,42 +1,144 @@
-#ifndef MATRIX_H
-#define MATRIX_H
-#include <cstdlib>
-#include <ctime>
-#include <iostream>
-
+# include <matrix.h>
 
 template<typename T>
-class Matrix {
-private:
-    T** data;
-    int rows;
-    int columns;
-public:
-    Matrix(int rows, int columns);
-    ~Matrix(){};
-    Matrix<T>& multiply(int x);
-    Matrix<T>& add(Matrix<T> m);
-    Matrix<T>& sub(Matrix<T> m);
-    Matrix<T> operator+(const Matrix<T>& m) const;
-    Matrix<T> operator-(const Matrix<T>& m) const;
-    Matrix<T> operator*(const Matrix<T>& m) const;
-    Matrix<T>& operator=(const Matrix<T>& m);
-    template<typename T2>
-    friend Matrix<T>& operator*(Matrix<T>& refmatrix,T2 val)
+Matrix<T>::Matrix(int _rows, int _columns):rows(_rows),columns(_columns)
+{
+    srand (time(NULL));
+    data = new (std::nothrow)T*[rows];
+    for(int i=0;i<rows;++i)
     {
-        Matrix<T>* temp=new Matrix<T>(refmatrix.rows,refmatrix.columns);
-        for(int i=0;i<refmatrix.rows;++i)
+        data[i] = new (std::nothrow)T[columns];
+        for (int j = 0; j < columns; ++j)
         {
-            for (int j = 0; j<refmatrix.columns; ++j)
-            {
-                 temp->data[i][ j]=refmatrix.data[i][ j]*val;
-            }
+            data[i][j] = rand() % 256;
         }
-        return *temp;
     }
-    template<typename T2>
-    friend std::ostream& operator << (std::ostream& os, const Matrix<T2>& refmatrix);
-};
-
-#include <matrix.inl>
-#endif // MATRIX_H
+}
+template<typename T>
+Matrix<T>& Matrix<T>::multiply(int x)
+{
+    for(int i=0;i<this->rows;++i)
+    {
+        for (int j = 0; j<this->columns; ++j)
+        {
+             this->data[i][ j]=this->data[i][ j]*x;
+        }
+    }
+    return *this;
+}
+template<typename T>
+Matrix<T>& Matrix<T>::add(Matrix<T> m)
+{
+    if((this->columns!=m.columns)||(this->rows!=m.rows))
+    {
+        throw -1;
+    }
+    for(int i=0;i<this->rows;++i)
+    {
+        for (int j = 0; j<this->columns; ++j)
+        {
+             this->data[i][ j]=this->data[i][ j]+m.data[i][ j];
+        }
+    }
+    return *this;
+}
+template<typename T>
+Matrix<T>& Matrix<T>::sub(Matrix<T> m)
+{
+    if((this->columns!=m.columns)||(this->rows!=m.rows))
+    {
+        throw -1;
+    }
+    for(int i=0;i<this->rows;++i)
+    {
+        for (int j = 0; j<this->columns; ++j)
+        {
+             this->data[i][ j]=this->data[i][ j]-m.data[i][ j];
+        }
+    }
+    return *this;
+}
+template<typename T>
+Matrix<T> Matrix<T>::operator+(const Matrix<T>& m) const
+{
+    if((this->columns!=m.columns)||(this->rows!=m.rows))
+    {
+        throw -1;
+    }
+    Matrix<T>* temp=new Matrix<T>(m.rows,m.columns);
+    for(int i=0;i<m.rows;++i)
+    {
+        for (int j = 0; j<m.columns; ++j)
+        {
+             temp->data[i][ j]=this->data[i][ j]+m.data[i][ j];
+        }
+    }
+    return *temp;
+}
+template<typename T>
+Matrix<T> Matrix<T>::operator-(const Matrix<T>& m) const
+{
+    if((this->columns!=m.columns)||(this->rows!=m.rows))
+    {
+        throw -1;
+    }
+    Matrix<T>* temp=new Matrix<T>(m.rows,m.columns);
+    for(int i=0;i<m.rows;++i)
+    {
+        for (int j = 0; j<m.columns; ++j)
+        {
+             temp->data[i][ j]=this->data[i][ j]-m.data[i][ j];
+        }
+    }
+    return *temp;
+}
+template<typename T>
+Matrix<T> Matrix<T>::operator*(const Matrix<T>& m) const
+{
+    if((this->columns!=m.rows))
+    {
+        throw -1;
+    }
+    Matrix<T>* temp=new Matrix<T>(this->rows,m.columns);
+    for(int i=0;i<this->rows;++i)
+    {
+        for(int j=0;j<m.columns;++j)
+        {
+            temp->data[i][j]=0;
+             for(int k=0;k<m.rows;++k)
+             {
+                 temp->data[i][j]+=this->data[i][k]*m.data[k][j];
+             }
+        }
+    }
+    return *temp;
+}
+template<typename T>
+Matrix<T>& Matrix<T>::operator=(const Matrix<T>& m)
+{
+    if((this->columns!=m.columns)||(this->rows!=m.rows))
+    {
+        throw -1;
+    }
+    for(int i=0;i<this->rows;++i)
+    {
+        for (int j = 0; j<this->columns; ++j)
+        {
+             this->data[i][ j]=m.data[i][ j];
+        }
+    }
+    return *this;
+}
+template<typename T>
+std::ostream& operator<<(std::ostream &os,const Matrix<T>& refmatrix)
+{
+    for(int i=0;i<refmatrix.rows;++i)
+    {
+        for (int j = 0; j<refmatrix.columns; ++j)
+        {
+             os<<refmatrix.data[i][ j]<<' ';
+        }
+        os<<'\n';
+    }
+   return os;
+}
