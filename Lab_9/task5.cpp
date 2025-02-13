@@ -4,7 +4,7 @@ int task5()
 {
     std::ofstream file;
     file.open("Cat.txt");
-   file<<" _ "<<'\n';
+    file<<" _ "<<'\n';
     file<<"( \\"<<'\n';
     file<<" ) ) "<<'\n';
     file<<"( (  .-''''-.  A.-.A"<<'\n';
