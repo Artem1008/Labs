@@ -20,7 +20,7 @@ void vector<T>::read()
     readbuf=std::make_shared<std::vector<T>>(size/sizeof (T));
     if (!file.is_open())
     {
-        std::cout << "ä ¨« test.dat ­¥ ¯à®ç¨â ­" <<  std::endl;
+        std::cout << "Ã¤Â Â¨Â« test.dat Â­Â¥ Â¯Ã Â®Ã§Â¨Ã¢Â Â­" <<  std::endl;
         exit(1);
     }
     file.seekg(seekRead,std::ios::beg);
@@ -31,7 +31,7 @@ void vector<T>::write()
 {   
     if (!file.is_open())
     {
-        std::cout << "ä ¨« test.dat ­¥ ¯à®ç¨â ­" <<  std::endl;
+        std::cout << "Ã¤Â Â¨Â« test.dat Â­Â¥ Â¯Ã Â®Ã§Â¨Ã¢Â Â­" <<  std::endl;
         exit(1);
     }
     file.seekg(seekWrite,std::ios::beg);
@@ -47,7 +47,7 @@ template<typename T>
 T &vector<T>::operator[](size_t index)
 {
     if (!checkindex(index)) {
-        throw std::out_of_range("ˆ­¤¥ªá ­ å®¤¨âáï §  ¯à¥¤¥« ¬¨ ¢¥ªâ®à ");
+        throw std::out_of_range("Ë†Â­Â¤Â¥ÂªÃ¡ Â­Â Ã¥Â®Â¤Â¨Ã¢Ã¡Ã¯ Â§Â  Â¯Ã Â¥Â¤Â¥Â«Â Â¬Â¨ Â¢Â¥ÂªÃ¢Â®Ã Â ");
     }
     int StartIndex=(seekRead/sizeof (T));
     if ((index<StartIndex)||(index>=(int)(StartIndex+size/sizeof (T))))
@@ -66,7 +66,7 @@ template<typename T>
 T &vector<T>::at(size_t index)
 {
     if (!checkindex(index)) {
-        throw std::out_of_range("ˆ­¤¥ªá ­ å®¤¨âáï §  ¯à¥¤¥« ¬¨ ¢¥ªâ®à ");
+        throw std::out_of_range("Ë†Â­Â¤Â¥ÂªÃ¡ Â­Â Ã¥Â®Â¤Â¨Ã¢Ã¡Ã¯ Â§Â  Â¯Ã Â¥Â¤Â¥Â«Â Â¬Â¨ Â¢Â¥ÂªÃ¢Â®Ã Â ");
     }
     int StartIndex=(seekRead/sizeof (T));
     if (index<StartIndex||index>=StartIndex+size/sizeof (T))
@@ -114,10 +114,6 @@ void vector<T>::resize(size_t  newIndex)
 template<typename T>
 void vector<T>::push_back(const T &value)
 {
-    if ((Lastindex+1)<(sizefile/sizeof(T)))
-    {
-        readbuf[++Lastindex]=value;
-    }
 }
 template<typename T>
 T vector<T>::pop_back()
