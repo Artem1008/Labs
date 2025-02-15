@@ -1,4 +1,4 @@
-#include <matrix.h>
+﻿#include <matrix.h>
 
 int task1()
 {
@@ -15,9 +15,8 @@ int task1()
         //вычитание
         std::cout<<"Матрица1 вычесть из Матрица2 :\n"<<mtrx2-mtrx1<<'\n';
         //умножени
-        std::cout<<"Умножить на 3 :\n"<<mtrx1*3<<'\n';
+        std::cout<<"Умножить на 3 :\n"<<mtrx1*(3.2)<<'\n';
         std::cout<<"Матрица1 умножить на Матрица2 :\n"<<mtrx1*mtrx2<<'\n';
-        std::cout<<mtrx1<<'\n';
         //сложение
         std::cout<<"к Матрица1 прибавить Матрица2 :\n"<<mtrx1.add(mtrx2)<<'\n';
         //вычитание

@@ -1,4 +1,6 @@
 #include <fstream>
+#include <iostream>
+
 int task5()
 {
     std::ofstream file;

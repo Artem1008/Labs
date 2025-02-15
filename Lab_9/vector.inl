@@ -1,4 +1,4 @@
-#include "vector.h"
+﻿#include "vector.h"
 
 namespace Mystl {
 template<typename T>
@@ -20,10 +20,10 @@ void vector<T>::read()
     readbuf=std::make_shared<std::vector<T>>(size/sizeof (T));
     if (!file.is_open())
     {
-        std::cout << "ä ¨« test.dat ­¥ ¯à®ç¨â ­" <<  std::endl;
+        std::cout << "фаил test.dat не прочитан" <<  std::endl;
         exit(1);
     }
-    file.seekg(seekRead,std::ios::beg);
+    file.seekp(seekRead);
     file.read((char*)&(*readbuf)[0],size);
 }
 template<typename T>
@@ -31,10 +31,10 @@ void vector<T>::write()
 {   
     if (!file.is_open())
     {
-        std::cout << "ä ¨« test.dat ­¥ ¯à®ç¨â ­" <<  std::endl;
+        std::cout << "фаил test.dat не прочитан" <<  std::endl;
         exit(1);
     }
-    file.seekg(seekWrite,std::ios::beg);
+    file.seekp(seekWrite);
     file.write((char*)&(*writebuf)[0],size);
     (*writebuf).clear();
 }
@@ -47,7 +47,7 @@ template<typename T>
 T &vector<T>::operator[](size_t index)
 {
     if (!checkindex(index)) {
-        throw std::out_of_range("ˆ­¤¥ªá ­ å®¤¨âáï §  ¯à¥¤¥« ¬¨ ¢¥ªâ®à ");
+        throw std::out_of_range("Индекс находится за пределами вектора");
     }
     int StartIndex=(seekRead/sizeof (T));
     if ((index<StartIndex)||(index>=(int)(StartIndex+size/sizeof (T))))
@@ -66,7 +66,7 @@ template<typename T>
 T &vector<T>::at(size_t index)
 {
     if (!checkindex(index)) {
-        throw std::out_of_range("ˆ­¤¥ªá ­ å®¤¨âáï §  ¯à¥¤¥« ¬¨ ¢¥ªâ®à ");
+        throw std::out_of_range("Индекс находится за пределами вектора");
     }
     int StartIndex=(seekRead/sizeof (T));
     if (index<StartIndex||index>=StartIndex+size/sizeof (T))
@@ -120,8 +120,9 @@ T vector<T>::pop_back()
 {
 }
 template<typename T>
-void vector<T>::seek_window(size_t index)
+void vector<T>::seek_window(size_t _size)
 {
+    size=_size;
 }
 template<typename T>
 void vector<T>::flush()
@@ -143,7 +144,7 @@ template<typename T>
 vector<T>::iterator::iterator(vector<T>::vec_iterator it, size_t index) : it(it), index(index)
 {}
 template<typename T>
-T &Mystl::vector<T>::iterator::operator*()
+T &vector<T>::iterator::operator*()
 { return *it; }
 
 template<typename T>

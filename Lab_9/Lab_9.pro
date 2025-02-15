@@ -15,7 +15,8 @@ SOURCES += \
         task2.cpp \
         task3.cpp \
         task4.cpp \
-        task5.cpp
+        task5.cpp \
+        vector.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -26,4 +27,6 @@ HEADERS += \
     main.h \
     matrix.h \
     matrix.inl \
-    myfuct.h
+    myfuct.h \
+    vector.h \
+    vector.inl

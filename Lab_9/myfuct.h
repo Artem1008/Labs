@@ -1,4 +1,4 @@
-#ifndef MYFUCT_H
+Ôªø#ifndef MYFUCT_H
 #define MYFUCT_H
 #include <ctime>
 #include <iostream>
@@ -6,11 +6,11 @@
 #include <list>
 
 /**
-* @brief î„≠™Ê®Ô ‡†≠§Æ¨†
+* @brief –§—É–Ω–∫—Ü–∏—è —Ä–∞–Ω–¥–æ–º–∞
 */
 int rand32(void);
 /**
-* @brief Ø‡Æ¢•‡™® §†≠≠ÎÂ
+* @brief –ø—Ä–æ–≤–µ—Ä–∫–∏ –¥–∞–Ω–Ω—ã—Ö
 */
 
 template<typename T>
@@ -23,7 +23,7 @@ int ChekValue(T &Value)
         scanf("%d", &temp);
         if ((temp>1000)||(temp<0))
         {
-            printf("%s","ÇÎ ¢¢•´® ≠•™Æ‡•™‚≠Æ• ß≠†Á•≠®•\n");
+            printf("%s","–í—ã –≤–≤–µ–ª–∏ –Ω–µ–∫–æ—Ä–µ–∫—Ç–Ω–æ–µ –∑–Ω–∞—á–µ–Ω–∏–µ\n");
         }
         else
         {
@@ -31,7 +31,7 @@ int ChekValue(T &Value)
             return 1;
         }
     }
-    std::cout<<"è‡®¢ÎË•≠Æ Á®·´Æ ØÆØÎ‚Æ™ ¢¢Æ§† §†≠≠ÎÂ\n";
+    std::cout<<"–ü—Ä–∏–≤—ã—à–µ–Ω–æ —á–∏—Å–ª–æ –ø–æ–ø—ã—Ç–æ–∫ –≤–≤–æ–¥–∞ –¥–∞–Ω–Ω—ã—Ö\n";
     return 0;
 }
 

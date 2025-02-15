@@ -1,10 +1,10 @@
-#include <iostream>
+﻿#include <iostream>
 #include <fstream>
 #include <string>
 #include <stack>
 #include <set>
 
-//не работает 
+//не работает
 bool checkSyntax(const std::string& code) {
     std::stack<char> brackets;
     std::set<char> openBrackets = {'(', '[', '{'};
