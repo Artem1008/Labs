@@ -21,9 +21,5 @@ int task4();
 * @brief Функция для пятого задания
 */
 int task5();
-/**
-* @brief Функция для шестого задания
-*/
-int task6();
 
 #endif // MAIN_H
