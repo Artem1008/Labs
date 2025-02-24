@@ -23,7 +23,4 @@ int main()
 #if(TASK==5)
     task5();
 #endif
-#if(TASK==6)
-    task6();
-#endif
 }
