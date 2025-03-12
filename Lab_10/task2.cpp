@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 
 class Document {
 public:
@@ -8,6 +9,7 @@ public:
     Document(const std::string& s): Content(s) {}
     virtual void Save() const {
     }
+    virtual ~Document(){}
 };
 class PlainTextDocument: public Document {
 public:
@@ -15,6 +17,7 @@ public:
     virtual void Save() const{
         std::cout << Content << "\n";
     }
+   virtual ~PlainTextDocument(){}
 };
 class HTMLDocument: public Document {
 public:
@@ -22,13 +25,14 @@ public:
     virtual void Save() const{
         std::cout << "<HTML><BODY>" << Content << "</BODY></HTML>\n";
     }
+    virtual ~HTMLDocument(){}
 };
-using DocumentCollection = std::vector<Document*>;
+using DocumentCollection = std::vector<std::unique_ptr<Document>>;
 void AddDocument(const std::string& content, const std::string& type, DocumentCollection& collection) {
     if (type == "plain") {
-        collection.push_back(new PlainTextDocument(content));
+        collection.push_back(std::make_unique<PlainTextDocument>(content));
     } else if (type == "html") {
-        collection.push_back(new HTMLDocument(content));
+        collection.push_back(std::make_unique<HTMLDocument>(content));
     }
 }
 void PrintCollection(const DocumentCollection& collection) {
