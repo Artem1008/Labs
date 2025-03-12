@@ -38,10 +38,9 @@ void PrintCollection(const DocumentCollection& collection) {
 }
 int task2()
 {
-    DocumentCollection test1;
-    AddDocument("Hello World","plain",test1);
-    AddDocument("Param param pam","html",test1);
-    PrintCollection(test1);
-
+    DocumentCollection doc;
+    AddDocument("Hello World","plain",doc);
+    AddDocument("Param param pam","html",doc);
+    PrintCollection(doc);
     return 1;
 }
