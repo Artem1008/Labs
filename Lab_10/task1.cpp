@@ -8,7 +8,7 @@ class Product
 public:
     Product()
     {
-      Name="ç•®ß¢•·‚•≠";
+      Name="–ù–µ–∏–∑–≤–µ—Å—Ç–µ–Ω";
       Price=0;
       Weight=0;
     };
@@ -54,7 +54,7 @@ public:
     Check(const char* _name,int _price,int _weight,int _counter):Buy( _name, _price,_weight,_counter){}
     void print()
     {
-        printf("%10s | %10s | %10s | %10s | %10s | %10s \n","ç†ß¢†≠®•","ñ•≠† •§.","Ç•· •§.","äÆ´®Á•·‚¢Æ","ñ•≠† Æ°È.","Ç•· Æ°È.");
+        printf("%10s | %10s | %10s | %10s | %10s | %10s \n","–ù–∞–∑–≤–∞–Ω–∏–µ","–¶–µ–Ω–∞ –µ–¥.","–í–µ—Å –µ–¥.","–ö–æ–ª–∏—á–µ—Å—Ç–≤–æ","–¶–µ–Ω–∞ –æ–±—â.","–í–µ—Å –æ–±—â.");
         printf("%10s | %10d | %10d | %10d | %10d | %10d \n",getName(),getPrice(),getWeight(),getCounter(), getSumPrice(),getSumWeight());
 
     }
@@ -64,13 +64,13 @@ int task1() {
     Check cher;
     cher.print();
     printf("\n");
-    cher.setName("Ä‡°„ß");
+    cher.setName("–ê—Ä–±—É–∑");
     cher.setPrice(10);
     cher.setWeight(21);
     cher.setCounter(5);
     cher.print();
     printf("\n");
-    Check cher2("ÑÎ≠Ô",15,6,3);
+    Check cher2("–î—ã–Ω—è",15,6,3);
     cher2.print();
     printf("\n");
     return 1;
