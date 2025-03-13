@@ -6,7 +6,7 @@ class Hen
 {
 public:
     virtual int getCountOfEggsPerMonth()=0;
-    virtual std::string getDescription(){return "ü ä„‡®Ê† ";}
+    virtual std::string getDescription(){return "–Ø –ö—É—Ä–∏—Ü–∞";}
     virtual ~Hen(){}
 };
 
