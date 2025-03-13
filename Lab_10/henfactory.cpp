@@ -17,7 +17,7 @@ std::unique_ptr<Hen> HenFactory::getHen(counrtynum index)
         return std::make_unique<BelarusianHen>();
         break;
     default:
-        printf("����୮ ��࠭ ⨯ �����");
+        printf("неверно выбран тип курицы");
         return nullptr;
         break;
     }
