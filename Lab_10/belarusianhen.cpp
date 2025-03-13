@@ -2,5 +2,4 @@
 
 std::string BelarusianHen::getDescription()
 {
-   return Hen::getDescription()+" åÆÔ ·‚‡†≠† - "+country+". ü ≠•·„ "+ std::to_string(getCountOfEggsPerMonth()) +" Ô®Ê ¢ ¨•·ÔÊ.";
-}
+   return Hen::getDescription()+" –ú–æ—è —Å—Ç—Ä–∞–Ω–∞ - "+country+". –Ø –Ω–µ—Å—É "+ std::to_string(getCountOfEggsPerMonth()) +" —è–∏—Ü –≤ –º–µ—Å—è—Ü.";
