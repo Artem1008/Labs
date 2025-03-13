@@ -4,11 +4,11 @@
 int task6()
 {
     counrtynum counrty;
-    printf("ÇÎ°•‡®‚• ≠Æ¨•‡ ·‚‡†≠≠Î:\n");
-    printf("%d. êÆ··®Ô\n",Russian);
-    printf("%d. ì™‡†®≠†\n",Ukrainian);
-    printf("%d. åÆ´§Æ¢†\n",Moldovan);
-    printf("%d. Å•´†‡„·Ï\n",Belarusian);
+    printf("–í—ã–±–µ—Ä–∏—Ç–µ –Ω–æ–º–µ—Ä —Å—Ç—Ä–∞–Ω–Ω—ã:\n");
+    printf("%d. –†–æ—Å—Å–∏—è\n",Russian);
+    printf("%d. –£–∫—Ä–∞–∏–Ω–∞\n",Ukrainian);
+    printf("%d. –ú–æ–ª–¥–æ–≤–∞\n",Moldovan);
+    printf("%d. –ë–µ–ª–∞—Ä—É—Å—å\n",Belarusian);
     scanf("%d",&counrty);
     HenFactory farm;
     if (counrty<=Belarusian)
