@@ -5,7 +5,7 @@
 class MoldovanHen: public Hen
 {
     public:
-    std::string country = "Œ®«¤®¢ ";
+    std::string country = "ÐœÐ¾Ð»Ð´Ð¾Ð²Ð°";
     int getCountOfEggsPerMonth(){ return 15;}
     std::string getDescription();
      virtual ~MoldovanHen(){}
