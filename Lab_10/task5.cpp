@@ -102,7 +102,7 @@ int task5()
     {
         scanf("%d",&index);
         setlocale(LC_ALL,"Russian");
-        Guessing text("D:\\ProjectQt\\Lab_10\\divination.txt");
+        Guessing text("divination.txt");
         printf("%s\n",text.prediction(index-1).c_str());
     }
     return 1;
