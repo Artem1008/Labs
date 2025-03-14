@@ -23,6 +23,7 @@ void recurssumm(int index, std::vector<std::string>& doc,std::string& str)
         if (var=='.') return ;
         str.push_back(var);
     }
+    if(index+1 <(int)doc.size())
     recurssumm(index+1,doc,str);
 }
 class Guessing
