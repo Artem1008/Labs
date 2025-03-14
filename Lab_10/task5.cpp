@@ -79,8 +79,7 @@ public:
             return "Полученная строка не содержит предсказание. Попробуйте другой номер\n";
         }
         if(*doc[index-1].rbegin()=='.'||*doc[index-1].rbegin()==';') rezult= "";
-        else{
-            reversrecurssumm(index,doc,rezult);
+        else reversrecurssumm(index,doc,rezult);
         }
         recurssumm(index,doc,rezult);
         return rezult;
