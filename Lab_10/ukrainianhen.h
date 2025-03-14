@@ -6,8 +6,8 @@ class UkrainianHen: public Hen
 {
     public:
     std::string country = "Украина";
-    int getCountOfEggsPerMonth(){ return 10;}
-    std::string getDescription();
+    int getCountOfEggsPerMonth() override { return 10;}
+    std::string getDescription() override;
     virtual ~UkrainianHen(){}
 };
 
