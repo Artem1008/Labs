@@ -223,9 +223,44 @@ int main(){
 классов:
 ![image](https://github.com/user-attachments/assets/8b968fc2-5cfc-401f-9986-4d49f1e320f9)
 ```cpp
-```
-Рабочий вариант
-```cpp
+class DerivedClassOne
+{
+public:
+    DerivedClassOne()=default;
+    virtual ~DerivedClassOne()=default;
+};
+class DerivedClassSecond
+{
+public:
+    DerivedClassSecond()=default;
+    virtual ~DerivedClassSecond()=default;
+};
+class DerivedClass:public DerivedClassOne,public DerivedClassSecond
+{
+public:
+    DerivedClass()=default;
+    virtual ~DerivedClass()=default;
+};
+class BaseClass:public DerivedClassSecond
+{
+public:
+    BaseClass()=default;
+    virtual ~BaseClass()=default;
+};
+class BaseClassOne:public DerivedClass
+{
+public:
+    BaseClassOne()=default;
+    virtual ~BaseClassOne()=default;
+};
+class BaseClassSecond:public DerivedClass
+{
+public:
+    BaseClassSecond()=default;
+    virtual ~BaseClassSecond()=default;
+};
+int main(){
+}
 ```
 6) Допустим, есть онлайн-магазин с делающий различные принты на вещах. Есть три вида
 товаров: футболки, кружки и блокноты. Задача — сделать так, чтобы все их можно было
@@ -236,7 +271,108 @@ int main(){
 один полиморфный метод, а потом использовать его для каждого нового объекта — и вот
 это как раз наш случай. Допишите необходимый код чтобы программа выводила.
 ```cpp
+#include <iostream>
+#include <string>
+class Product { // Объявляем класс Товар
+public:
+    std::string name; // Указываем свойство. Название
+    // Создаём метод. Добавить в корзину.
+    // Virtual означает, что метод потом можно будет дополнить под нужды конкретного товара.
+public:
+    virtual void AddToCart() {
+        std::cout << "Товар: " << name << " добавлен в корзину";
+    }
+};
+class Cup : public Product { // Создаём класс. Кружка.
+public:
+    int volume; // Вводим дополнительное свойство. Объём.
+    void AddToCart() {
+        // Override переопределяем метод
+        //AddToCart и добавляем ему новую функциональность
+        std::cout << "Кружка: " + name + ", объёмом "
+                  << volume << " мл добавлена в корзину\n";
+    }
+};
+class Note : public Product { // Создаём класс.Блокнот.
+public:
+    int pages; // Добавляем свойство.Количество страниц.
+    void AddToCart() {
+        std::cout << "Блокнот: " + name + ", на " << pages <<
+                     ", страниц добавлен в корзину\n";
+    }
+};
+class Shirt : public Product { // Создаём класс.Футболка.
+public:
+    int size; // Добавляем свойство.Размер.
+    void AddToCart() {
+        std::cout << "Футболка: " + name + ", размером "
+                  << size << ", добавлена в корзину\n";
+    }
+};
+int main() {
+    // Создаём объекты для каждого товара
+    //...
+    // Создаём массив из всех трёх объектов
+    //...
+    // С помощью цикла вызываем метод. Добавить в корзину, для каждого товара
+    for(int i = 0; i < 3; ++i) {
+        pgoods[i]->AddToCart();
+    }
+}
 ```
 Рабочий вариант
 ```cpp
+#include <iostream>
+#include <string>
+class Product { // Объявляем класс Товар
+public:
+    std::string name; // Указываем свойство. Название
+    // Создаём метод. Добавить в корзину.
+    // Virtual означает, что метод потом можно будет дополнить под нужды конкретного товара.
+    Product(std::string _name):name(_name){}
+public:
+    virtual void AddToCart() {
+        std::cout << "Товар: " << name << " добавлен в корзину\n";
+    }
+};
+class Cup : public Product { // Создаём класс. Кружка.
+public:
+    int volume; // Вводим дополнительное свойство. Объём.
+     Cup(int _volume,std::string _name):Product(_name),volume(_volume){}
+ /*   void AddToCart() {
+        // Override переопределяем метод
+        //AddToCart и добавляем ему новую функциональность
+        std::cout << name + ", объёмом "
+                  << volume << " мл добавлена в корзину\n";
+    }*/
+};
+class Note : public Product { // Создаём класс.Блокнот.
+public:
+    int pages; // Добавляем свойство.Количество страниц.
+    Note(int _pages,std::string _name):Product(_name),pages(_pages){}
+ /*   void AddToCart() {
+        std::cout << name + ", на " << pages <<
+                     ", страниц добавлен в корзину\n";
+    }*/
+};
+class Shirt : public Product { // Создаём класс.Футболка.
+public:
+    int size; // Добавляем свойство.Размер.
+    Shirt(int _size,std::string _name):Product(_name),size(_size){}
+   /* void AddToCart() {
+        std::cout << name + ", размером "
+                  << size << ", добавлена в корзину\n";
+    }*/
+};
+int main() {
+   Product* pgoods[3];
+    pgoods[0]= new Cup(1,"Кружка");
+    pgoods[1]= new Note(20,"Блокнот");
+    pgoods[2]= new Shirt(36,"Футболка");
+
+    for(int i = 0; i < 3; ++i) {
+        pgoods[i]->AddToCart();
+    }
+}
+
 ```
