@@ -1,9 +1,51 @@
 1) Найдите ошибки в коде, чтобы программа представленная ниже заработала, можно
 только добавлять что-то, но убирать нельзя.
 ```cpp
+class TwoPowerGenrator {
+public:
+    TwoPowerGenrator(int pow) power(pow) {}
+    void reset() { power = 0; }
+    int operator{
+    return power = 0;
+}
+int operator(int arg1, int arg2) {
+    if (power > 15)
+        power = 0;
+    return (1 << power++);
+}
+private
+int power;
+}
+int main () {
+    TwoPowerGenrator generate1, generate2;
+    std::cout << "[client 1]" << generate1(1,2) << std::endl;
+    std::cout << "[client 2]" << generate2() << std::endl;
+}
 ```
 Рабочий вариант
 ```cpp
+#include <iostream>
+class TwoPowerGenrator {
+public:
+    TwoPowerGenrator(){};
+    TwoPowerGenrator(int pow):power(pow) {}
+    void reset() { power = 0; }
+    int operator()(){ return power = 0;}
+
+    int operator()(int arg1, int arg2) {
+        if (power > 15)
+            power = 0;
+        return (1 << power++);
+    }
+private:
+    int power;
+};
+int main () {
+    TwoPowerGenrator generate1, generate2;
+    std::cout << "[client 1]" << generate1(1,2) << std::endl;
+    std::cout << "[client 2]" << generate2() << std::endl;
+}
+
 ```
 2) Сделайте чтобы приложение вывело
 1
