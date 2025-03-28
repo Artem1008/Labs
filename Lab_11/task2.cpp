@@ -38,11 +38,17 @@ int ChekValue(T &Value)
 
 int task2()
 {
+    //разница между показаниями часов
+    //6:00:15
+    //8:00:00
+    std::string num3{"1:39:25"};
     //число пересечений минутной и часовой
     int num1=7;
     //число пересечений минутной и секундной
     int num2=39;
     //так как в сутках 2 циферблата то
+    printf("%d раз в день часовая и минутная стрелки встречаются друг с другом.\n",num1);
+    printf("%s разница между показаниями часов(если принять что в одном циферблате 8 часов, а в одном\nчасовом интервале, на циферблате, по 5 минут или секунд ).\n",num3.c_str());
     printf("%d раза в день все три стрелки часов накладываются друг на друга\n",(NOD(num1,num2)*24/8));
     MyTimer timer;
     int temphour;
@@ -56,12 +62,16 @@ int task2()
         int exit=3;
         while(exit)
         {
-            timer.addUnits(temphour,TypeTime::second);
+            timer.addUnits(temphour,TypeTime::hour);
             timer.startTimers(SwitchPump);
             --exit;
         }
     }
-    if (answer=="нет" || answer=="n")  return 1;
+    if (answer=="нет" || answer=="n")
+    {
+         printf("Очень жаль\n");
+        return 1;
+    }
 
     return 1;
 
