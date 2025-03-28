@@ -36,7 +36,7 @@ char* MyTimer::print()
 void MyTimer::PrintTimer()
 {
     std::string data;
-    st=getStringTimers();
+    getStringTimers();
     data=std::to_string(st.tm_mday)+":"+std::to_string(st.tm_hour)+":"+std::to_string(st.tm_min)+":"+std::to_string(st.tm_sec);
     CleerConsole(data.size());
     printf("\r%d:%d:%d:%d",st.tm_mday,st.tm_hour,st.tm_min,st.tm_sec);
@@ -141,6 +141,6 @@ const char* MyTimer::getDayOfWeek(int day, int month, int year) {
     int K = year % 100;
     int J = year / 100;
     int h = ((q + ((13 * (m + 1)) / 5) + K + (K / 4) + (J / 4) - (2 * J)) % 7);
-    const char* days[] = { "�㡡��","����ᥭ�", "�������쭨�", "��୨�", "�।�","��⢥�", "��⭨�"};
+    const char* days[] = { "‘ã¡¡®â ","‚®áªà¥á¥­ì¥", "®­¥¤¥«ì­¨ª", "‚â®à­¨ª", "‘à¥¤ ","—¥â¢¥à£", "ïâ­¨æ "};
     return days[h];
 }
