@@ -17,13 +17,13 @@ void ClearStringConsole(unsigned long long value,std::string str)
 int task1()
 {
     MyTimer timer;
-    printf("¢‡•¨Ô %s\n",timer.print());
+    printf("–≤—Ä–µ–º—è %s\n",timer.print());
     timer.start();
-    //¨Æ¶≠Æ Ø‡®¢Ôß†‚Ï ‚†©¨•‡ ™Æ‚Æ‡Î© ‡†··¨†‚‡®¢†•‚·Ô ≠®¶•, c ‡„Á≠Î¨ ¢¢Æ§Æ¨, ≠Æ ≠†¢•‡≠Æ ØÆ™† ≠• ¢†¶≠Æ
+    //–º–æ–∂–Ω–æ –ø—Ä–∏–≤—è–∑–∞—Ç—å —Ç–∞–π–º–µ—Ä –∫–æ—Ç–æ—Ä—ã–π —Ä–∞—Å—Å–º–∞—Ç—Ä–∏–≤–∞–µ—Ç—Å—è –Ω–∏–∂–µ, c —Ä—É—á–Ω—ã–º –≤–≤–æ–¥–æ–º, –Ω–æ –Ω–∞–≤–µ—Ä–Ω–æ –ø–æ–∫–∞ –Ω–µ –≤–∞–∂–Ω–æ
     //timer.delay(10);
     timer.stop();
-    printf("¢‡•¨Ô ‡†°Æ‚Î %.3f ·•™.\n",timer.elapsed());
-    printf("Ç¢•§®‚• ¢‡•¨Ô §´Ô ™Æ≠¢•‡‚†Ê®®(§´Ô ¢ÎÂÆ§† ≠†¶¨®‚® ™´†¢®Ë„ esc ®´® enter).\n");
+    printf("–≤—Ä–µ–º—è —Ä–∞–±–æ—Ç—ã %.3f —Å–µ–∫.\n",timer.elapsed());
+    printf("–í–≤–µ–¥–∏—Ç–µ –≤—Ä–µ–º—è –¥–ª—è –∫–æ–Ω–≤–µ—Ä—Ç–∞—Ü–∏–∏(–¥–ª—è –≤—ã—Ö–æ–¥–∞ –Ω–∞–∂–º–∏—Ç–∏ –∫–ª–∞–≤–∏—à—É esc –∏–ª–∏ enter).\n");
     char c=0;
     while((c != ENTER) &&(c != ESC) )
     {
@@ -50,14 +50,14 @@ int task1()
             printf("\r%lld %s",timer.getUnits(),timer.getType());
         }
     }
-    //¢¢Æ§ ‚†©¨•‡† · ‚®ØÆ¨
+    //–≤–≤–æ–¥ —Ç–∞–π–º–µ—Ä–∞ —Å —Ç–∏–ø–æ–º
     timer.addUnits(6666,second);
 
     printf("\r%lld %s",timer.getUnits(),timer.getType());
 
     printf("\n");
     int day,month,year;
-    printf("Ç¢•§®‚• §†‚„ ‰Æ‡¨†‚† 10.10.2024.\n");
+    printf("–í–≤–µ–¥–∏—Ç–µ –¥–∞—Ç—É —Ñ–æ—Ä–º–∞—Ç–∞ 10.10.2024.\n");
     scanf("%d.%d.%d",&day,&month,&year);
     printf(timer.getDayOfWeek(day,month,year));
     return 1;
