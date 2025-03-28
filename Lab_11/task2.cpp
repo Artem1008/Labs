@@ -61,7 +61,6 @@ int task2()
             --exit;
         }
     }
-    timer.delay(100);
     if (answer=="нет" || answer=="n")  return 1;
 
     return 1;
