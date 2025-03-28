@@ -72,8 +72,6 @@ int task2()
          printf("Очень жаль\n");
         return 1;
     }
-
     return 1;
-
 }
 
