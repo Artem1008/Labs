@@ -2,13 +2,7 @@
 #include <iostream>
 #include <vector>
 
-class Resource {
-public:
-    Resource() { std::cout << "‘®§¤ ­ à¥áãàá\n"; }
-    ~Resource() { std::cout << "“­¨çâ®¦¥­ à¥áãàá\n"; }
-    void print() const { std::cout << "¥áãàá ¨á¯®«ì§ã¥âáï\n"; }
-};
-
+// Ð¿Ñ€Ð¾Ð²ÐµÑ€ÑÐµÐ¼ Ð½Ð° ÐºÐ»Ð°ÑÑÐµ Ð¸Ð· 3-Ð³Ð¾ Ð·Ð°Ð´Ð°Ð½Ð¸Ñ
 class TreeNode2 {
 private:
     int value;
@@ -37,7 +31,7 @@ public:
     }
     ~TreeNode2()
     {
-        printf("ã¤ «¨«áï %d\n",value);
+        printf("ÑƒÐ´Ð°Ð»Ð¸Ð»ÑÑ %d\n",value);
     }
 };
 int task4()
