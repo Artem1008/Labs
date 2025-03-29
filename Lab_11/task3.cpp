@@ -1,25 +1,45 @@
+#include <memory>
 #include <iostream>
-void goodmorning();
-void goodevening();
-void(*message(unsigned))();
-int task3() {
-    void(*action)();
-    // указатель на выбранную функцию
-    // выполняем полученную функцию
-   action=message(10);
-    action(); // Good Morning!
-    action = message(16); // получаем новую функцию
-    //action(); // Good Evening!
+#include <vector>
+//╤Б╨║╨╛╨┐╨╕╤А╨╛╨▓╨░╨╗ ╤Б 8╨╣ ╨╗╨░╨▒╤Л
+class TreeNode {
+private:
+    int value;
+    TreeNode* root = nullptr;
+    std::vector<std::shared_ptr<TreeNode>> children;
+public:
+    TreeNode(int val): value(val) { }
+    TreeNode(const TreeNode&) = delete;
+    TreeNode& operator=(const TreeNode&) = delete;
+    std::shared_ptr<TreeNode> AddChild(int child_value) {
+        auto node=std::make_shared<TreeNode>(child_value);
+        node->root=this;
+        children.push_back(node);
+        return node;
+    }
+    void Print(int depth = 0) const {
+        for (int i = 0; i < depth; ++i) {
+            std::cout << " ";
+        }
+        std::cout << "- " << value << "\n";
+        for (const auto& child : children) {
+            child->Print(depth + 1);
+        }
+    }
+    ~TreeNode()
+    {
+         printf("╤Г╨┤╨░╨╗╨╕╨╗╤Б╤П %d\n",value);
+    }
 };
-void(*message(unsigned hour))() {
-    if (hour > 15)
-        return goodevening;
-    else
-        return goodmorning;
-}
-void goodmorning(){
-    std::cout << "Good Morning!" << std::endl;
-}
-void goodevening(){
-    std::cout << "Good Evening!" << std::endl;
-}
+int task3()
+{
+    TreeNode root(1);
+    auto left_son = root.AddChild(10);
+    auto middle_son = root.AddChild(20);
+    auto right_son = root.AddChild(30);
+    left_son->AddChild(100);
+    left_son->AddChild(200);
+    root.Print();
+    return 1;
+};
+
