@@ -43,6 +43,6 @@ int task4()
     auto right_son = root.AddChild(30);
     left_son->AddChild(100);
     left_son->AddChild(200);
-     root.Print();
+    root.Print();
     return 1;
 }
