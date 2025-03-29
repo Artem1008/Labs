@@ -1,51 +1,40 @@
 #include "sharedptr.h"
 
-// Конструктор по умолчанию
+// ╨Ъ╨╛╨╜╤Б╤В╤А╤Г╨║╤В╨╛╤А ╨┐╨╛ ╤Г╨╝╨╛╨╗╤З╨░╨╜╨╕╤О
 template<class Type,class TDeleter>
-SharedPTR<Type, TDeleter>::SharedPTR():m_ptr(nullptr), count(nullptr)
-{
-    printf("Конструктор по умолчанию\n");
-}
-
-// Конструктор с передачей указателя
+SharedPTR<Type, TDeleter>::SharedPTR():m_ptr(nullptr), count(nullptr){}
+// ╨Ъ╨╛╨╜╤Б╤В╤А╤Г╨║╤В╨╛╤А ╤Б ╨┐╨╡╤А╨╡╨┤╨░╤З╨╡╨╣ ╤Г╨║╨░╨╖╨░╤В╨╡╨╗╤П
 template<class Type,class TDeleter>
 SharedPTR<Type, TDeleter>::SharedPTR(Type *pObj):m_ptr(pObj), count(nullptr)
 {
-     printf("Конструктор с передачей указателя\n");
     AddCount();
 }
-
-// Конструктор перемещения
+// ╨Ъ╨╛╨╜╤Б╤В╤А╤Г╨║╤В╨╛╤А ╨┐╨╡╤А╨╡╨╝╨╡╤Й╨╡╨╜╨╕╤П
 template<class Type,class TDeleter>
 SharedPTR<Type, TDeleter>::SharedPTR(SharedPTR<Type, TDeleter> &&uniquePTR) noexcept:m_ptr(uniquePTR.m_ptr),count(uniquePTR.count),deleter(std::move(uniquePTR.deleter))
 {
-    printf("Конструктор перемещения\n");
     uniquePTR.m_ptr = nullptr;
     uniquePTR.count = nullptr;
 }
-
-// Конструктор копирования
+// ╨Ъ╨╛╨╜╤Б╤В╤А╤Г╨║╤В╨╛╤А ╨║╨╛╨┐╨╕╤А╨╛╨▓╨░╨╜╨╕╤П
 template<class Type,class TDeleter>
 SharedPTR<Type, TDeleter>::SharedPTR(const SharedPTR<Type, TDeleter>& other): m_ptr(other.m_ptr), count(other.count), deleter(other.deleter)
 {
-    printf("Конструктор копирования\n");
     AddCount();
 }
-// Деструктор
+// ╨Ф╨╡╤Б╤В╤А╤Г╨║╤В╨╛╤А
 template<class Type,class TDeleter>
 SharedPTR<Type, TDeleter>::~SharedPTR()
 {
-    printf("Деструктор\n");
     SubCount();
     if (m_ptr && count == nullptr) {
         deleter(m_ptr);
     }
 }
-// Оператор присваивания перемещения
+// ╨Ю╨┐╨╡╤А╨░╤В╨╛╤А ╨┐╤А╨╕╤Б╨▓╨░╨╕╨▓╨░╨╜╨╕╤П ╨┐╨╡╤А╨╡╨╝╨╡╤Й╨╡╨╜╨╕╤П
 template<class Type,class TDeleter>
 SharedPTR<Type, TDeleter>& SharedPTR<Type, TDeleter>::operator=(SharedPTR<Type, TDeleter> &&sharedPTR) noexcept
 {
-    printf("Оператор присваивания перемещения\n");
     if (&sharedPTR == this) return *this;
     m_ptr = sharedPTR.m_ptr;
     count=sharedPTR.count;
@@ -54,21 +43,19 @@ SharedPTR<Type, TDeleter>& SharedPTR<Type, TDeleter>::operator=(SharedPTR<Type, 
     sharedPTR.count = nullptr;
     return *this;
 }
-// Оператор присваивания указателя
+// ╨Ю╨┐╨╡╤А╨░╤В╨╛╤А ╨┐╤А╨╕╤Б╨▓╨░╨╕╨▓╨░╨╜╨╕╤П ╤Г╨║╨░╨╖╨░╤В╨╡╨╗╤П
 template<class Type,class TDeleter>
 SharedPTR<Type, TDeleter>& SharedPTR<Type, TDeleter>::operator=(Type *pObject)
 {
-    printf("Оператор присваивания указателя\n");
     if (m_ptr == pObject) return *this;
     m_ptr = pObject;
     AddCount();
     return *this;
 }
-// Оператор присваивания
+// ╨Ю╨┐╨╡╤А╨░╤В╨╛╤А ╨┐╤А╨╕╤Б╨▓╨░╨╕╨▓╨░╨╜╨╕╤П
 template<class Type,class TDeleter>
 SharedPTR<Type, TDeleter>& SharedPTR<Type, TDeleter>::operator=(const SharedPTR<Type, TDeleter>& sharedPTR)
 {
-    printf(" Оператор присваивания\n");
     if (&sharedPTR == this) return *this;
     m_ptr = sharedPTR.m_ptr;
     count = sharedPTR.count;
@@ -76,43 +63,43 @@ SharedPTR<Type, TDeleter>& SharedPTR<Type, TDeleter>::operator=(const SharedPTR<
     AddCount();
     return *this;
 }
-// Оператор разыменования
+// ╨Ю╨┐╨╡╤А╨░╤В╨╛╤А ╤А╨░╨╖╤Л╨╝╨╡╨╜╨╛╨▓╨░╨╜╨╕╤П
 template<class Type,class TDeleter>
 Type& SharedPTR<Type, TDeleter>::operator*() const
 {
     return *m_ptr;
 }
-// Оператор доступа к членам
+// ╨Ю╨┐╨╡╤А╨░╤В╨╛╤А ╨┤╨╛╤Б╤В╤Г╨┐╨░ ╨║ ╤З╨╗╨╡╨╜╨░╨╝
 template<class Type,class TDeleter>
 Type* SharedPTR<Type, TDeleter>::operator->() const
 {
     return m_ptr;
 }
-// Получение указателя
+// ╨Я╨╛╨╗╤Г╤З╨╡╨╜╨╕╨╡ ╤Г╨║╨░╨╖╨░╤В╨╡╨╗╤П
 template<class Type,class TDeleter>
 Type* SharedPTR<Type, TDeleter>::get() const
 {
     return m_ptr;
 }
-// Получение удалителя
+// ╨Я╨╛╨╗╤Г╤З╨╡╨╜╨╕╨╡ ╤Г╨┤╨░╨╗╨╕╤В╨╡╨╗╤П
 template<class Type,class TDeleter>
 TDeleter& SharedPTR<Type, TDeleter>::get_deleter() {
     return deleter;
 }
-// Преобразование в bool
+// ╨Я╤А╨╡╨╛╨▒╤А╨░╨╖╨╛╨▓╨░╨╜╨╕╨╡ ╨▓ bool
 template<class Type,class TDeleter>
 SharedPTR<Type, TDeleter>::operator bool() const
 {
     return (m_ptr!=nullptr);
 }
-// Освобождение владения
+// ╨Ю╤Б╨▓╨╛╨▒╨╛╨╢╨┤╨╡╨╜╨╕╨╡ ╨▓╨╗╨░╨┤╨╡╨╜╨╕╤П
 template<class Type,class TDeleter>
 void SharedPTR<Type, TDeleter>::release()
 {
     SubCount();
     m_ptr = nullptr;
 }
-// Сброс указателя
+// ╨б╨▒╤А╨╛╤Б ╤Г╨║╨░╨╖╨░╤В╨╡╨╗╤П
 template<class Type,class TDeleter>
 void SharedPTR<Type, TDeleter>::reset(Type *pObject)
 {
@@ -120,10 +107,9 @@ void SharedPTR<Type, TDeleter>::reset(Type *pObject)
         m_ptr = pObject;
         SubCount();
         count=nullptr;
-
     }
 }
-// Обмен с другим умным указателем
+// ╨Ю╨▒╨╝╨╡╨╜ ╤Б ╨┤╤А╤Г╨│╨╕╨╝ ╤Г╨╝╨╜╤Л╨╝ ╤Г╨║╨░╨╖╨░╤В╨╡╨╗╨╡╨╝
 template<class Type,class TDeleter>
 void SharedPTR<Type, TDeleter>::swap(t_SharedPTR &sharedPTR)
 {
