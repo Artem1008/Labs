@@ -122,3 +122,30 @@ size_t SharedPTR<Type, TDeleter>::getcount()
 {
     return (*count);
 }
+template<class Type,class TDeleter>
+void SharedPTR<Type, TDeleter>::SubCount()
+{
+    if (count != nullptr) {
+        if (*count == 1)
+        {
+            delete count;
+            count = nullptr;
+        }
+        else
+        {
+            --(*count);
+        }
+    }
+}
+template<class Type,class TDeleter>
+void SharedPTR<Type, TDeleter>::AddCount()
+{
+    if (count==nullptr)
+    {
+        count=new size_t(1);
+    }
+    else
+    {
+        ++(*count);
+    }
+}
