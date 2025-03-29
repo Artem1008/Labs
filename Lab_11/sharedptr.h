@@ -9,52 +9,26 @@ class SharedPTR {
     TDeleter deleter;
     size_t* count;
     typedef SharedPTR<Type, TDeleter> t_SharedPTR;
-    void SubCount()
-    {
-        if (count != nullptr) {
-            if (*count == 1)
-            {
-                delete count;
-                count = nullptr;
-            }
-            else
-            {
-                --(*count);
-            }
-        }
-    }
-    void AddCount()
-    {
-        if (count==nullptr)
-        {
-            count=new size_t(1);
-        }
-        else
-        {
-            ++(*count);
-        }
-    }
+    void SubCount();
+    void AddCount();
 public:
-    SharedPTR();//+
-    SharedPTR(Type *pObj);//+
-    SharedPTR(t_SharedPTR &&uniquePTR) noexcept; //+
+    SharedPTR();
+    SharedPTR(Type *pObj);
+    SharedPTR(t_SharedPTR &&uniquePTR) noexcept;
     SharedPTR(const t_SharedPTR&);
     ~SharedPTR();
-public: // Assignment.
     t_SharedPTR& operator=(t_SharedPTR &&sharedPTR) noexcept;
     t_SharedPTR& operator=(Type *pObject);
     t_SharedPTR& operator=(const t_SharedPTR& sharedPTR);
-public: // Observers.
     Type& operator*() const; //+
     Type* operator->() const;//+
     Type* get() const;
     TDeleter& get_deleter();
     operator bool() const;
     size_t getcount();
-public: // Modifiers.
-    void release(); // Release ownership of any stored pointer.
-    void reset(Type *pObject = nullptr); // Replace the stored pointer.
-    void swap(t_SharedPTR &sharedPTR); // Exchange the pointer with another object.
+    void release();
+    void reset(Type *pObject = nullptr);
+    void swap(t_SharedPTR &sharedPTR);
 };
 #include "sharedptr.inl"
 #endif // SHAREDPTR_H
