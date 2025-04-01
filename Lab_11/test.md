@@ -247,8 +247,42 @@ int main() {
 }
 ```
 7) Найдите ошибки в «точке входа»: Вывод приложения должен быть такой:
+In f(const MemBlck&). This version can't modify the parameter.
+In f(MemBlck&&). This version can modify the parameter.
 ```cpp
+#include <iostream>
+using namespace std;
+class MemBlck {
+};
+void f(const MemBlck&) {
+    cout << "In f(const MemBlck&). This version can't modify the parameter." << endl;
+}
+void f(MemBlck&&) {
+    cout << "In f(MemBlck&&). This version can modify the parameter." << endl;
+}
+int main() {
+    
+    MemBlck block;
+    f();
+    f();
+}
 ```
 Рабочий вариант
 ```cpp
+#include <iostream>
+using namespace std;
+class MemBlck {
+};
+void f(const MemBlck&) {
+    cout << "In f(const MemBlck&). This version can't modify the parameter." << endl;
+}
+void f(MemBlck&&) {
+    cout << "In f(MemBlck&&). This version can modify the parameter." << endl;
+}
+int main() {
+    MemBlck block;
+    f(block);
+    f(std::move(block));
+}
+
 ```
