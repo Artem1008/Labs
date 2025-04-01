@@ -18,9 +18,13 @@ public:
     {
        new (pObj+point) Type(args...);
        employed[point]=true;
-       return pObj[point++];
+       if (point<size) return pObj[point++];
+       else
+           throw std::overflow_error("Пул переполнен");
+
     }
     void free();
+    void free(int index);
     virtual ~Pool();
 };
 #include <pool.inl>
