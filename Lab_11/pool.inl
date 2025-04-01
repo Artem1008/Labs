@@ -10,7 +10,19 @@ Pool<Type>::Pool(size_t _size):point(0),size(_size)
 template<class Type>
 void Pool<Type>::free()
 {
+    for(int i=0;i<size;++i)
+    {
+        if(!employed[i])
+        pObj[i].~Type();
+        if (i<point) point=i;
+    }
 
+}
+template<class Type>
+void Pool<Type>::free(int index)
+{
+   employed[index]=false;
+    if (index<point) point=index;
 }
 template<class Type>
 Pool<Type>::~Pool()
