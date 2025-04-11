@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.0)
+SET(PROJ_NAME "editor")
+PROJECT(${PROJ_NAME})
+add_executable(${PROJECT_NAME} src/main.cpp)
+target_link_libraries(${PROJECT_NAME} PUBLIC crc)
