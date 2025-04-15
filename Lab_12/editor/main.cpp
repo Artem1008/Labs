@@ -1,30 +1,33 @@
-#include "main.h"
+#include "crc.h"
+#include <fstream>
+#include <string>
 
 int main(int argc, char *argv[] )
 {
     std::string bufer;
     const char* path;
-    size_t size;
-    CRC crc32;
-    uint32_t crc;
+    Hash hash;
+    std::string rezult;
     if (argc>1)
     {
         path=argv[1];
     }
-    std::ifstream file(path,std::ios::binary);
-    if (!file.is_open())
+  std::ifstream file(path,std::ios::binary);
+ if (!file.is_open())
     {
-        std::cerr << "Žè¨¡ª  ®âªàëâ¨ï ä ©« : " << path << std::endl;
+        std::cerr << "ÐžÑˆÐ¸Ð±ÐºÐ° Ð¾Ñ‚ÐºÑ€Ñ‹Ñ‚Ð¸Ñ Ñ„Ð°Ð¹Ð»Ð°: " << path << std::endl;
         return 0;
     }
     file.seekg(0,std::ios_base::end);
     bufer.resize(file.tellg());
     file.seekg(0, std::ios::beg);
     file.read(&bufer[0], bufer.size());
-    crc32.setCRCType("crc16");
-    crc=crc32.calculateCRC(bufer);
-    file.close();
-    std::cout<<"crc="<< std::hex<<crc;
+    rezult=hash.calculateCRC32(bufer);
+    std::cout<<"crc="<< std::hex<<rezult<<"\n";
+    rezult=hash.calculatemd5(bufer);
+    std::cout<<"md5="<< std::hex<<rezult<<"\n";
+     //file.close();
     return 0;
 }
+
 
