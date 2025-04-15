@@ -1,5 +1,0 @@
-cmake_minimum_required(VERSION 4.0)
-SET(PROJ_NAME "Lab_12")
-PROJECT(${PROJ_NAME})
-add_subdirectory(crc)
-add_subdirectory(editor)
