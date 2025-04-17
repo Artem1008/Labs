@@ -19,6 +19,13 @@
 #define SUM1512(x) (ROTRIGHT(x,14) ^ ROTRIGHT(x,18) ^ ROTRIGHT(x,41))
 #define MAJ(x,y,z) (((x) & (y)) ^ ((x) & (z)) ^ ((y) & (z)))
 #define CH(x,y,z) (((x) & (y)) ^ (~(x) & (z)))
+#define SHA2_PACK32(str, x)                   \
+{                                             \
+    *(x) =   ((uint64_t) *((str) + 3)      )    \
+           | ((uint64_t) *((str) + 2) <<  8)    \
+           | ((uint64_t) *((str) + 1) << 16)    \
+           | ((uint64_t) *((str) + 0) << 24);   \
+}
 #define SHA2_PACK64(str, x)                   \
 {                                             \
     *(x) =   ((uint64_t) *((str) + 7)      )    \
