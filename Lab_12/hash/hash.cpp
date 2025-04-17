@@ -118,26 +118,23 @@ std::string Hash::calculatesha256(const std::string & data)
 {
     std::string str=data;
     unsigned char bits[8];
-    size_t size=data.size();
-   for(int i = 0; i < 8; i++)
+    size_t size=data.size();   
+    for(int i = 0; i < 8; i++)
     {
         bits[7-i]=((unsigned char)((size*8 >> (8 * i)) & 0xFF));
     }
     str.push_back(0x80);
-    str.append(63-size%64,0);
-    if((size%64)>=56)
+    while((str.size()%64)!=56)
     {
-        str.append(56,0);
+        str.push_back(0);
     }
-    else
+    for(int i = 0; i < 8; i++)
     {
-        memcpy(&str[56],&bits[0],8);
+        str.push_back(bits[i]);
     }
-    str.append(192,0);
-    size_t sizeBlocks = str.size() / 256;
+    size_t sizeBlocks = str.size() / 64;
     uint32_t W[64];
     uint32_t tv[8];
-
     for (size_t j = 0; j < sizeBlocks; ++j)
     {
         for (int i = 0; i < 8; ++i)
@@ -175,35 +172,31 @@ std::string Hash::calculatesha512(const std::string & data)
 {
     std::string str=data;
     unsigned char bits[8];
-
-    size_t size=data.size();
+    size_t size=data.size();   
     for(int i = 0; i < 8; i++)
     {
         bits[7-i]=((unsigned char)((size*8 >> (8 * i)) & 0xFF));
     }
     str.push_back(0x80);
-    str.append(127-size%128,0);
-    if((size%128)>=120)
+    while((str.size()%128)!=120)
     {
-        str.append(120,0);
+        str.push_back(0);
     }
-    else
+    for(int i = 0; i < 8; i++)
     {
-        memcpy(&str[120],&bits[0],8);
+        str.push_back(bits[i]);
     }
-    str.append(384,0);
-    size_t sizeBlocks = str.size() / 512;
+    size_t sizeBlocks = str.size() / 128;
     uint64_t W[80];
     uint64_t tv[8];
-    size_t indexW;
-    const unsigned char *sub_block= reinterpret_cast<const unsigned char*>(&str[0]);
+    const unsigned char* Firstblock= reinterpret_cast<const unsigned char*>(str.data());
     for (size_t j = 0; j < sizeBlocks; ++j)
     {
         for (int i = 0; i < 8; ++i)
             tv[i] = h512[i];
         for(int i=0;i<16;++i)
         {
-           SHA2_PACK64(&sub_block[i << 3], &W[i]);
+            SHA2_PACK64(&Firstblock[i << 3], &W[i]);
         }
         for (size_t i = 16; i < 80; ++i)
         {
@@ -221,7 +214,6 @@ std::string Hash::calculatesha512(const std::string & data)
             tv[b] = tv[a];
             tv[a] = temp1 + temp2;
         }
-
         for (int i = 0; i < 8; ++i)
             h512[i]+=tv[i];
     }
