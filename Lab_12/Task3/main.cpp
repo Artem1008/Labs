@@ -1,40 +1,36 @@
-
-#include <locale>
+#include <mutex>
 #include "main.h"
 #include "mytimer.h"
 #include "threadpool.h"
 #include "safemap.h"
 
+std::mutex readMutex;
 SafeMap safemap;
 int SafeMap::count;
 void processRead(std::shared_ptr<std::ifstream>& file, size_t start, size_t end, std::string& StrFind)
 {
-    try {
         size_t findSize = StrFind.size();
         if (start + findSize > end)
         {
             std::cerr << "Ошибка: искомая подстрока выходит за пределы диапазона\n";
             return;
         }
-        file->seekg(start);
         std::string buffer;
         buffer.resize(end-start);
+        readMutex.lock();
+        file->seekg(start);
         if (!file->read(reinterpret_cast<char*>(buffer.data()), buffer.size()))
         {
             std::cerr << "file reading error\n";
             return;
         }
+        readMutex.unlock();
         size_t pos = 0;
         while((pos = buffer.find(StrFind, pos)) != std::string::npos)
         {
             safemap.insert(start + pos);
              pos += StrFind.length();
         }
-    }
-    catch (...)
-    {
-        std::cerr << "error searching for a substring in the number stream"<<std::this_thread::get_id()<<"\n";
-    }
 }
 int main(int argc, char *argv[] )
 {
