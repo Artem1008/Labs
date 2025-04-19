@@ -12,7 +12,7 @@ SafeMap safemap;
 int SafeMap::count;
 
 //2 варианта чтения последовательное каждым потоком или многопоточное
-void processRead(std::shared_ptr<std::ifstream> file_ptr,const std::string& path, size_t start, size_t end,const std::string& StrFind)
+void processRead(const std::shared_ptr<std::ifstream>& file_ptr,const std::string& path, size_t start, size_t end,const std::string& StrFind)
 {
     auto timestart=std::chrono::high_resolution_clock::now();
     size_t findSize = StrFind.size();
