@@ -5,12 +5,14 @@
 #include "safemap.h"
 #include <mutex>
 #include <chrono>
+#define MULIREAD
 
 std::mutex readMutex;
 SafeMap safemap;
 int SafeMap::count;
 
-void processRead(std::shared_ptr<std::ifstream> file_ptr, size_t start, size_t end,const std::string& StrFind)
+//2 варианта чтения последовательное каждым потоком или многопоточное
+void processRead(std::shared_ptr<std::ifstream> file_ptr,const std::string& path, size_t start, size_t end,const std::string& StrFind)
 {
     auto timestart=std::chrono::high_resolution_clock::now();
     size_t findSize = StrFind.size();
@@ -21,6 +23,21 @@ void processRead(std::shared_ptr<std::ifstream> file_ptr, size_t start, size_t e
     }
     std::string buffer;
     buffer.resize(end-start);
+#ifdef MULIREAD
+    std::shared_ptr<std::ifstream> fileptr=std::make_shared<std::ifstream>(path,std::ios::binary);
+    if (!fileptr->is_open())
+    {
+        std::cerr << "file opening error: " << path << std::endl;
+        return;
+    }
+    fileptr->seekg(start);
+    if (!fileptr->read(&buffer[0], buffer.size()))
+    {
+        std::cerr << "file reading error "<<std::this_thread::get_id()<<"\n";
+        return;
+    }
+#endif
+#ifndef MULIREAD
     readMutex.lock();
     file_ptr->seekg(start);
     if (!file_ptr->read(&buffer[0], buffer.size()))
@@ -29,6 +46,7 @@ void processRead(std::shared_ptr<std::ifstream> file_ptr, size_t start, size_t e
         return;
     }
     readMutex.unlock();
+#endif
     size_t pos = 0;
     while((pos = buffer.find(StrFind, pos)) != std::string::npos)
     {
@@ -37,12 +55,11 @@ void processRead(std::shared_ptr<std::ifstream> file_ptr, size_t start, size_t e
     }
     readMutex.lock();
     auto timeend=std::chrono::high_resolution_clock::now();
-    std::cout <<"potok nomer "<<std::this_thread::get_id()<<"srabotal za "<<std::chrono::duration_cast<std::chrono::milliseconds>(timeend - timestart).count()<<" millisec \n";
+    std::cout <<"potok nomer "<<std::this_thread::get_id()<<" srabotal za "<<std::chrono::duration_cast<std::chrono::milliseconds>(timeend - timestart).count()<<" millisec \n";
     readMutex.unlock();
 }
 int main()
 {
-
     //размер блоков для обработки
     int sizeblock=32;
     //количество потоков
@@ -64,7 +81,7 @@ int main()
     {
         size_t start = i * sizeblock ;
         size_t end = (start+sizeblock)<fileSize?start+sizeblock:fileSize;
-        futures.push_back(pool.enqueue(processRead,file_ptr,start,end,strfild));
+        futures.push_back(pool.enqueue(processRead,file_ptr,path,start,end,strfild));
     }
     for (auto& future : futures)
     {
