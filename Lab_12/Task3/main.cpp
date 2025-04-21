@@ -59,7 +59,7 @@ void processRead(const std::shared_ptr<std::ifstream>& file_ptr,const std::strin
     }
     readMutex.lock();
     auto timeend=std::chrono::high_resolution_clock::now();
-    std::cout <<"potok nomer "<<std::this_thread::get_id()<<" srabotal za "<<std::chrono::duration_cast<std::chrono::nanoseconds>(timeend - timestart).count()<<" nanosec \n";
+    std::wcout <<L"Поток номер "<<std::this_thread::get_id()<<L" сработал за "<<std::chrono::duration_cast<std::chrono::nanoseconds>(timeend - timestart).count()<<L" наносек \n";
     readMutex.unlock();
 }
 void PritnfHelp()
