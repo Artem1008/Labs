@@ -12,8 +12,6 @@ struct CharRange {
     std::pair<unsigned int, unsigned int> range2;
     std::pair<unsigned int, unsigned int> range3;
 };
-
-// Массив с диапазонами символов для разных кодировок
 union Char16 {
     char bytes[2];
     unsigned short value=0;
