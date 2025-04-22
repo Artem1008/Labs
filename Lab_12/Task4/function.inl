@@ -36,9 +36,7 @@ std::pair<std::string,int> EncodingUTF8(unsigned char* bufer,size_t size)
     Char24 bufer24;
     Char32 bufer32;
     size_t countSimvol=0;
-    readMutex.lock();
     auto timestart=std::chrono::high_resolution_clock::now();
-    readMutex.unlock();
     for(size_t i=0;i<size;)
     {
         if (*bufer<0x80)
@@ -91,8 +89,8 @@ std::pair<std::string,int> EncodingUTF8(unsigned char* bufer,size_t size)
         }
 
     }
+     auto timeend=std::chrono::high_resolution_clock::now();
     readMutex.lock();
-    auto timeend=std::chrono::high_resolution_clock::now();
     std::wcout <<L"Поток номер "<<std::this_thread::get_id()<<L" сработал за "<<std::chrono::duration_cast<std::chrono::nanoseconds>(timeend - timestart).count()<<L" наносек \n";
     readMutex.unlock();
     if (English>Russian&& English>1&&English>None) return std::make_pair("English "+ranges.name,English*100/countSimvol);
@@ -105,9 +103,7 @@ std::pair<std::string,int> EncodingASCII(unsigned char* bufer,size_t size)
     size_t English=0;
     size_t Russian=0;
     size_t None=0;
-    readMutex.lock();
     auto timestart=std::chrono::high_resolution_clock::now();
-    readMutex.unlock();
     for(size_t i=0;i<size;++bufer, ++i)
     {
             if(*bufer=='\n' || *bufer=='\t' || *bufer=='\r' || *bufer==0x20)
@@ -124,8 +120,8 @@ std::pair<std::string,int> EncodingASCII(unsigned char* bufer,size_t size)
                 Russian+=1;
             }
     }
-    readMutex.lock();
     auto timeend=std::chrono::high_resolution_clock::now();
+    readMutex.lock();
     std::wcout <<L"Поток номер "<<std::this_thread::get_id()<<L" сработал за "<<std::chrono::duration_cast<std::chrono::nanoseconds>(timeend - timestart).count()<<L" наносек \n";
     readMutex.unlock();
     if (English>Russian&& English>1&&English>None) return std::make_pair("English "+ranges.name,English*100/size);
@@ -138,9 +134,7 @@ std::pair<std::string,int> EncodingCP1251(unsigned char* bufer,size_t size)
     size_t English=0;
     size_t Russian=0;
     size_t None=0;
-    readMutex.lock();
     auto timestart=std::chrono::high_resolution_clock::now();
-    readMutex.unlock();
     for(size_t i=0;i<size;++bufer, ++i)
     {
             if(*bufer=='\n' || *bufer=='\t' || *bufer=='\r' || *bufer==0x20)
@@ -157,8 +151,8 @@ std::pair<std::string,int> EncodingCP1251(unsigned char* bufer,size_t size)
                 Russian+=1;
             }
     }
-    readMutex.lock();
     auto timeend=std::chrono::high_resolution_clock::now();
+    readMutex.lock();
     std::wcout <<L"Поток номер "<<std::this_thread::get_id()<<L" сработал за "<<std::chrono::duration_cast<std::chrono::nanoseconds>(timeend - timestart).count()<<L" наносек \n";
     readMutex.unlock();
     if (English>Russian&& English>1&&English>None) return std::make_pair("English "+ranges.name,English*100/size);
@@ -171,9 +165,7 @@ std::pair<std::string,int> EncodingCP866(unsigned char* bufer,size_t size)
     size_t English=0;
     size_t Russian=0;
     size_t None=0;
-    readMutex.lock();
     auto timestart=std::chrono::high_resolution_clock::now();
-    readMutex.unlock();
     for(size_t i=0;i<size;++bufer, ++i)
     {
         if(*bufer=='\n' || *bufer=='\t' || *bufer=='\r' || *bufer==0x20)
@@ -191,8 +183,8 @@ std::pair<std::string,int> EncodingCP866(unsigned char* bufer,size_t size)
             Russian+=1;
         }
     }
-    readMutex.lock();
     auto timeend=std::chrono::high_resolution_clock::now();
+    readMutex.lock();
     std::wcout <<L"Поток номер "<<std::this_thread::get_id()<<L" сработал за "<<std::chrono::duration_cast<std::chrono::nanoseconds>(timeend - timestart).count()<<L" наносек \n";
     readMutex.unlock();
     if (English>Russian&& English>1&&English>None) return std::make_pair("English "+ranges.name,English*100/size);
@@ -205,9 +197,7 @@ std::pair<std::string,int> EncodingISO88595(unsigned char* bufer,size_t size)
     size_t English=0;
     size_t Russian=0;
     size_t None=0;
-    readMutex.lock();
     auto timestart=std::chrono::high_resolution_clock::now();
-    readMutex.unlock();
     for(size_t i=0;i<size;++bufer, ++i)
     {
             if(*bufer=='\n' || *bufer=='\t' || *bufer=='\r' || *bufer==0x20)
@@ -224,8 +214,8 @@ std::pair<std::string,int> EncodingISO88595(unsigned char* bufer,size_t size)
                 Russian+=1;
             }
     }
-    readMutex.lock();
     auto timeend=std::chrono::high_resolution_clock::now();
+    readMutex.lock();
     std::wcout <<L"Поток номер "<<std::this_thread::get_id()<<L" сработал за "<<std::chrono::duration_cast<std::chrono::nanoseconds>(timeend - timestart).count()<<L" наносек \n";
     readMutex.unlock();
     if (English>Russian&& English>1&&English>None) return std::make_pair("English "+ranges.name,English*100/size);
@@ -238,9 +228,7 @@ std::pair<std::string,int> EncodingKOI8R(unsigned char* bufer,size_t size)
     size_t English=0;
     size_t Russian=0;
     size_t None=0;
-    readMutex.lock();
     auto timestart=std::chrono::high_resolution_clock::now();
-    readMutex.unlock();
     for(size_t i=0;i<size;++bufer, ++i)
     {
             if(*bufer=='\n' || *bufer=='\t' || *bufer=='\r' || *bufer==0x20)
@@ -257,8 +245,8 @@ std::pair<std::string,int> EncodingKOI8R(unsigned char* bufer,size_t size)
                 Russian+=1;
             }
     }
-    readMutex.lock();
     auto timeend=std::chrono::high_resolution_clock::now();
+    readMutex.lock();
     std::wcout <<L"Поток номер "<<std::this_thread::get_id()<<L" сработал за "<<std::chrono::duration_cast<std::chrono::nanoseconds>(timeend - timestart).count()<<L" наносек \n";
     readMutex.unlock();
     if (English>Russian&& English>1&&English>None) return std::make_pair("English "+ranges.name,English*100/size);
@@ -273,9 +261,7 @@ std::pair<std::string,int> EncodingUTF16LE(unsigned char* bufer,size_t size)
     size_t None=0;
     Char16 bufer16;
     size_t countSimvol=0;
-    readMutex.lock();
     auto timestart=std::chrono::high_resolution_clock::now();
-    readMutex.unlock();
     for(size_t i=0;i<size;bufer+=2,i+=2)
     {
         bufer16.bytes[1]=bufer[0];
@@ -298,11 +284,10 @@ std::pair<std::string,int> EncodingUTF16LE(unsigned char* bufer,size_t size)
         bufer+=2;
         i+=2;
     }
-    readMutex.lock();
     auto timeend=std::chrono::high_resolution_clock::now();
+    readMutex.lock(); 
     std::wcout <<L"Поток номер "<<std::this_thread::get_id()<<L" сработал за "<<std::chrono::duration_cast<std::chrono::nanoseconds>(timeend - timestart).count()<<L" наносек \n";
     readMutex.unlock();
-    std::cout<<"size ="<<size<<" Russian = "<<std::dec<<Russian<<" English = "<<English<<" None = "<<None<<'\n';
     if (English>Russian&& English>1&&English>None) return std::make_pair("English "+ranges.name,English*100/countSimvol);
     if (Russian>English&& Russian>1&&Russian>None) return std::make_pair("Russian "+ranges.name,Russian*100/countSimvol);
     return std::make_pair(ranges.name,0);
@@ -315,9 +300,7 @@ std::pair<std::string,int> EncodingUTF16BE(unsigned char* bufer,size_t size)
     size_t None=0;
     Char16 bufer16;
     size_t countSimvol=0;
-    readMutex.lock();
     auto timestart=std::chrono::high_resolution_clock::now();
-    readMutex.unlock();
     for(size_t i=0;i<size;bufer+=2,i+=2)
     {
         bufer16.bytes[1]=bufer[1];
@@ -340,11 +323,10 @@ std::pair<std::string,int> EncodingUTF16BE(unsigned char* bufer,size_t size)
         bufer+=2;
         i+=2;
     }
-    readMutex.lock();
     auto timeend=std::chrono::high_resolution_clock::now();
+    readMutex.lock(); 
     std::wcout <<L"Поток номер "<<std::this_thread::get_id()<<L" сработал за "<<std::chrono::duration_cast<std::chrono::nanoseconds>(timeend - timestart).count()<<L" наносек \n";
     readMutex.unlock();
-    std::cout<<"size ="<<size<<" Russian = "<<std::dec<<Russian<<" English = "<<English<<" None = "<<None<<'\n';
     if (English>Russian&& English>1&&English>None) return std::make_pair("English "+ranges.name,English*100/countSimvol);
     if (Russian>English&& Russian>1&&Russian>None) return std::make_pair("Russian "+ranges.name,Russian*100/countSimvol);
     return std::make_pair(ranges.name,0);
@@ -357,9 +339,7 @@ std::pair<std::string,int> EncodingUTF32LE(unsigned char* bufer,size_t size)
     size_t None=0;
     Char32 bufer32;
     size_t countSimvol=0;
-    readMutex.lock();
     auto timestart=std::chrono::high_resolution_clock::now();
-    readMutex.unlock();
     for(size_t i=0;i<size;bufer+=4,i+=4)
     {
         bufer32.bytes[3]=bufer[0];
@@ -384,11 +364,10 @@ std::pair<std::string,int> EncodingUTF32LE(unsigned char* bufer,size_t size)
         bufer+=2;
         i+=2;
     }
-    readMutex.lock();
     auto timeend=std::chrono::high_resolution_clock::now();
+    readMutex.lock();
     std::wcout <<L"Поток номер "<<std::this_thread::get_id()<<L" сработал за "<<std::chrono::duration_cast<std::chrono::nanoseconds>(timeend - timestart).count()<<L" наносек \n";
     readMutex.unlock();
-    std::cout<<"size ="<<size<<" Russian = "<<std::dec<<Russian<<" English = "<<English<<" None = "<<None<<'\n';
     if (English>Russian&& English>1&&English>None) return std::make_pair("English "+ranges.name,English*100/countSimvol);
     if (Russian>English&& Russian>1&&Russian>None) return std::make_pair("Russian "+ranges.name,Russian*100/countSimvol);
     return std::make_pair(ranges.name,0);
@@ -401,9 +380,7 @@ std::pair<std::string,int> EncodingUTF32BE(unsigned char* bufer,size_t size)
     size_t None=0;
     Char32 bufer32;
     size_t countSimvol=0;
-    readMutex.lock();
     auto timestart=std::chrono::high_resolution_clock::now();
-    readMutex.unlock();
     for(size_t i=0;i<size;bufer+=4,i+=4)
     {
         bufer32.bytes[3]=bufer[3];
@@ -428,11 +405,10 @@ std::pair<std::string,int> EncodingUTF32BE(unsigned char* bufer,size_t size)
         bufer+=2;
         i+=2;
     }
-    readMutex.lock();
     auto timeend=std::chrono::high_resolution_clock::now();
+    readMutex.lock(); 
     std::wcout <<L"Поток номер "<<std::this_thread::get_id()<<L" сработал за "<<std::chrono::duration_cast<std::chrono::nanoseconds>(timeend - timestart).count()<<L" наносек \n";
     readMutex.unlock();
-    std::cout<<"size ="<<size<<" Russian = "<<std::dec<<Russian<<" English = "<<English<<" None = "<<None<<'\n';
     if (English>Russian&& English>1&&English>None) return std::make_pair("English "+ranges.name,English*100/countSimvol);
     if (Russian>English&& Russian>1&&Russian>None) return std::make_pair("Russian "+ranges.name,Russian*100/countSimvol);
     return std::make_pair(ranges.name,0);
@@ -443,9 +419,7 @@ std::pair<std::string,int> EncodingUCS2(unsigned char* bufer,size_t size)
     size_t English=0;
     size_t Russian=0;
     size_t None=0;
-    readMutex.lock();
     auto timestart=std::chrono::high_resolution_clock::now();
-    readMutex.unlock();
     for(size_t i=0;i<size;++bufer, ++i)
     {
             if(*bufer=='\n' || *bufer=='\t' || *bufer=='\r' || *bufer==0x20)
@@ -462,8 +436,8 @@ std::pair<std::string,int> EncodingUCS2(unsigned char* bufer,size_t size)
                 Russian+=1;
             }
     }
-    readMutex.lock();
     auto timeend=std::chrono::high_resolution_clock::now();
+    readMutex.lock();
     std::wcout <<L"Поток номер "<<std::this_thread::get_id()<<L" сработал за "<<std::chrono::duration_cast<std::chrono::nanoseconds>(timeend - timestart).count()<<L" наносек \n";
     readMutex.unlock();
     if (English>Russian&& English>1&&English>None) return std::make_pair("English "+ranges.name,English*100/size);
