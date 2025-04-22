@@ -12,6 +12,8 @@ struct CharRange {
     std::pair<unsigned int, unsigned int> range2;
     std::pair<unsigned int, unsigned int> range3;
 };
+
+// Массив с диапазонами символов для разных кодировок
 union Char16 {
     char bytes[2];
     unsigned short value=0;
@@ -441,11 +443,6 @@ std::pair<std::string,int> EncodingUCS2(unsigned char* bufer,size_t size)
     size_t English=0;
     size_t Russian=0;
     size_t None=0;
-    //16
-    Char16 bufer16;
-    Char24 bufer24;
-    Char32 bufer32;
-    size_t countSimvol=0;
     readMutex.lock();
     auto timestart=std::chrono::high_resolution_clock::now();
     readMutex.unlock();
