@@ -1,65 +1,61 @@
-#include <locale>
-#include <mutex>
-#include <vector>
-#include <chrono>
 #include <getopt.h>
 #include "main.h"
 #include "threadpool.h"
 
-std::mutex readMutex;
-
-// Определяем диапазоны символов для каждой кодировки
-struct CharRange {
-    std::string name;
-    std::pair<int, int> range1;  // для русских букв
-    std::pair<int, int> range2;  // для английских букв
-};
-
-// Массив с диапазонами символов для разных кодировок
-const std::vector<CharRange> ranges = {
-    {"ASCII", {0, 0}, {32, 126}},
-    {"CP1251", {192, 255}, {32, 126}},
-    {"CP866", {128, 159}, {32, 126}},
-    {"ISO8859-5", {128, 191}, {32, 126}},
-    {"KOI8-R", {128, 159}, {32, 126}},
-    {"KOI8-R", {128, 159}, {32, 126}},
-    {"CP866", {128, 159}, {32, 126}},
-    {"CP866", {128, 159}, {32, 126}}
-};
-void processRead(const std::string& StrFind)
-{
-    readMutex.lock();
-    auto timestart=std::chrono::high_resolution_clock::now();
-    readMutex.unlock();
-
-    readMutex.lock();
-    auto timeend=std::chrono::high_resolution_clock::now();
-    std::cout <<"potok nomer "<<std::this_thread::get_id()<<" srabotal za "<<std::chrono::duration_cast<std::chrono::nanoseconds>(timeend - timestart).count()<<" nanosec \n";
-    readMutex.unlock();
-}
+typedef std::pair<std::string,int> (*EncodingFunction)(unsigned char* bufer,size_t size);
+std::pair<std::string,int> EncodingASCII(unsigned char* bufer,size_t size);
+std::pair<std::string,int> EncodingCP1251(unsigned char* bufer,size_t size);
+std::pair<std::string,int> EncodingCP866(unsigned char* bufer,size_t size);
+std::pair<std::string,int> EncodingISO88595(unsigned char* bufer,size_t size);
+std::pair<std::string,int> EncodingKOI8R(unsigned char* bufer,size_t size);
+std::pair<std::string,int> EncodingUTF8(unsigned char* bufer,size_t size);
+std::pair<std::string,int> EncodingUTF16LE(unsigned char* bufer,size_t size);
+std::pair<std::string,int> EncodingUTF16BE(unsigned char* bufer,size_t size);
+std::pair<std::string,int> EncodingUTF32LE(unsigned char* bufer,size_t size);
+std::pair<std::string,int> EncodingUTF32BE(unsigned char* bufer,size_t size);
+std::pair<std::string,int> EncodingUCS2(unsigned char* bufer,size_t size);
 void PritnfHelp()
 {
     std::wcout << L"Использование: ./programm [опции]\n"
                << L"Опции:\n"
-               << L"  -p, --path     имя файла\n";
+               << L"  -p, --path     имя файла\n"
+               << L"  -h, --help     показать эту справку\n";
 }
 
 int main(int argc, char *argv[] )
 {
     setlocale(LC_ALL, "");
     std::string path;
+    EncodingFunction encodingfunction[]=
+    {
+        EncodingASCII,
+        EncodingCP1251,
+        EncodingCP866,
+        EncodingISO88595,
+        EncodingKOI8R,
+        EncodingUTF8,
+        EncodingUTF16LE,
+        EncodingUTF16BE,
+        EncodingUTF32LE,
+        EncodingUTF32BE,
+        EncodingUCS2
+    };
     //строка для анализа
-    std::string  buffer;
+    unsigned char* buffer;
     static struct option long_options[] = {
     {"path",     required_argument, 0, 'p'},
+    {"help",     no_argument,       0, 'h'},
     {0, 0, 0, 0}
 };
     int opt;
-    while ((opt = getopt_long(argc, argv, "p:t:f:c:h", long_options, NULL)) != -1) {
+    while ((opt = getopt_long(argc, argv, "p:h", long_options, NULL)) != -1) {
         switch (opt) {
         case 'p':
             path = optarg;
             break;
+        case 'h':
+            PritnfHelp();
+            return 0;
         default:
             PritnfHelp();
             return 1;
@@ -69,7 +65,7 @@ int main(int argc, char *argv[] )
         PritnfHelp();
         return 1;
     }
-    std::vector<std::future<void>> futures;
+    std::vector<std::future<std::pair<std::string, int>>> futures;
     std::shared_ptr<std::ifstream> file_ptr=std::make_shared<std::ifstream>(path,std::ios::binary);
     if (!file_ptr->is_open())
     {
@@ -79,20 +75,45 @@ int main(int argc, char *argv[] )
     file_ptr->seekg(0, std::ios::end);
     size_t sizefile=file_ptr->tellg();
     file_ptr->seekg(0,std::ios::beg);
-    buffer.resize(sizefile);
-    if (!file_ptr->read(&buffer[0], buffer.size()))
+    buffer= new unsigned char[sizefile];
+    if (!file_ptr->read((char*)buffer, sizefile))
     {
         std::cerr << "file reading error "<<std::this_thread::get_id()<<"\n";
         return 0;
     }
-    ThreadPool pool;
-    for (int i = 0; i <= 5; ++i)
+    //колличество символов в служебном диопозоне
+    size_t count32;
+    // Проверяем на бинарный файл
+    for(size_t i=0;i<sizefile;++i)
     {
-        futures.push_back(pool.enqueue(processRead,buffer));
+        if (buffer[i]< 32 && buffer[i] != '\n' && buffer[i] != '\r' && buffer[i] != '\t')
+        {
+            ++count32;
+        }
+        if(count32==sizefile)
+        {
+            std::wcout << L"Фаил бинарный";
+            return -1;
+        }
     }
-    for (auto& future : futures)
+    ThreadPool pool;
+    for (size_t i = 0; i <sizeof(encodingfunction)/sizeof(encodingfunction[0]); ++i)
+    {
+        futures.push_back(pool.enqueue(encodingfunction[i],buffer,sizefile));
+    }
+    for (const auto& future : futures)
     {
         future.wait();
     }
+    for (auto& future : futures)
+    {
+        auto result = future.get();
+        if(result.first=="None")
+        {
+            std::wcout<<L"Не определено\n";
+        }
+        else std::cout << result.first <<" : " << result.second<<"%"<<std::endl;
+    }
     return 1;
 }
+#include <function.inl>
