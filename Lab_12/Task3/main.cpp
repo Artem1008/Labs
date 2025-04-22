@@ -15,9 +15,7 @@ int SafeMap::count;
 //2 варианта чтения последовательное каждым потоком или многопоточное
 void processRead(const std::shared_ptr<std::ifstream>& file_ptr,const std::string& path, size_t start, size_t end,const std::string& StrFind)
 {
-    readMutex.lock();
     auto timestart=std::chrono::high_resolution_clock::now();
-    readMutex.unlock();
     size_t findSize = StrFind.size();
     if (start + findSize > end)
     {
@@ -57,8 +55,8 @@ void processRead(const std::shared_ptr<std::ifstream>& file_ptr,const std::strin
         safemap.insert(start + pos);
         pos += StrFind.length();
     }
-    readMutex.lock();
     auto timeend=std::chrono::high_resolution_clock::now();
+    readMutex.lock();
     std::wcout <<L"Поток номер "<<std::this_thread::get_id()<<L" сработал за "<<std::chrono::duration_cast<std::chrono::nanoseconds>(timeend - timestart).count()<<L" наносек \n";
     readMutex.unlock();
 }
