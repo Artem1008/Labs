@@ -1,21 +1,23 @@
 #ifndef TRAFFICLIGHT_H
 #define TRAFFICLIGHT_H
-#include <string>
+#include <iostream>
+#include <memory>
+#include <thread>
+#include <mutex>
+#include <chrono>
+#include "state.h"
 
-const int GREEN_TIME = 40;
-const int YELLOW_TIME = 4;
-const int RED_TIME = 30;
-const int TIMEOUT = 2;
+
+
 enum ColorType
 {
-    Red,
     Yellow,
+    Red,
     Green,
-
 };
 enum Messages
 {
-    SetLight,
+    Set,
     Success,
     Fail,
     Start ,
@@ -27,13 +29,68 @@ enum Messages
 };
 
 
+class TrafficLight;
+
+class State {
+protected:
+    std::wstring color;
+public:
+    virtual ~State() {}
+    explicit State(){};
+    virtual std::wstring getColor();
+    virtual void action() = 0;
+};
+
+class YellowState : public State {
+public:
+    YellowState()
+    {
+        color=L"Желтый";
+    };
+    void action() override;
+};
+class GreenState : public State {
+public:
+    GreenState()
+    {
+        color=L"Зеленый";
+    };
+    void action() override;
+};
+class RedState: public State {
+public:
+    RedState()
+    {
+        color=L"Красный";
+    };
+    void action() override;
+};
+
 class TrafficLight
 {
 private:
-    std::string  state;
+    State* state;
+    State* arrstate[3];
+    bool isRunning = false;
+    bool Error=false;
+    void FlashLight(int);
 public:
-    TrafficLight();
-    int SetLight(ColorType):
+    TrafficLight()
+    {
+        arrstate[0]=new YellowState;
+        arrstate[1]=new RedState;
+        arrstate[2]=new GreenState;
+        state=arrstate[0];
+        state->action();
+    }
+    int On();
+    int OFF();
+    State* getState();
+    int SetLight(ColorType);
+    ~TrafficLight()
+    {
+        delete state;
+    }
 };
 
 #endif // TRAFFICLIGHT_H
