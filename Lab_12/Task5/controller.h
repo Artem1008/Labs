@@ -11,7 +11,7 @@ class Controller
 private:
     TrafficLight* trafficlight;
 public:
-    Controller();
+    Controller(TrafficLight*);
     void run();
 };
 
