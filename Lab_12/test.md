@@ -185,11 +185,42 @@ int main() {
 ```
 6) Найдите ошибки в коде, чтобы программа представленная ниже заработала, можно только добавлять что-то, но убирать нельзя.
 ```cpp
-
+int test(double x, double y);
+int test(int x, int y);
+int test(char x, int y);
+int main() {
+    std::cout << decltype(test) << std::endl;
+}
 ```
 Рабочий вариант
 ```cpp
+#include <iostream>
 
+int test(double x, double y);
+int test(int x, int y);
+int test(char x, int y);
+int main()
+{
+    std::cout << typeid(decltype(test(1,2))).name() << std::endl;
+}
 ```
 7) Сделайте вывод текущего времени в таком формате: Tue Feb 10 17:13:25 2024 +07
-   
+ Рабочий вариант
+```cpp  
+#include <iostream>
+#include <chrono>
+
+int main()
+{
+    auto now = std::chrono::system_clock::now();
+    std::time_t end_time = std::chrono::system_clock::to_time_t(now);
+    std::tm* timeinfo = std::localtime(&end_time);
+
+    char buffer[100];
+    strftime(buffer, sizeof(buffer), "%a %b %d %H:%M:%S %Y %z", timeinfo);
+
+    std::cout << buffer << std::endl;
+
+    return 0;
+}
+```
