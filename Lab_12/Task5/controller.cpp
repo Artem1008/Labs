@@ -4,6 +4,9 @@
 #include <functional>
 Controller::Controller(TrafficLight* _trafficlight)
 {
+    if (trafficlight==_trafficlight)
+        return;
+    delete trafficlight;
     trafficlight=_trafficlight;
 }
 
