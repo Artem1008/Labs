@@ -1,5 +1,5 @@
-#ifndef CONTROLLER_H
-#define CONTROLLER_H
+#ifndef MODEL_H
+#define MODEL_H
 #include "trafficlight.h"
 
 const int GREEN_TIME = 4;
@@ -15,4 +15,4 @@ public:
     void run();
 };
 
-#endif // CONTROLLER_H
+#endif // MODEL_H
