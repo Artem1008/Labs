@@ -1,14 +1,14 @@
 #include "controller.h"
 #include <thread>
 #include <functional>
-Controller::Controller()
+#include <functional>
+Controller::Controller(TrafficLight* _trafficlight)
 {
-    trafficlight=new TrafficLight();
+    trafficlight=_trafficlight;
 }
 
 void Controller::run()
 {
-    int error;
     int exit=2;
     std::thread t(&TrafficLight::On, trafficlight);
     t.detach();
