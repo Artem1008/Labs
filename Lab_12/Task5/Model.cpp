@@ -1,8 +1,7 @@
 #include "controller.h"
 #include <thread>
-#include <functional>
-#include <functional>
-Controller::Controller(TrafficLight* _trafficlight)
+
+Model::Model(TrafficLight* _trafficlight)
 {
     if (trafficlight==_trafficlight)
         return;
@@ -10,7 +9,7 @@ Controller::Controller(TrafficLight* _trafficlight)
     trafficlight=_trafficlight;
 }
 
-void Controller::run()
+void Model::run()
 {
     int exit=2;
     std::thread t(&TrafficLight::On, trafficlight);
