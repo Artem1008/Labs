@@ -1,5 +1,4 @@
 #include "controller.h"
-#include <thread>
 
 Model::Model(TrafficLight* _trafficlight)
 {
@@ -8,7 +7,6 @@ Model::Model(TrafficLight* _trafficlight)
     delete trafficlight;
     trafficlight=_trafficlight;
 }
-
 void Model::run()
 {
     int exit=2;
