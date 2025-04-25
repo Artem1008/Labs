@@ -79,6 +79,7 @@ int main() {
 3) Сделайте обработку аргументов командной строки чтобы вывод был следующим.
    
    ![image](https://github.com/user-attachments/assets/1eaf1205-1376-4f1e-91d6-2091e877fa9d)
+   
 Рабочий вариант
 ```cpp
 #include <iostream>
