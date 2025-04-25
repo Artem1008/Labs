@@ -9,7 +9,7 @@ const int RED_TIME = 3;
 class Controller
 {
 private:
-    TrafficLight* trafficlight;
+    TrafficLight* trafficlight=nullptr;
 public:
     Controller(TrafficLight*);
     void run();
