@@ -1,10 +1,10 @@
-#include "controller.h"
+#include "Model.h"
 
 int main()
 {
     setlocale(LC_ALL, "");
     TrafficLight trafficlight;
-    Controller controller(&trafficlight);
-    controller.run();
+    Model model(&trafficlight);
+    model.run();
     return 0;
 }
