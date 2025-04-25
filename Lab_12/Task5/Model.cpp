@@ -1,4 +1,4 @@
-#include "controller.h"
+#include "Model.h"
 
 Model::Model(TrafficLight* _trafficlight)
 {
