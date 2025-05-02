@@ -8,7 +8,7 @@ CONFIG -= app_bundle
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 LIBS += -lgdi32
-
+LIBS += -lws2_32
 SOURCES += \
         main.cpp \
         screen.cpp \

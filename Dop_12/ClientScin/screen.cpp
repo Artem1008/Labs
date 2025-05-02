@@ -3,8 +3,6 @@
 int Screen::TakeScreenshot()
 {
     try {
-
-
     // Получаем дескриптор окна рабочего стола
     HWND hDesktop = GetDesktopWindow();
     HDC hdcScreen = GetDC(hDesktop);
