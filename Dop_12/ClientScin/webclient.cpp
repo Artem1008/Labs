@@ -37,20 +37,34 @@ int WebClient::InitClient()
     return 1;
 }
 
-void WebClient::SendBitmap()
+void WebClient::SendBitmap(int sec)
 {
     BITMAP bmp;
-    HBITMAP tempBitmap=screen.getScreenshot();
-    GetObject(tempBitmap, sizeof(BITMAP), &bmp);
+    while(running)
+    {
+        std::this_thread::sleep_for(std::chrono::seconds(sec));
+        HBITMAP tempBitmap=screen.getScreenshot();
+        GetObject(tempBitmap, sizeof(BITMAP), &bmp);
+        DWORD dwSize = bmp.bmWidthBytes * bmp.bmHeight;
+        DWORD dwSize2 =bmp.bmWidth * bmp.bmHeight * (bmp.bmBitsPixel / 8);
+        // Работа с памятью
+        std::unique_ptr<BYTE[]> pBits(new BYTE[dwSize]);
+        GetBitmapBits(tempBitmap, dwSize, pBits.get());
 
-    DWORD dwSize = bmp.bmWidthBytes * bmp.bmHeight;
-    BYTE* pBits = new BYTE[dwSize];
-    GetBitmapBits(tempBitmap, dwSize, pBits);
+        // Отправка данных
+        send(my_sock, (char*)&dwSize, sizeof(DWORD), 0);
+        send(my_sock, (char*)pBits.get(), dwSize, 0);
 
-    // Отправляем через сокет
-    send(socket, (char*)&dwSize, sizeof(DWORD), 0);
-    send(socket, (char*)pBits, dwSize, 0);
+        // Очистка ресурсов
+        DeleteObject(tempBitmap);
+    }
+}
 
-    // Освобождаем память
-    delete[] pBits;
+void WebClient::StartClient()
+{
+    std::thread([this]() {SendBitmap(10);}).detach();
+}
+void WebClient::StopClient()
+{
+        running = false;
 }

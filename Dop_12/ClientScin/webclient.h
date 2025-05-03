@@ -4,6 +4,9 @@
 #include <screen.h>
 #include <iostream>
 #include <string>
+#include <chrono>
+#include <thread>
+#include <memory>
 
 class WebClient
 {
@@ -20,8 +23,8 @@ private:
               }
           };
     Screen screen;
-    char buff[1024];
     const int port;
+    bool running=true;
     const char* address;
     SOCKET my_sock;
     sockaddr_in dest_addr;
@@ -31,9 +34,10 @@ private:
     WSAInitializer wsa;
 public:
     WebClient(char* _address ,int _port);
-    void SendBitmap();
+    void SendBitmap(int sec);
     void StartClient();
-    ~WebClient();
+    void StopClient();
+    virtual ~WebClient(){};
 };
 
 #endif // WEBCLIENT_H

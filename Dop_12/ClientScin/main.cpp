@@ -1,8 +1,7 @@
-#include <QCoreApplication>
+#include "webclient.h"
 
-int main(int argc, char *argv[])
+int main()
 {
-    QCoreApplication a(argc, argv);
-
-    return a.exec();
+    WebClient client((char*)"192.168.159.1",666);
+    client.StartClient();
 }
