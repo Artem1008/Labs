@@ -3,6 +3,12 @@
 #include <qt_windows.h>
 #include <fstream>
 
+struct BitmapData {
+    int width;
+    int height;
+    int size;
+    BYTE* data;
+};
 class Screen
 {
 private:

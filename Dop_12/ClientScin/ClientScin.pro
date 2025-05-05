@@ -9,6 +9,7 @@ CONFIG -= app_bundle
 
 LIBS += -lgdi32
 LIBS += -lws2_32
+
 SOURCES += \
         main.cpp \
         screen.cpp \
@@ -22,3 +23,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     screen.h \
     webclient.h
+
+TARGET = ClientScin
