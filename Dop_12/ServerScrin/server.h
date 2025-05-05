@@ -3,11 +3,24 @@
 #include <stdio.h>
 #include <winsock2.h>
 #include <windows.h>
+#include <memory>
 #include <vector>
+#include <qt_windows.h>
+#include <QObject>
+#include <QDebug>
 
-class Server
+struct BitmapData {
+    int width;
+    int height;
+    int size;
+    BYTE* data;
+};
+
+class Server:public QObject
 {
+    Q_OBJECT
 private:
+    bool running;
     const int port=666;
     const char* address;
     char buff[1024];
@@ -18,9 +31,10 @@ private:
     static DWORD WINAPI ConnectToClient(LPVOID client_socke);
 public:
     Server();
-    void GetBitmap();
     int StartServer();
     int InitServer();
+signals:
+    void signalBITMAP(BitmapData);
 };
 
 #endif // SERVER_H
