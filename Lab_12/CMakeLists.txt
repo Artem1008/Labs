@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 4.0)
+project(Example)
+add_subdirectory(Crc)
+add_subdirectory(Hash)
+add_subdirectory(App)

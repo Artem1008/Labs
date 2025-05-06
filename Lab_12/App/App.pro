@@ -1,16 +1,19 @@
 QT -= gui
 
-CONFIG += c++17 console
+CONFIG += c++14 console
 CONFIG -= app_bundle
 
+TEMPLATE = app
+TARGET = App
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
-INCLUDEPATH += $$PWD/../include
-win32: LIBS += -L$$PWD/lib/ -lcrc
-win32: LIBS += -L$$PWD/lib/ -lhash
-SOURCES += \
-        main.cpp
+INCLUDEPATH += ../Crc/include\
+                            ../Hash/include
+
+SOURCES += src/main.cpp
+LIBS += -L../Crc/release -lCrc
+LIBS += -L../Hash/release -lHash
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
