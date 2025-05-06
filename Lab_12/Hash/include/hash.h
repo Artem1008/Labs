@@ -9,14 +9,17 @@
 #define ROTLEFT(a,b) (((a) << (b)) | ((a) >> (32-(b))))
 #define ROTRIGHT(a,b) (((a) >> (b)) | ((a) << (32-(b))))
 
-#define C0(x) (ROTRIGHT(x, 7) ^ ROTRIGHT(x, 18) ^ (x >> 3))
-#define C1(x) (ROTRIGHT(x, 17) ^ ROTRIGHT(x, 19) ^ (x >> 10))
+#define ROTLEFT64(a,b) (((a) << (b)) | ((a) >> (64-(b))))
+#define ROTRIGHT64(a,b) (((a) >> (b)) | ((a) << (64-(b))))
+
+#define C0(x) (ROTRIGHT(x,7) ^ ROTRIGHT(x,18) ^ (x >> 3))
+#define C1(x) (ROTRIGHT(x,17) ^ ROTRIGHT(x,19) ^ (x >> 10))
 #define SUM0(x) (ROTRIGHT(x,2) ^ ROTRIGHT(x,13) ^ ROTRIGHT(x,22))
 #define SUM1(x) (ROTRIGHT(x,6) ^ ROTRIGHT(x,11) ^ ROTRIGHT(x,25))
-#define C0512(x) (ROTRIGHT(x, 1) ^ ROTRIGHT(x, 8) ^ (x >> 7))
-#define C1512(x) (ROTRIGHT(x, 19) ^ ROTRIGHT(x, 61) ^ (x >> 6))
-#define SUM0512(x) (ROTRIGHT(x,28) ^ ROTRIGHT(x,34) ^ ROTRIGHT(x,39))
-#define SUM1512(x) (ROTRIGHT(x,14) ^ ROTRIGHT(x,18) ^ ROTRIGHT(x,41))
+#define C0512(x) (ROTRIGHT64(x,1) ^ ROTRIGHT64(x,8) ^ (x >> 7))
+#define C1512(x) (ROTRIGHT64(x,19) ^ ROTRIGHT64(x,61) ^ (x >> 6))
+#define SUM0512(x) (ROTRIGHT64(x,28) ^ ROTRIGHT64(x,34) ^ ROTRIGHT64(x,39))
+#define SUM1512(x) (ROTRIGHT64(x,14) ^ ROTRIGHT64(x,18) ^ ROTRIGHT64(x,41))
 #define MAJ(x,y,z) (((x) & (y)) ^ ((x) & (z)) ^ ((y) & (z)))
 #define CH(x,y,z) (((x) & (y)) ^ (~(x) & (z)))
 #define SHA2_PACK64(str, x)                   \
@@ -30,6 +33,13 @@
            | ((uint64_t) *((str) + 1) << 48)    \
            | ((uint64_t) *((str) + 0) << 56);   \
 }
+#define SHA2_PACK32(str, x)                   \
+ {                                             \
+     *(x) =   ((uint64_t) *((str) + 3)      )    \
+            | ((uint64_t) *((str) + 2) <<  8)    \
+            | ((uint64_t) *((str) + 1) << 16)    \
+            | ((uint64_t) *((str) + 0) << 24);   \
+ }
 class Hash
 {
 public:
