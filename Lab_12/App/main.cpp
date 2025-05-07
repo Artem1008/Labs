@@ -36,7 +36,7 @@ int main(int argc, char *argv[] )
     std::cout<<"md5="<< std::hex<<hash.calculatemd5(bufer)<<"\n";
     std::cout<<"sha256="<< std::hex<<hash.calculatesha256(bufer)<<"\n";
     std::cout<<"sha512="<< std::hex<<hash.calculatesha512(bufer)<<"\n";
-     //file.close();
+    file.close();
     return 0;
 }
 
