@@ -1,18 +1,19 @@
-#ifndef MODEL_H
-#define MODEL_H
+#ifndef CONTROLLER_H
+#define CONTROLLER_H
 #include "trafficlight.h"
+#include <thread>
 
 const int GREEN_TIME = 4;
 const int YELLOW_TIME = 1;
 const int RED_TIME = 3;
 
-class Controller
+class Model
 {
 private:
     TrafficLight* trafficlight=nullptr;
 public:
-    Controller(TrafficLight*);
+    Model(TrafficLight*);
     void run();
 };
 
-#endif // MODEL_H
+#endif // CONTROLLER_H
