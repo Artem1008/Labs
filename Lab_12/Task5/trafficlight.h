@@ -5,9 +5,6 @@
 #include <thread>
 #include <mutex>
 #include <chrono>
-#include "state.h"
-
-
 
 enum ColorType
 {
